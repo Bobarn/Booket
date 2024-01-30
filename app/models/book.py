@@ -1,6 +1,6 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from datetime import datetime
-
+from .bookmark import bookmarks
 
 class Book(db.Model):
     __tablename__ = "books"
@@ -20,7 +20,7 @@ class Book(db.Model):
 
     author = db.relationship("User", back_populates="books")
     pages = db.relationship("Page", back_populates="book", cascade="all, delete-orphan")
-
+    readers = db.relationship("User", secondary=bookmarks, back_populates="bookmarks")
 
     def to_dict(self):
         return {
