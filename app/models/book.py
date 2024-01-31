@@ -12,6 +12,7 @@ class Book(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
     title = db.Column(db.String(35), nullable=False)
     synopsis = db.Column(db.String(500), nullable=False)
+    category = db.Column(db.String(20), nullable=False)
     coverImage = db.Column(db.String(256), nullable=False)
     coverImageName = db.Column(db.String(255), nullable=False)
     private = db.Column(db.Boolean, nullable=False, default=False)
@@ -27,6 +28,7 @@ class Book(db.Model):
             "id": self.id,
             "title": self.title,
             "synopsis": self.synopsis,
+            "category": self.category,
             "cover": self.coverImage,
             "coverName": self.coverImageName,
             "date": self.createdAt,

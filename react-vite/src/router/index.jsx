@@ -31,6 +31,10 @@ export const router = createBrowserRouter([
       {
         path: '/books/:bookId',
         element: <h1>Welcome to Book Page</h1>
+      },
+      {
+        path: '/books/:bookId/:pageId',
+        element: <h1>Welcome to this books page</h1>
       }
     ],
   },

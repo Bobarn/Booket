@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: a5a897334639
+Revision ID: 9bdc7ffec66b
 Revises:
-Create Date: 2024-01-30 22:00:06.974574
+Create Date: 2024-01-31 09:59:33.594582
 
 """
 from alembic import op
@@ -13,7 +13,7 @@ SCHEMA = os.environ.get("SCHEMA")
 
 
 # revision identifiers, used by Alembic.
-revision = 'a5a897334639'
+revision = '9bdc7ffec66b'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -40,6 +40,7 @@ def upgrade():
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('title', sa.String(length=35), nullable=False),
     sa.Column('synopsis', sa.String(length=500), nullable=False),
+    sa.Column('category', sa.String(length=20), nullable=False),
     sa.Column('coverImage', sa.String(length=256), nullable=False),
     sa.Column('coverImageName', sa.String(length=255), nullable=False),
     sa.Column('private', sa.Boolean(), nullable=False),
@@ -77,7 +78,6 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-
     if environment == "production":
         op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
         op.execute(f"ALTER TABLE books SET SCHEMA {SCHEMA};")

@@ -1,0 +1,13 @@
+.book-shelf {
+    margin: 0px;
+}
+
+.books-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.book-tile-container {
+    display: flex;
+    justify-content: center;
+}

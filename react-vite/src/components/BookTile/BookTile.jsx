@@ -16,15 +16,23 @@ export default function BookTile({book}) {
                         {book.synopsis}
                     </p>
                     <div className='tile-book-author'>
-                        <img
-                        src={book.author.profileImage}
-                        alt={book.author.profileImageName}
-                        className='tile-book-author-image'
-                        />
+                    <img
+                    src={book.author.profileImage}
+                    alt={book.author.profileImageName}
+                    className='tile-book-author-image'
+                    />
                         {book.author.username}
                     </div>
                 </div>
             </Link>
+            <div className='tile-index'>
+                <p>Table of Contents:</p>
+                {book?.pages.slice(0, 5).map((page) => (
+                    <Link className='index-link' to={`/books/${book.id}/${page.id}`} key={page.id}>
+                        {page.page_name}
+                    </Link>
+                ))}
+            </div>
         </div>
     )
 }
