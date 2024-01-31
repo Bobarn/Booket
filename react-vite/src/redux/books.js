@@ -16,7 +16,7 @@ const getAllBooks = (books) => ({
 
 const createBook = (book) => ({
     type: CREATE_BOOK,
-    album
+    book
 })
 
 const editBook = (book) => ({
@@ -72,7 +72,7 @@ export const thunkCreateBook = (formData) => async (dispatch) => {
 // EDIT BOOK
 export const thunkEditBook = (formData, bookId) => async(dispatch) => {
 
-    const response = await fetch(`/api/books/${book}/edit`, {
+    const response = await fetch(`/api/books/${bookId}/edit`, {
         method: "PUT",
         body: formData
     })
@@ -112,7 +112,7 @@ const booksReducer = (state = {}, action) => {
     switch (action.type) {
         case GET_ALL_BOOKS:{
             const newState = { ...state };
-            books = action.books;
+            const books = action.books;
             books.forEach((book) => {
                 newState[book.id] = book;
             })

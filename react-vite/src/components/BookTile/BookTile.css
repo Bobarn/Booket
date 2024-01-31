@@ -1,0 +1,50 @@
+.book-tile {
+    display: flex;
+    flex-direction: column;
+    height: 300px;
+    width: 300px;
+    position: relative;
+    margin: 10%;
+}
+
+.book-tile .book-cover-link,
+.book-tile .tile-author-area {
+    transition: opacity 0.5s ease-in-out;
+}
+
+.cover-image {
+    width: 300px;
+}
+
+.book-tile:hover .book-cover-link {
+    opacity: 0;
+}
+
+.book-tile:hover .tile-author-area {
+    opacity: 1;
+}
+
+.tile-author-area {
+    width: 300px;
+    position: absolute;
+    text-align: center;
+    top: 0%;
+    left: 0%;
+    opacity: 0;
+}
+
+.tile-book-author-image {
+    width: 30px;
+    height: 30px;
+}
+
+.tile-book-author {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.book-cover-link {
+    width: 300px;
+    text-align: center;
+}

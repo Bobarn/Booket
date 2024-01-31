@@ -10,6 +10,10 @@ function SignupFormModal() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [about, setAbout] = useState('')
+  const [profile_image, setProfile_Image] = useState(null)
+  const [banner_image, setBanner_Image] = useState(null)
+  const [imageLoading, setImageLoading] = useState(false);
   const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
 
@@ -23,12 +27,25 @@ function SignupFormModal() {
       });
     }
 
+    const formData = new FormData()
+    formData.append("username", username)
+    formData.append("email", email)
+    formData.append("password", password)
+
+    if(profile_image) {
+      formData.append("profile_image", profile_image)
+    }
+
+    if(about){
+      formData.append("about", about)
+    }
+
+    if(banner_image) {
+      formData.append("banner_image", banner_image)
+    }
+
     const serverResponse = await dispatch(
-      thunkSignup({
-        email,
-        username,
-        password,
-      })
+      thunkSignup(formData)
     );
 
     if (serverResponse) {
@@ -42,7 +59,7 @@ function SignupFormModal() {
     <>
       <h1>Sign Up</h1>
       {errors.server && <p>{errors.server}</p>}
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} encType="multipart/form-data">
         <label>
           Email
           <input
@@ -63,6 +80,32 @@ function SignupFormModal() {
           />
         </label>
         {errors.username && <p>{errors.username}</p>}
+        <label>
+					Profile Image
+					<input
+						type="file"
+						accept="image/*"
+						onChange={(e) => setProfile_Image(e.target.files[0])}
+
+					/>
+{errors.profile_image && (
+            <p style={{ fontSize: "10px", color: "red" }}>*{errors.profile_image}</p>
+          )}
+
+				</label>
+        <label>
+					Banner Image
+					<input
+						type="file"
+						accept="immage/*"
+						onChange={(e) => setBanner_Image(e.target.files[0])}
+
+					/>
+{errors.banner_image && (
+            <p style={{ fontSize: "10px", color: "red" }}>*{errors.banner_image}</p>
+          )}
+
+				</label>
         <label>
           Password
           <input

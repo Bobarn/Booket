@@ -15,7 +15,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
     about = db.Column(db.String(400), nullable=True)
-    profileImage = db.Column(db.String(256), nullable=True)
+    profileImage = db.Column(db.String(256), default='https://cdn.discordapp.com/attachments/1187515837817557065/1202130354081890314/pngegg_2.png?ex=65cc5622&is=65b9e122&hm=1438e7ae47de79c51b8154031f76113e59a4961b593bbcf9f97ae3b4bd749c36&', nullable=True)
     profileImageName = db.Column(db.String(255), nullable=True)
     bannerImage = db.Column(db.String(256), nullable=True)
     bannerImageName = db.Column(db.String(255), nullable=True)

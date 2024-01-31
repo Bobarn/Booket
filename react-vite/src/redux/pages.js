@@ -58,7 +58,7 @@ export const thunkCreatePage = (pageData, bookId) => async (dispatch) => {
         return page
     } else {
         const error = await response.json()
-        return errror;
+        return error;
     }
 }
 
@@ -90,7 +90,6 @@ export const thunkDeletePage = (pageId) => async (dispatch) => {
     if (response.ok){
         await dispatch(deletePage(pageId))
         // await dispatch(thunkGetAllPages())
-        return data
     } else {
         const error = await response.json()
         return error
@@ -101,25 +100,25 @@ export const thunkDeletePage = (pageId) => async (dispatch) => {
 const pagesReducer = (state = {}, action) => {
     switch (action.type) {
         case GET_ALL_PAGES:{
-            newState = { ...state }
-            pages = action.pages;
+            const newState = { ...state }
+            const pages = action.pages;
             pages.forEach((page) => {
                 newState[page.id] = page;
             })
             return newState;
         }
         case CREATE_PAGE:{
-            newState = { ...state }
+            const newState = { ...state }
             newState[action.page.id] = action.page
             return newState
         }
         case UPDATE_PAGE:{
-            newState = { ...state }
+            const newState = { ...state }
             newState[action.page.id] = action.page
             return newState;
         }
         case DELETE_PAGE:{
-            newState = { ...state }
+            const newState = { ...state }
             delete newState[action.pageId]
             return newState
         }
