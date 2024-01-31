@@ -69,6 +69,8 @@ def start_book():
         db.session.add(newBook)
         db.session.commit()
 
+        return newBook.to_dict(), 201
+
     else:
         return {"errors": form.errors}, 400
 
