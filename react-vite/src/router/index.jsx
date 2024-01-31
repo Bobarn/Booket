@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import LoginFormPage from '../components/LoginFormPage';
 import SignupFormPage from '../components/SignupFormPage';
+import HomeFeed from '../components/HomeFeed/HomeFeed';
 import Layout from './Layout';
 
 export const router = createBrowserRouter([
@@ -19,6 +20,22 @@ export const router = createBrowserRouter([
         path: "signup",
         element: <SignupFormPage />,
       },
+      {
+        path: '/home',
+        element: <HomeFeed />
+      },
+      {
+        path: '/users/:userId',
+        element: <h1>Welcome to User Page</h1>
+      },
+      {
+        path: '/books/:bookId',
+        element: <h1>Welcome to Book Page</h1>
+      },
+      {
+        path: '/books/:bookId/:pageId',
+        element: <h1>Welcome to this books page</h1>
+      }
     ],
   },
 ]);

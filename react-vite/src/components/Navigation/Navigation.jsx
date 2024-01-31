@@ -12,6 +12,9 @@ function Navigation() {
       <li>
         <ProfileButton />
       </li>
+      <li>
+        <NavLink to="/home">Feed</NavLink>
+      </li>
     </ul>
   );
 }
