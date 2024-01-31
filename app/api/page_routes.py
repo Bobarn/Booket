@@ -9,7 +9,7 @@ from .AWS import get_unique_filename, upload_file_to_s3, remove_file_from_s3
 page_routes = Blueprint("pages", __name__)
 
 # GET ALL PAGES
-@page_routes.route('/')
+@page_routes.route('/all')
 def get_all_pages():
     """
     Get all pages and return as a list of dicts

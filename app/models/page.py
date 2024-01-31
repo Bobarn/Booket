@@ -28,7 +28,7 @@ class Page(db.Model):
             "page_name": self.page_name,
             "image" : self.image,
             "imageName": self.imageName,
-            "date": self.date,
+            "createdAt": self.createdAt,
             "book_id": self.book_id,
             "user_id": self.user_id,
             "annotations": [annotation.to_dict() for annotation in self.annotations]
