@@ -31,4 +31,5 @@ class Book(db.Model):
             "coverName": self.coverImageName,
             "date": self.createdAt,
             "author": self.author.to_dict(),
+            "pages": [page.to_dict() for page in self.pages]
         }

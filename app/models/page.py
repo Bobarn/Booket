@@ -31,4 +31,5 @@ class Page(db.Model):
             "date": self.date,
             "book_id": self.book_id,
             "user_id": self.user_id,
+            "annotations": [annotation.to_dict() for annotation in self.annotations]
         }
