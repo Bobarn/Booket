@@ -1,0 +1,84 @@
+.book-tile {
+    display: flex;
+    flex-direction: column;
+    height: 300px;
+    width: 300px;
+    position: relative;
+    margin: 10%;
+}
+
+.book-tile .book-cover-link,
+.book-tile .tile-author-area,
+.book-tile .tile-index {
+    transition: opacity 0.5s ease-in-out;
+}
+
+.cover-image {
+    width: 300px;
+    height: 300px;
+}
+
+.book-tile:hover .book-cover-link {
+    opacity: 0;
+    height: 0px;
+    cursor: default;
+}
+
+.book-tile:hover .tile-author-area,
+.book-tile:hover .tile-index {
+    opacity: 1;
+    height: 300px;
+}
+
+.tile-author-area {
+    width: 220px;
+    position: absolute;
+    text-align: center;
+    top: 0%;
+    left: -30%;
+    opacity: 0;
+    height: 0;
+    border: 1px #183a1d solid;
+}
+
+.tile-index {
+    width: 220px;
+    position: absolute;
+    height: 0px;
+    top: 0%;
+    right: -40%;
+    opacity: 0;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    border: solid 1px #183a1d;
+    justify-content: center;
+    align-items: center;
+}
+
+.tile-book-author-image {
+    width: 30px;
+    height: 30px;
+}
+
+.tile-book-author {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.book-cover-link {
+    width: 300px;
+    height: 300px;
+    text-align: center;
+    border: #183a1d solid 2px;
+}
+
+.index-link, .tile-index > p {
+    display: none;
+}
+
+.book-tile:hover .index-link,
+.book-tile:hover .tile-index > p {
+    display: block;
+}
