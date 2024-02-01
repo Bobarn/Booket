@@ -89,3 +89,25 @@ def delete_page(id):
         db.session.delete(page)
         db.session.commit()
         return {"message": "Page successfully deleted"}
+
+# CREATE ANNOTATION FOR A POST
+@page_routes.route('/<int:id>/annotations/new', methods=["POST"])
+@login_required
+def create_annotation(id):
+    page = Page.query.get(id)
+    if not page:
+        return {"message": "Page not found"}, 404
+    form = AnnotationForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+
+        annotation = Annotation (
+            user_id = current_user.id,
+            page_id = id,
+            text = form.data["text"],
+            createdAt = datetime.now()
+        )
+
+        db.session.add(annotation)
+        db.session.commit()
+        return annotation.to_dict()
