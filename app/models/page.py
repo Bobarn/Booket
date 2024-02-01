@@ -11,6 +11,7 @@ class Page(db.Model):
     book_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("books.id")))
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
     page_name = db.Column(db.String(50), nullable=False)
+    page_number = db.Column(db.Integer, nullable=False)
     caption = db.Column(db.String(300), nullable=False)
     image = db.Column(db.String(256), nullable=False)
     imageName = db.Column(db.String(255), nullable=False)
@@ -26,6 +27,7 @@ class Page(db.Model):
             "id": self.id,
             "caption": self.caption,
             "page_name": self.page_name,
+            "page_number": self.page_number,
             "image" : self.image,
             "imageName": self.imageName,
             "createdAt": self.createdAt,

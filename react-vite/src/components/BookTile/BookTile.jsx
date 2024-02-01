@@ -2,12 +2,16 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { thunkDeleteBook } from '../../redux/books';
 import './BookTile.css'
+import { useEffect } from 'react';
 
 export default function BookTile({book, currUser}) {
 
     const dispatch = useDispatch()
 
     const navigate = useNavigate()
+
+    useEffect(() => {
+    }, [dispatch, book.id])
 
     function burnBook(bookId) {
         dispatch(thunkDeleteBook(bookId));

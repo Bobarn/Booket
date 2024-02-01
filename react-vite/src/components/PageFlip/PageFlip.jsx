@@ -16,8 +16,16 @@ export default function PageFlip() {
 
     const user = useSelector((state) => state.session.user);
     const page = useSelector((state) => state.pages[pageId]);
-    const nextPage = useSelector((state) => state.pages[parseInt(pageId) + 1])
-    const prevPage = useSelector((state) => state.pages[parseInt(pageId) - 1])
+    const pages = useSelector((state) => state.pages)
+    // const prevPage = useSelector((state) => state.pages[parseInt(pageId) - 1])
+
+    const allPages = Object.values(pages)
+
+    const prevPage = allPages.findLast((p) => p.book_id == bookId && p.page_number < page.page_number)
+
+    const nextPage = allPages.find((p) => p.book_id == bookId && p.page_number > page.page_number)
+
+    // console.log(Object.values(pages));
 
     useEffect(() => {
         dispatch(thunkGetAllPages())
@@ -25,7 +33,7 @@ export default function PageFlip() {
 
     if(!page) return null;
 
-    if(parseInt(bookId) !== page.book_id) return null;
+    // if(parseInt(bookId) !== page.book_id) return null;
 
     function tearPage(pageId) {
         dispatch(thunkDeletePage(pageId));
@@ -36,7 +44,7 @@ export default function PageFlip() {
         <>
         <div>
                 {prevPage && page.book_id == prevPage.book_id ?
-                <Link to={`/books/${prevPage.book_id}/page/${page.id - 1}`}>
+                <Link to={`/books/${bookId}/page/${prevPage.id}`}>
                     Previous
                 </Link>
                 :
@@ -57,7 +65,7 @@ export default function PageFlip() {
                 <div><img src={page.image}/></div>
                 <div>{page.caption}</div>
                 {nextPage && page.book_id == nextPage.book_id ?
-                <Link to={`/books/${page.book_id}/page/${page.id + 1}`}>
+                <Link to={`/books/${bookId}/page/${nextPage.id}`}>
                     Next
                 </Link>
                 :

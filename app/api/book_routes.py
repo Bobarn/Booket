@@ -150,6 +150,19 @@ def burn_book(id):
     return {"message": "Book deleted successfully"}
 
 
+# @book_routes.route('/<int:id>/pages')
+# def get_book_pages(id):
+#     """
+#     Get all pages of a book
+#     """
+
+#     pages = Page.query.filter_by(book_id=id).all();
+
+#     if not pages:
+#         return {"message": "Book is Empty"}, 404
+
+#     return {"pages": [page.to_dict() for page in pages]}, 200
+
 # CREATING A PAGE ON A BOOK (PUBLISHING A NEW PAGE TO A BOOK)
 @book_routes.route('/<int:id>/new', methods=["POST"])
 @login_required
@@ -178,10 +191,13 @@ def write_page(id):
         if "url" not in upload:
             return upload, 401
 
+        page_number = len(book.pages) + 1
+
         newPage = Page(
             book_id = id,
             user_id = current_user.id,
             page_name = data["page_name"],
+            page_number = page_number,
             caption = data["caption"],
             image = upload["url"],
             imageName = imageName
