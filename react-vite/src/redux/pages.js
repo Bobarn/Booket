@@ -10,6 +10,7 @@ const getAllPages = (pages) => ({
     pages
 })
 
+
 const createPage = (page) => ({
     type: CREATE_PAGE,
     page
@@ -41,8 +42,6 @@ export const thunkGetAllPages = () => async (dispatch) => {
     }
 }
 
-
-
 //CREATE A PAGE ON A BOOK
 export const thunkCreatePage = (pageData, bookId) => async (dispatch) => {
 
@@ -54,7 +53,7 @@ export const thunkCreatePage = (pageData, bookId) => async (dispatch) => {
     if (response.ok) {
         const page = await response.json();
         await dispatch(createPage(page))
-        // await dispatch(thunkGetAllPages())
+        await dispatch(thunkGetAllPages())
         return page
     } else {
         const error = await response.json()

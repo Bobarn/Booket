@@ -1,0 +1,16 @@
+.fa-fire {
+    color: red;
+}
+
+.burn-button, .new-page-button, .revise-button {
+    width: fit-content;
+    height: fit-content;
+}
+
+.fa-file-circle-plus {
+    color: green;
+}
+
+.fa-pen-to-square {
+    color: blue;
+}
