@@ -104,7 +104,7 @@ def seed_pages():
 
 
     page10 = Page(
-        user_id = 5,
+        user_id = 1,
         book_id = 7,
         page_name = "Roots Concert",
         caption = "So excited for this upcoming concert. I gotta make sure I record, posting so I remember to mark down my thoughts.",

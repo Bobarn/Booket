@@ -33,8 +33,8 @@ function BookForm({formType, book, bookId}) {
 
         if(!category) errorList.category = "Category is required"
         if(!title) errorList.title = "Title is required"
-        if(!synopsis) errorList.description = "Synopsis is required"
-        if(!coverImage) errorList.coverImage = "Please add a coverImage image (.jpg, .jpeg, .png, .gif, .pdf)"
+        if(!synopsis) errorList.synopsis = "Synopsis is required"
+        if(formType == "Publish Book" && !coverImage) errorList.coverImage = "Please add a cover image for this book (.jpg, .jpeg, .png, .gif, .pdf)"
 
 
         if(Object.values(errorList).length > 0) {
@@ -48,7 +48,9 @@ function BookForm({formType, book, bookId}) {
         form.append("category", category)
         form.append("title", title)
         form.append("synopsis", synopsis)
-        form.append("cover_image", coverImage)
+        if(coverImage) {
+          form.append("cover_image", coverImage)
+        }
         form.append("private", privacy)
 
         if(formType == "Publish Book") {
@@ -127,7 +129,7 @@ function BookForm({formType, book, bookId}) {
             className="form-synopsis"
           />
           {errors.synopsis && (
-            <p style={{ fontSize: "10px", color: "red" }}>*{errors.description}</p>
+            <p style={{ fontSize: "10px", color: "red" }}>*{errors.synopsis}</p>
           )}
         </label>
 

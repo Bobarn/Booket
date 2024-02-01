@@ -48,24 +48,26 @@ def revise_book(id):
 
     if form.validate_on_submit():
 
-        page.title_name = form.page_name.data
+        page.page_name = form.page_name.data
         page.caption = form.caption.data
 
-        remove_file_from_s3(page.image)
+        if form.image.data:
 
-        image = form.image.data
+            remove_file_from_s3(page.image)
 
-        imageName =  image.filename
+            image = form.image.data
 
-        image.filename = get_unique_filename(image.filename)
+            imageName =  image.filename
 
-        newUpload = upload_file_to_s3(image)
+            image.filename = get_unique_filename(image.filename)
 
-        if "url" not in newUpload:
-                return newUpload, 401
+            newUpload = upload_file_to_s3(image)
 
-        page.image = newUpload["url"]
-        page.imageName = imageName
+            if "url" not in newUpload:
+                    return newUpload, 401
+
+            page.image = newUpload["url"]
+            page.imageName = imageName
 
         db.session.commit()
 
@@ -83,6 +85,7 @@ def delete_page(id):
     elif page.user_id != current_user.id:
         return {"message": "You are not authorized for this action"}, 403
     else:
+        remove_file_from_s3(page.image)
         db.session.delete(page)
         db.session.commit()
         return {"message": "Page successfully deleted"}

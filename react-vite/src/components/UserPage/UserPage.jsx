@@ -24,9 +24,17 @@ export default function UserPage() {
 
   if (!user) return null;
 
-  const booksArr = Object.values(allBooks);
-  const userBooks = booksArr.filter((book) => book.author.id == userId);
+  if(!currUser) return null;
 
+  const booksArr = Object.values(allBooks);
+
+  const userBooks = currUser?.id == userId ?
+  booksArr.filter((book) => book.author.id == userId)
+  :
+  booksArr.filter((book) => {
+    if(book.author.id == userId && book.private == false) {
+      return book;
+  }})
 
   return (
     <>

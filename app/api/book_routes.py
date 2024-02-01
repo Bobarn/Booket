@@ -102,21 +102,24 @@ def revise_book(id):
         book.private = form.private.data
         book.category = form.category.data
 
-        remove_file_from_s3(book.coverImage)
+        if form.cover_image.data:
+            remove_file_from_s3(book.coverImage)
 
-        image = form.cover_image.data
+            image = form.cover_image.data
 
-        coverImageName =  image.filename
+            coverImageName =  image.filename
 
-        image.filename = get_unique_filename(image.filename)
+            image.filename = get_unique_filename(image.filename)
 
-        newUpload = upload_file_to_s3(image)
+            newUpload = upload_file_to_s3(image)
 
-        if "url" not in newUpload:
-                return newUpload, 401
+            if "url" not in newUpload:
+                    return newUpload, 401
 
-        book.coverImage = newUpload["url"]
-        book.coverImageName = coverImageName
+            book.coverImage = newUpload["url"]
+            book.coverImageName = coverImageName
+
+
 
         db.session.commit()
 

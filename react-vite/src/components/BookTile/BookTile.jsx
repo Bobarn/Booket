@@ -39,14 +39,14 @@ export default function BookTile({book, currUser}) {
                     <button onClick={() => burnBook(book.id)} className='burn-button'>
                         <i className="fa-solid fa-fire"></i>
                     </button>
-                    <button onClick={() => navigate(`/books/${book.id}/new`)} className='new-page-button'>
+                    <button onClick={() => navigate(`/books/${book.id}/page/new`)} className='new-page-button'>
                         <i className="fa-solid fa-file-circle-plus"></i>
                     </button>
                 </>}
                 <p>Table of Contents:</p>
                 {book?.pages.slice(0, 5).map((page) => (
 
-                    <Link className='index-link' to={`/books/${book.id}/${page.id}`} key={page.id}>
+                    <Link className='index-link' to={`/books/${book.id}/page/${page.id}`} key={page.id}>
                         {page.page_name}
                     </Link>
                 ))}

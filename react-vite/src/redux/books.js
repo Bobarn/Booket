@@ -1,3 +1,5 @@
+import { thunkGetAllUsers } from "./users"
+
 //Action Type Constants
 const GET_ALL_BOOKS = "books/GET_ALL_BOOKS"
 const CREATE_BOOK = "books/CREATE_BOOK"
@@ -101,6 +103,7 @@ export const thunkDeleteBook = (bookId) => async(dispatch) => {
         const data = await response.json();
         await dispatch(deleteBook(bookId))
         await dispatch(thunkGetAllBooks())
+        await dispatch(thunkGetAllUsers())
         return data
     } else {
         const data = await response.json()
