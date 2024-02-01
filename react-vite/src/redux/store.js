@@ -9,12 +9,14 @@ import sessionReducer from "./session";
 import booksReducer from "./books";
 import pagesReducer from "./pages";
 import userReducer from "./users";
+import annotationsReducer from "./annotations";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   books: booksReducer,
   pages: pagesReducer,
-  users: userReducer
+  users: userReducer,
+  annotations: annotationsReducer
 });
 
 let enhancer;

@@ -17,7 +17,6 @@ export default function PageFlip() {
     const user = useSelector((state) => state.session.user);
     const page = useSelector((state) => state.pages[pageId]);
     const pages = useSelector((state) => state.pages)
-    // const prevPage = useSelector((state) => state.pages[parseInt(pageId) - 1])
 
     const allPages = Object.values(pages)
 
@@ -25,7 +24,6 @@ export default function PageFlip() {
 
     const nextPage = allPages.find((p) => p.book_id == bookId && p.page_number > page.page_number)
 
-    // console.log(Object.values(pages));
 
     useEffect(() => {
         dispatch(thunkGetAllPages())
@@ -33,7 +31,6 @@ export default function PageFlip() {
 
     if(!page) return null;
 
-    // if(parseInt(bookId) !== page.book_id) return null;
 
     function tearPage(pageId) {
         dispatch(thunkDeletePage(pageId));
