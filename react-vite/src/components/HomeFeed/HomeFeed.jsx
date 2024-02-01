@@ -16,7 +16,7 @@ export default function HomeFeed() {
 
     if(!allBooks) return null
     if(!currUser) return null
-    const booksArray = Object.values(allBooks)
+    const booksArray = Object.values(allBooks).filter((book) => book.private != true)
 
     return (
         <>
@@ -25,7 +25,7 @@ export default function HomeFeed() {
                     {booksArray.map((book) => {
                         return (
                             <div key={book.id} className='book-tile-container'>
-                                <BookTile book={book}/>
+                                <BookTile book={book} currUser={currUser}/>
                             </div>
                         )
                     })}

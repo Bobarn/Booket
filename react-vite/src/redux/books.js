@@ -54,6 +54,7 @@ export const thunkCreateBook = (formData) => async (dispatch) => {
         method: "POST",
         body: formData
     })
+    console.log(response)
 
     if (response.ok) {
 
@@ -64,6 +65,7 @@ export const thunkCreateBook = (formData) => async (dispatch) => {
         return book
     } else {
         const error = await response.json();
+        console.log(error)
         return error
     }
 }

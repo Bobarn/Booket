@@ -41,10 +41,11 @@ class User(db.Model, UserMixin):
         return {
             'id': self.id,
             'username': self.username,
-            'email': self.email,
             'about': self.about,
             'profileImage': self.profileImage,
             'profileImageName': self.profileImageName,
             'bannerImage': self.bannerImage,
-            'bannerImageName': self.bannerImageName
+            'bannerImageName': self.bannerImageName,
+            "books": len(self.books),
+            "pages": len(self.pages)
         }

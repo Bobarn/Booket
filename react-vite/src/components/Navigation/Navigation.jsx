@@ -15,6 +15,9 @@ function Navigation() {
       <li>
         <NavLink to="/home">Feed</NavLink>
       </li>
+      <li>
+        <NavLink to="/books/new">Publish a Book</NavLink>
+      </li>
     </ul>
   );
 }

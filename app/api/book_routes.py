@@ -64,7 +64,10 @@ def start_book():
             coverImage=upload["url"],
             coverImageName=coverImageName,
             private=data["private"],
+            category=data["category"]
         )
+
+        print(newBook)
 
         db.session.add(newBook)
         db.session.commit()
@@ -72,7 +75,7 @@ def start_book():
         return newBook.to_dict(), 201
 
     else:
-        return {"errors": form.errors}, 400
+        return form.errors, 400
 
 # UPDATE BOOK (REVISE)
 @book_routes.route('/<int:id>/edit', methods=["PUT"])
@@ -97,10 +100,11 @@ def revise_book(id):
         book.title = form.title.data
         book.synopsis = form.synopsis.data
         book.private = form.private.data
+        book.category = form.category.data
 
         remove_file_from_s3(book.coverImage)
 
-        image = form.image.data
+        image = form.cover_image.data
 
         coverImageName =  image.filename
 
