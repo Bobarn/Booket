@@ -1,0 +1,18 @@
+#annotation-logo {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+}
+
+#annotation-form-container {
+    display: flex;
+}
+
+#annotation-form {
+    display: flex;
+    width: 100%;
+}
+
+.page-annotation-text {
+    height: 20px;
+}
