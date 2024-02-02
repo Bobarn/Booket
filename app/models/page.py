@@ -33,5 +33,6 @@ class Page(db.Model):
             "createdAt": self.createdAt,
             "book_id": self.book_id,
             "user_id": self.user_id,
+            "private": self.book.private,
             "annotations": [annotation.to_dict() for annotation in self.annotations]
         }

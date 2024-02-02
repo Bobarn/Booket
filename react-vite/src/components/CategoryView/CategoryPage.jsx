@@ -1,12 +1,13 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { thunkGetAllBooks } from '../../redux/books';
-import { Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import BookTile from '../BookTile/BookTile';
-import './HomeFeed.css'
+import './CategoryPage.css'
 
 
-export default function HomeFeed() {
+export default function CategoryPage() {
+    const { category } = useParams();
     const dispatch = useDispatch();
     const allBooks = useSelector((state) => state.books);
     const currUser = useSelector((state) => state.session.user);
@@ -17,7 +18,8 @@ export default function HomeFeed() {
 
     if(!allBooks) return null
     if(!currUser) return null
-    const booksArray = Object.values(allBooks).filter((book) => book.private != true)
+    const booksArray = Object.values(allBooks).filter((book) => book.private != true && book.category == category);
+    console.log(booksArray, category)
 
     return (
         <>

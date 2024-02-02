@@ -89,10 +89,11 @@ function PageForm({formType, page, bookId, pageId}) {
             value={page_name}
             onChange={(e) => setPage_Name(e.target.value)}
           />
-
-          {errors.page_name && (
-            <p style={{ fontSize: "10px", color: "red" }}>*{errors.page_name}</p>
-          )}
+          <div className="error">
+            {errors.page_name && (
+              <p style={{ fontSize: "10px", color: "red" }}>*{errors.page_name}</p>
+            )}
+          </div>
         </label>
         <label>
           Caption
@@ -101,27 +102,30 @@ function PageForm({formType, page, bookId, pageId}) {
             onChange={(e) => setCaption(e.target.value)}
             className="form-caption"
           />
-          {errors.caption && (
-            <p style={{ fontSize: "10px", color: "red" }}>*{errors.caption}</p>
-          )}
+          <div className="error">
+            {errors.caption && (
+              <p style={{ fontSize: "10px", color: "red" }}>*{errors.caption}</p>
+            )}
+          </div>
         </label>
 
         <label>
           Page Image
-          {formType == "Edit Page" && <div>Former Image Name: {page.imageName}</div>}
+          {formType == "Edit Page" && <div>Current Image Name: {page.imageName}</div>}
           <input
             // value={coverImage}
             type="file"
             accept="image/*"
             onChange={(e) => setImage(e.target.files[0])}
           />
-
-          {errors.image && (
-            <p style={{ fontSize: "10px", color: "red" }}>*{errors.image}</p>
-          )}
+          <div className="error">
+            {errors.image && (
+              <p style={{ fontSize: "10px", color: "red" }}>*{errors.image}</p>
+            )}
+          </div>
         </label>
         <div>
-        <button type="submit">Add Page</button>
+        <button type="submit">{formType == "Publish Page" ? <>Add Page</> : <>Update Page</>}</button>
         </div>
 
       </form>

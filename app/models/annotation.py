@@ -25,4 +25,5 @@ class Annotation(db.Model):
             "createdAt": self.createdAt,
             "page_id": self.page_id,
             "user_id": self.user_id,
+            "user": self.user.username
         }
