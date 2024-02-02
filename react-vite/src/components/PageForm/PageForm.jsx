@@ -108,7 +108,7 @@ function PageForm({formType, page, bookId, pageId}) {
 
         <label>
           Page Image
-          {formType == "Edit Page" && <div>Former Image Name: {page.imageName}</div>}
+          {formType == "Edit Page" && <div>Current Image Name: {page.imageName}</div>}
           <input
             // value={coverImage}
             type="file"

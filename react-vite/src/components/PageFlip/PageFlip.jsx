@@ -2,8 +2,9 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { thunkGetAllPages, thunkDeletePage } from '../../redux/pages';
-// import HTMLFlipBook from 'react-pageflip';
+import { thunkGetAllAnnotations} from '../../redux/annotations'
 import './PageView.css'
+
 
 
 export default function PageFlip() {
@@ -27,6 +28,7 @@ export default function PageFlip() {
 
     useEffect(() => {
         dispatch(thunkGetAllPages())
+        dispatch(thunkGetAllAnnotations())
     }, [dispatch])
 
     if(!page) return null;
@@ -35,6 +37,25 @@ export default function PageFlip() {
     function tearPage(pageId) {
         dispatch(thunkDeletePage(pageId));
         navigate(`/users/${page.user_id}`)
+    }
+
+    function displayAnnotations() {
+
+       return(
+           <div className='annotation-container'>
+                {page?.annotations.map((annotation) => {
+                    return (
+                        <div key={annotation?.id} className="annotation-tile">
+                        <div style={{ fontWeight: "bold" }}>
+                        {annotation.user}
+                        </div>
+
+                        <div className="annotation-content">{annotation?.text} </div>
+                        </div>
+                    );
+                    })}
+            </div>
+           )
     }
 
     return (
@@ -61,6 +82,7 @@ export default function PageFlip() {
                 <div>{page.page_name}</div>
                 <div><img src={page.image}/></div>
                 <div>{page.caption}</div>
+                {displayAnnotations()}
                 {nextPage && page.book_id == nextPage.book_id ?
                 <Link to={`/books/${bookId}/page/${nextPage.id}`}>
                     Next

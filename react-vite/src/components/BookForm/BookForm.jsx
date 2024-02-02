@@ -135,7 +135,7 @@ function BookForm({formType, book, bookId}) {
 
         <label>
           Cover Image
-          {formType == "Edit Book" && <div>Former Image Name: {book.coverName}</div>}
+          {formType == "Edit Book" && <div>Current Image Name: {book.coverName}</div>}
           <input
             // value={coverImage}
             type="file"
