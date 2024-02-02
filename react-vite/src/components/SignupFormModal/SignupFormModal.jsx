@@ -13,7 +13,7 @@ function SignupFormModal() {
   const [about, setAbout] = useState('')
   const [profile_image, setProfile_Image] = useState(null)
   const [banner_image, setBanner_Image] = useState(null)
-  const [imageLoading, setImageLoading] = useState(false);
+  // const [imageLoading, setImageLoading] = useState(false);
   const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
 
@@ -93,6 +93,13 @@ function SignupFormModal() {
           )}
 
 				</label>
+        <label>
+					About
+					<textarea value={about} onChange={(e) => setAbout(e.target.value)} className="signup-about"/>
+					{errors.about && (
+            <p style={{ fontSize: "10px", color: "red" }}>*{errors.about}</p>
+          )}
+        </label>
         <label>
 					Banner Image
 					<input

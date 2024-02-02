@@ -24,6 +24,7 @@ class Book(db.Model):
     readers = db.relationship("User", secondary=bookmarks, back_populates="bookmarks")
 
     def to_dict(self):
+        pages = sorted(self.pages, key= lambda page: page.id)
         return {
             "id": self.id,
             "title": self.title,
@@ -33,6 +34,6 @@ class Book(db.Model):
             "coverName": self.coverImageName,
             "date": self.createdAt,
             "author": self.author.to_dict(),
-            "pages": [page.to_dict() for page in self.pages],
+            "pages": [page.to_dict() for page in pages],
             "private": self.private
         }

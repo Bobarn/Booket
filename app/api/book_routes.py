@@ -64,7 +64,10 @@ def start_book():
             coverImage=upload["url"],
             coverImageName=coverImageName,
             private=data["private"],
+            category=data["category"]
         )
+
+        print(newBook)
 
         db.session.add(newBook)
         db.session.commit()
@@ -72,7 +75,7 @@ def start_book():
         return newBook.to_dict(), 201
 
     else:
-        return {"errors": form.errors}, 400
+        return form.errors, 400
 
 # UPDATE BOOK (REVISE)
 @book_routes.route('/<int:id>/edit', methods=["PUT"])
@@ -97,22 +100,26 @@ def revise_book(id):
         book.title = form.title.data
         book.synopsis = form.synopsis.data
         book.private = form.private.data
+        book.category = form.category.data
 
-        remove_file_from_s3(book.coverImage)
+        if form.cover_image.data:
+            remove_file_from_s3(book.coverImage)
 
-        image = form.image.data
+            image = form.cover_image.data
 
-        coverImageName =  image.filename
+            coverImageName =  image.filename
 
-        image.filename = get_unique_filename(image.filename)
+            image.filename = get_unique_filename(image.filename)
 
-        newUpload = upload_file_to_s3(image)
+            newUpload = upload_file_to_s3(image)
 
-        if "url" not in newUpload:
-                return newUpload, 401
+            if "url" not in newUpload:
+                    return newUpload, 401
 
-        book.coverImage = newUpload["url"]
-        book.coverImageName = coverImageName
+            book.coverImage = newUpload["url"]
+            book.coverImageName = coverImageName
+
+
 
         db.session.commit()
 
@@ -143,6 +150,19 @@ def burn_book(id):
     return {"message": "Book deleted successfully"}
 
 
+# @book_routes.route('/<int:id>/pages')
+# def get_book_pages(id):
+#     """
+#     Get all pages of a book
+#     """
+
+#     pages = Page.query.filter_by(book_id=id).all();
+
+#     if not pages:
+#         return {"message": "Book is Empty"}, 404
+
+#     return {"pages": [page.to_dict() for page in pages]}, 200
+
 # CREATING A PAGE ON A BOOK (PUBLISHING A NEW PAGE TO A BOOK)
 @book_routes.route('/<int:id>/new', methods=["POST"])
 @login_required
@@ -171,10 +191,13 @@ def write_page(id):
         if "url" not in upload:
             return upload, 401
 
+        page_number = len(book.pages) + 1
+
         newPage = Page(
             book_id = id,
             user_id = current_user.id,
             page_name = data["page_name"],
+            page_number = page_number,
             caption = data["caption"],
             image = upload["url"],
             imageName = imageName

@@ -28,6 +28,7 @@
 .book-tile:hover .tile-index {
     opacity: 1;
     height: 300px;
+    border: 1px #183a1d solid;
 }
 
 .tile-author-area {
@@ -38,7 +39,6 @@
     left: -30%;
     opacity: 0;
     height: 0;
-    border: 1px #183a1d solid;
 }
 
 .tile-index {
@@ -51,7 +51,6 @@
     display: flex;
     text-align: center;
     flex-direction: column;
-    border: solid 1px #183a1d;
     justify-content: center;
     align-items: center;
 }
