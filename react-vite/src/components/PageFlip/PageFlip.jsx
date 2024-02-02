@@ -19,7 +19,7 @@ export default function PageFlip() {
 
     const user = useSelector((state) => state.session.user);
     const page = useSelector((state) => state.pages[pageId]);
-    const pages = useSelector((state) => state.pages)
+    const pages = useSelector((state) => state.pages);
 
     if(page?.private && page.user_id != user.id) {
         navigate('/home')

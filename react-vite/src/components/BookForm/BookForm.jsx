@@ -34,6 +34,7 @@ function BookForm({formType, book, bookId}) {
         if(!category) errorList.category = "Category is required"
         if(!title) errorList.title = "Title is required"
         if(!synopsis) errorList.synopsis = "Synopsis is required"
+        if(synopsis.length > 350) errorList.synopsis = "Synopsis cannot be longer than 350 characters."
         if(formType == "Publish Book" && !coverImage) errorList.coverImage = "Please add a cover image for this book (.jpg, .jpeg, .png, .gif, .pdf)"
 
 

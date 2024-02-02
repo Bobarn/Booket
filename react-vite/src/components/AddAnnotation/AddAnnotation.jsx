@@ -8,6 +8,7 @@ export default function AddAnnotation( {pageId} ) {
     const dispatch = useDispatch()
     const [text, setText] = useState("")
     const [errors, setErrors] = useState({})
+    const [disabled, setDisabled] = useState(false)
 
     const user = useSelector((state) => state.session.user)
 
@@ -15,12 +16,19 @@ export default function AddAnnotation( {pageId} ) {
         dispatch(thunkGetAllPages())
     }, [dispatch])
 
+    useEffect(() => {
+      let boolean = false
+      if(text.length == 0) {
+        boolean = true
+      }
+      setDisabled(boolean)
+    }, [text])
+
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         let errorList = {}
 
-        if(!text) errorList.text = "Please enter some text"
         if(text.length > 300) errorList.text = "Text must be less than 300 characters"
 
         if(Object.values(errorList).length > 0) {
@@ -57,7 +65,7 @@ export default function AddAnnotation( {pageId} ) {
         </label>
 
               <div>
-                    <button type="submit">Comment</button>
+                    <button disabled={disabled} type="submit">Comment</button>
               </div>
 
       </form>
