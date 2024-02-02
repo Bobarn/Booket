@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import LoginFormPage from '../components/LoginFormPage';
 import SignupFormPage from '../components/SignupFormPage';
 import HomeFeed from '../components/HomeFeed/HomeFeed';
+import CategoryPage from '../components/CategoryView/CategoryPage';
 import Layout from './Layout';
 import CreateBook from '../components/BookForm/CreateBook/CreateBook';
 import EditBook from '../components/BookForm/EditBook/EditBook';
@@ -29,6 +30,10 @@ export const router = createBrowserRouter([
       {
         path: '/home',
         element: <HomeFeed />
+      },
+      {
+        path: '/category/:category',
+        element:<CategoryPage />
       },
       {
         path: '/books/:bookId',

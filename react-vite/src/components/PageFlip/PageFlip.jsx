@@ -2,7 +2,9 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { thunkGetAllPages, thunkDeletePage } from '../../redux/pages';
-import { thunkGetAllAnnotations} from '../../redux/annotations'
+import { thunkGetAllAnnotations} from '../../redux/annotations';
+import AnnotationOptions from '../AnnotationOptions/AnnotationOptions';
+import AddAnnotation from '../AddAnnotation/AddAnnotation';
 import './PageView.css'
 
 
@@ -18,6 +20,10 @@ export default function PageFlip() {
     const user = useSelector((state) => state.session.user);
     const page = useSelector((state) => state.pages[pageId]);
     const pages = useSelector((state) => state.pages)
+
+    if(page?.private && page.user_id != user.id) {
+        navigate('/home')
+    }
 
     const allPages = Object.values(pages)
 
@@ -46,14 +52,23 @@ export default function PageFlip() {
                 {page?.annotations.map((annotation) => {
                     return (
                         <div key={annotation?.id} className="annotation-tile">
-                        <div style={{ fontWeight: "bold" }}>
-                        {annotation.user}
-                        </div>
+                            <div style={{ fontWeight: "bold" }}>
+                            {annotation.user}
+                            </div>
 
-                        <div className="annotation-content">{annotation?.text} </div>
+                            <div className="annotation-content">{annotation?.text} </div>
+
+                                {user && user.id == annotation.user_id ? (
+                                    <div>
+                                        <AnnotationOptions annotationId={annotation?.id} />
+                                    </div>
+                                ) : (
+                                    <div></div>
+                                )}
                         </div>
                     );
                     })}
+                <AddAnnotation pageId={pageId}/>
             </div>
            )
     }

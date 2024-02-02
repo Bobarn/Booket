@@ -51,7 +51,7 @@ export const thunkCreateAnnotation = (data, pageId) => async (dispatch) => {
     if (response.ok) {
         const annotation = await response.json()
         await dispatch(createAnnotation(annotation))
-        await dispatch(thunkGetAllAnnotations())
+        await dispatch(thunkGetAllPages())
 
         return annotation
     } else {
@@ -79,7 +79,7 @@ export const thunkEditAnnotation = (data, annotationId) => async (dispatch) => {
 }
 
 //DELETE ANNOTATION
-export const fetchDeleteAnnotation = (annotationId) => async (dispatch) => {
+export const thunkDeleteAnnotation = (annotationId) => async (dispatch) => {
     const response = await fetch (`/api/annotations/${annotationId}/delete`, {
         method: "DELETE"
     })

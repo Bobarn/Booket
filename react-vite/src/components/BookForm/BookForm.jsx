@@ -105,9 +105,11 @@ function BookForm({formType, book, bookId}) {
                 <option value={'Other'}>Other</option>
                 <option value='' disabled>&#40;select one&#41;</option>
             </select>
-          {errors.category && (
-            <p style={{ fontSize: "10px", color: "red" }}>*{errors.category}</p>
-          )}
+            <div className="error">
+              {errors.category && (
+                <p style={{ fontSize: "10px", color: "red" }}>*{errors.category}</p>
+              )}
+            </div>
         </label>
         <label>
           Title
@@ -116,10 +118,11 @@ function BookForm({formType, book, bookId}) {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
-
-          {errors.title && (
-            <p style={{ fontSize: "10px", color: "red" }}>*{errors.title}</p>
-          )}
+          <div className="error">
+            {errors.title && (
+              <p style={{ fontSize: "10px", color: "red" }}>*{errors.title}</p>
+            )}
+          </div>
         </label>
         <label>
           Synopsis
@@ -128,9 +131,11 @@ function BookForm({formType, book, bookId}) {
             onChange={(e) => setSynopsis(e.target.value)}
             className="form-synopsis"
           />
-          {errors.synopsis && (
-            <p style={{ fontSize: "10px", color: "red" }}>*{errors.synopsis}</p>
-          )}
+          <div className="error">
+            {errors.synopsis && (
+              <p style={{ fontSize: "10px", color: "red" }}>*{errors.synopsis}</p>
+            )}
+          </div>
         </label>
 
         <label>
@@ -142,10 +147,11 @@ function BookForm({formType, book, bookId}) {
             accept="image/*"
             onChange={(e) => setCoverImage(e.target.files[0])}
           />
-
-          {errors.coverImage && (
-            <p style={{ fontSize: "10px", color: "red" }}>*{errors.coverImage}</p>
-          )}
+          <div className="error">
+            {errors.coverImage && (
+              <p style={{ fontSize: "10px", color: "red" }}>*{errors.coverImage}</p>
+            )}
+          </div>
         </label>
         Private? (Toggle for a private album only you will see)
         <label className="switch">
@@ -157,7 +163,7 @@ function BookForm({formType, book, bookId}) {
             <span className="slider round"></span>
         </label>
         <div>
-        <button type="submit">Add book</button>
+        <button type="submit">{formType == "Publish Book" ? <>Publish Book</> : <>Update Book</>}</button>
         </div>
 
       </form>
