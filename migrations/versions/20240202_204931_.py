@@ -1,19 +1,16 @@
 """empty message
 
-Revision ID: a484fc02f24f
-Revises:
-Create Date: 2024-02-02 11:19:32.154210
+Revision ID: 7e9258323d2f
+Revises: 
+Create Date: 2024-02-02 20:49:31.240369
 
 """
 from alembic import op
 import sqlalchemy as sa
-import os
-environment = os.getenv("FLASK_ENV")
-SCHEMA = os.environ.get("SCHEMA")
 
 
 # revision identifiers, used by Alembic.
-revision = 'a484fc02f24f'
+revision = '7e9258323d2f'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -31,6 +28,7 @@ def upgrade():
     sa.Column('profileImageName', sa.String(length=255), nullable=True),
     sa.Column('bannerImage', sa.String(length=256), nullable=True),
     sa.Column('bannerImageName', sa.String(length=255), nullable=True),
+    sa.Column('joined', sa.DateTime(), nullable=True),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('username')
@@ -59,7 +57,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('book_id', sa.Integer(), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=True),
-    sa.Column('page_name', sa.String(length=50), nullable=False),
+    sa.Column('page_name', sa.String(length=25), nullable=False),
     sa.Column('page_number', sa.Integer(), nullable=False),
     sa.Column('caption', sa.String(length=300), nullable=False),
     sa.Column('image', sa.String(length=256), nullable=False),
@@ -79,12 +77,6 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE books SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE bookmarks SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE pages SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE annotations SET SCHEMA {SCHEMA};")
     # ### end Alembic commands ###
 
 

@@ -90,7 +90,7 @@ export default function PageFlip() {
                         <i className="fa-regular fa-pen-to-square"></i>
                     </button>
                     <button onClick={() => tearPage(page.id)}>
-                    <i className="fa-solid fa-scissors"></i>
+                        <i className="fa-solid fa-scissors"></i>
                     </button>
                 </>
                 }

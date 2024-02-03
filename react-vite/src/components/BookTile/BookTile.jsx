@@ -1,8 +1,8 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { thunkDeleteBook } from '../../redux/books';
-import './BookTile.css'
 import { useEffect } from 'react';
+import './BookTile.css'
 
 export default function BookTile({book, currUser}) {
 
@@ -26,12 +26,12 @@ export default function BookTile({book, currUser}) {
                 <div className='tile-front-cover'>
                     <div className='tile-author-area'>
                         <Link className='tile-synopsis' to={`/books/${book.id}`}>
-                            Synopsis:
-                            <p>
+                            <p>Synopsis:</p>
+                            <p id='synopsis-text'>
                                 {book.synopsis}
                             </p>
                         </Link>
-                        <Link to={`/users/${book.author.id}`}>
+                        <Link className='tile-author' to={`/users/${book.author.id}`}>
                             <div className='tile-book-author'>
                             <img
                             src={book.author.profileImage}
@@ -60,13 +60,17 @@ export default function BookTile({book, currUser}) {
                                 <i className="fa-solid fa-file-circle-plus"></i>
                             </button>
                         </>}
-                        <p>Table of Contents:</p>
-                        {book?.pages.slice(0, 5).map((page) => (
+                        <p className='TOC'>Table of Contents:</p>
+                        <ol>
+                            {book?.pages.slice(0, 5).map((page) => (
+                                <li className='tile-index-item' key={page.id}>
+                                    <Link className='index-link' to={`/books/${book.id}/page/${page.id}`}>
+                                        {page.page_name}
+                                    </Link>
+                                </li>
+                            ))}
 
-                            <Link className='index-link' to={`/books/${book.id}/page/${page.id}`} key={page.id}>
-                                {page.page_name}
-                            </Link>
-                        ))}
+                        </ol>
                     </div>
                 </div>
             </div>
