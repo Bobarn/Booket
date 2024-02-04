@@ -31,7 +31,7 @@ export default function AnnotationOptions({ annotationId }) {
 
   return (
     <>
-      <button onClick={toggleMenu}>
+      <button className="annotation-options-button" onClick={toggleMenu}>
       <i className="fa-solid fa-ellipsis-vertical" />
       </button>
      {showMenu && <ul className={"annotation-dropdown"} ref={annoRef}>

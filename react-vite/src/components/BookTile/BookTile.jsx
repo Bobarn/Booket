@@ -6,6 +6,7 @@ import './BookTile.css'
 
 export default function BookTile({book, currUser}) {
 
+
     const dispatch = useDispatch()
 
     const navigate = useNavigate()
@@ -15,6 +16,10 @@ export default function BookTile({book, currUser}) {
 
     function burnBook(bookId) {
         dispatch(thunkDeleteBook(bookId));
+    }
+
+    if(!currUser) {
+        return null
     }
     return (
         <div className='book-tile'>

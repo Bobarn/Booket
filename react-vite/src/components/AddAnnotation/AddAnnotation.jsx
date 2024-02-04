@@ -24,6 +24,10 @@ export default function AddAnnotation( {pageId} ) {
       setDisabled(boolean)
     }, [text])
 
+    useEffect(() => {
+      setText('')
+    }, [pageId])
+
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -45,18 +49,17 @@ export default function AddAnnotation( {pageId} ) {
 
 
   return (
-    <div id="annotation-form-container">
+      <form id="annotation-form" onSubmit={handleSubmit}>
+
       <div>
         <img src={user.profileImage} id="annotation-logo"/>
       </div>
-      <form id="annotation-form" onSubmit={handleSubmit}>
-
           <div className="error">
             {errors.text && (
               <p style={{ fontSize: "10px", color: "red" }}>*{errors.text}</p>
             )}
           </div>
-        <label>
+        <label className="page-annotation-area">
           <textarea
             value={text}
             onChange={(e) => setText(e.target.value)}
@@ -64,11 +67,8 @@ export default function AddAnnotation( {pageId} ) {
           />
         </label>
 
-              <div>
-                    <button disabled={disabled} type="submit">Comment</button>
-              </div>
+                <button className="annotation-submit" disabled={disabled} type="submit"><i className="fa-solid fa-pencil"></i></button>
 
       </form>
-    </div>
   );
 }

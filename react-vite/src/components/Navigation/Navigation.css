@@ -9,8 +9,40 @@ nav {
   height: 80px;
   z-index: 2;
   top: 0%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .nav-list {
   margin: 0px;
+}
+
+#booket-logo {
+  width: 160px;
+  padding: 5px;
+}
+
+.user-options {
+  padding-right: 2%;
+}
+
+.modal-button {
+  margin: 5px;
+  line-height: 2.1rem;
+  font-size: large;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.modal-button:first-child {
+  border: none;
+  background-color: #edc7b7;
+  text-decoration: none;
+  color: black;
+}
+
+.modal-button:nth-child(2) {
+  border: none;
+  background-color: #eee2dc;
 }

@@ -72,7 +72,7 @@ function BookForm({formType, book, bookId}) {
       }, [submitted]);
 
       if(!user) {
-        return null
+        navigate('/')
       }
 
   return (

@@ -1,0 +1,172 @@
+#flip-container {
+    position: relative;
+}
+
+.page .flip {
+    cursor: pointer;
+    margin-bottom: 110%;
+}
+
+.flip .next {
+    margin-right: 0px;
+}
+
+#page-image {
+    position: relative;
+    width: 400px;
+    max-height:350px;
+    border-radius: 10px;
+}
+
+
+.turn-page-next, .turn-page-prev {
+    position: relative;
+    top: 50%;
+}
+
+#book-container {
+    padding-top: 2%;
+	height: 100%;
+    width: 100%;
+    padding-bottom: 5%;
+    background-color: #eee2dc;
+}
+.book {
+	width: 500px;
+	height: 600px;
+	position: relative;
+    left: 30%;
+	transition-duration: 0.5s;
+	perspective: 2000px
+}
+.checkbox {
+	display: none;
+}
+.cover, .back-cover {
+	background-color: #123c69;
+	width: 100%;
+	height: 100%;
+	border-radius: 0 15px 15px 0;
+	box-shadow: 0 0 5px rgb(41, 41, 41);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transform-origin: center left;
+}
+.cover {
+	position: absolute;
+	z-index: 4;
+	transition: transform 1s;
+}
+.cover label {
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+    position: relative;
+}
+.back-cover {
+	position: relative;
+	z-index: -1;
+}
+.page {
+	position: absolute;
+	background-color: white;
+	width: 450px;
+	height: 550px;
+	border-radius: 0 15px 15px 0;
+	margin-top: 5%;
+	transform-origin: left;
+	transform-style: preserve-3d;
+	transform: rotateY(0deg);
+	transition-duration: 0.6s;
+    text-align: center;
+}
+.page img {
+	width: 100%;
+	height: 100%;
+	border-radius: 15px 0 0 15px;
+}
+.front-page {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	backface-visibility: hidden;
+	box-sizing: border-box;
+	padding: 1rem;
+}
+.back-page {
+	transform: rotateY(180deg);
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	backface-visibility: hidden;
+	z-index: 99;
+}
+.next, .prev {
+	position: absolute;
+	bottom: 1em;
+	cursor: pointer;
+}
+.next {
+	right: 1em;
+}
+.prev {
+	left: 1em;
+}
+#page1 {
+	z-index: 3;
+}
+#page2 {
+	z-index: 2;
+}
+
+#checkbox-cover:checked ~ .book {
+	transform: translateX(55%);
+}
+#checkbox-cover:checked ~ .book .cover {
+	transition: transform 1.5s, z-index 0.5s 0.5s;
+	transform: rotateY(-180deg);
+	z-index: 1;
+}
+#checkbox-cover:checked ~ .book .page {
+	box-shadow: 0 0 3px rgb(99, 98, 98);
+}
+#checkbox-page1:checked ~ .book #page1 {
+	transform: rotateY(-180deg);
+	z-index: 1;
+}
+#checkbox-page2:checked ~ .book #page2 {
+	transform: rotateY(-180deg);
+	z-index: 3;
+}
+
+
+.annotation-container {
+    position: relative;
+    top: 10%;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+
+    padding: 10px;
+    width: 95%;
+    height: 250px;
+    margin-bottom: 10px;
+
+    overflow: auto;
+    font-style: italic;
+    text-align: left;
+}
+
+.page-caption {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    text-align: left;
+    margin: 10px 0px;
+    max-height: 260px;
+    display: flex;
+}
+
+.annotation-content  {
+    display: flex;
+    justify-content: space-between;
+}
