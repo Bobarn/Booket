@@ -90,7 +90,6 @@ export default function PageFlip() {
                 <div className="book">
 
                     <div className="cover">
-                        <label htmlFor="#checkbox-cover"></label>
                     </div>
                     <div className="page" onTransitionEnd={() => {
                         if(checked === false && checked2 === false) {

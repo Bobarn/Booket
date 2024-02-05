@@ -11,6 +11,7 @@ import PageFlip from '../components/PageFlip/PageFlip';
 import CreatePage from '../components/PageForm/CreatePage/CreatePage';
 import EditPage from '../components/PageForm/EditPage/EditPage';
 import Welcome from '../components/WelcomePage/Welcome';
+import BookPage from '../components/BookPage/BookPage';
 
 
 export const router = createBrowserRouter([
@@ -39,7 +40,7 @@ export const router = createBrowserRouter([
       },
       {
         path: '/books/:bookId',
-        element: <h1>Welcome to Book Page</h1>
+        element: <BookPage />
       },
       {
         path: '/books/:bookId/page/:pageId',
