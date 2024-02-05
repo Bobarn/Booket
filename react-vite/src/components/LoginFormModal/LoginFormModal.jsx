@@ -2,6 +2,7 @@ import { useState } from "react";
 import { thunkLogin } from "../../redux/session";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
+import { useNavigate } from "react-router-dom";
 import "./LoginForm.css";
 
 function LoginFormModal() {
@@ -10,6 +11,8 @@ function LoginFormModal() {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,15 +27,36 @@ function LoginFormModal() {
     if (serverResponse) {
       setErrors(serverResponse);
     } else {
+      navigate("/home");
       closeModal();
     }
   };
 
+
+  const demoLogin = async (e) => {
+    e.preventDefault();
+  const serverResponse = await dispatch(
+    thunkLogin({
+      email: "demo@aa.io",
+      password: "password",
+    })
+  );
+
+  if (serverResponse) {
+    setErrors(serverResponse);
+  } else {
+    navigate("/home");
+
+    closeModal();
+  }
+};
+
+
   return (
-    <>
+    <div id='log-in-modal'>
       <h1>Log In</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
+      <form id='log-in-form' onSubmit={handleSubmit}>
+        <label className="label">
           Email
           <input
             type="text"
@@ -41,8 +65,8 @@ function LoginFormModal() {
             required
           />
         </label>
-        <div>{errors.email && <p>{errors.email}</p>}</div>
-        <label>
+        <div className="errors-div">{errors.email && <>{errors.email}</>}</div>
+        <label className="label">
           Password
           <input
             type="password"
@@ -51,10 +75,11 @@ function LoginFormModal() {
             required
           />
         </label>
-        {errors.password && <p>{errors.password}</p>}
-        <button type="submit">Log In</button>
+        <div className="errors-div">{errors.password && <>{errors.password}</>}</div>
+        <button id="log-in-submit" type="submit">Log In</button>
       </form>
-    </>
+      <h5 id='demo' onClick={demoLogin}>Log in as Demo User</h5>
+    </div>
   );
 }
 

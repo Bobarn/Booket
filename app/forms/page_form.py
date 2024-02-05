@@ -6,6 +6,6 @@ from ..api.AWS import ALLOWED_EXTENSIONS
 
 
 class PageForm(FlaskForm):
-    page_name = StringField("Page Name", validators=[DataRequired(), Length(max=50)])
+    page_name = StringField("Page Name", validators=[DataRequired(), Length(max=25)])
     caption = TextAreaField("Caption", validators=[DataRequired(), Length(max=500)])
     image = FileField("Page Image", validators=[FileAllowed(list(ALLOWED_EXTENSIONS))])

@@ -1,0 +1,49 @@
+#log-in-modal {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 350px;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#log-in-form {
+    display: flex;
+    flex-direction: column;
+    height: 220px;
+    justify-content: space-around;
+    width: 80%;
+}
+
+#log-in-form > * {
+    margin: 5px 0px;
+    width: 100%;
+}
+
+#log-in-form > p {
+    color: red;
+}
+
+#log-in-submit {
+    line-height: 2rem;
+    border-radius: 5px;
+    border: none;
+}
+
+.label {
+    display: flex;
+    justify-content: space-between;
+}
+
+#demo {
+    align-self: center;
+}
+
+#demo:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#modal-content, #modal {
+    z-index: 4;
+}

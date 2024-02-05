@@ -11,7 +11,7 @@ class Book(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
     title = db.Column(db.String(35), nullable=False)
-    synopsis = db.Column(db.String(500), nullable=False)
+    synopsis = db.Column(db.String(350), nullable=False)
     category = db.Column(db.String(20), nullable=False)
     coverImage = db.Column(db.String(256), nullable=False)
     coverImageName = db.Column(db.String(255), nullable=False)

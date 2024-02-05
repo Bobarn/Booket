@@ -58,6 +58,23 @@ export const thunkSignup = (formData) => async (dispatch) => {
   }
 };
 
+export const thunkEditUser = (formData) => async (dispatch) => {
+  const response = await fetch("/api/auth/edit_profile", {
+    method: "PUT",
+    body: formData
+  });
+
+  if(response.ok) {
+    const data = await response.json();
+    dispatch(setUser(data))
+  } else if (response.status < 500) {
+    const errorMessages = await response.json();
+    return errorMessages
+  } else {
+    return { server: "Something went wrong. Please try again"}
+  }
+}
+
 export const thunkLogout = () => async (dispatch) => {
   await fetch("/api/auth/logout");
   dispatch(removeUser());

@@ -56,12 +56,12 @@ function SignupFormModal() {
   };
 
   return (
-    <>
+    <div id="sign-up-modal">
       <h1>Sign Up</h1>
       {errors.server && <p>{errors.server}</p>}
-      <form onSubmit={handleSubmit} encType="multipart/form-data">
-        <label>
-          Email
+      <form id="sign-up-form" onSubmit={handleSubmit} encType="multipart/form-data">
+        <label className="label">
+          *Email
           <input
             type="text"
             value={email}
@@ -69,9 +69,10 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.email && <p>{errors.email}</p>}
-        <label>
-          Username
+        <div className="errors-div">{errors.email && <>{errors.email}</>}</div>
+
+        <label className="label">
+          *Username
           <input
             type="text"
             value={username}
@@ -79,42 +80,37 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.username && <p>{errors.username}</p>}
-        <label>
+        <div className="errors-div">{errors.username && <>{errors.username}</>}</div>
+
+        <label className="label">
 					Profile Image
 					<input
+            className="file-input"
 						type="file"
 						accept="image/*"
 						onChange={(e) => setProfile_Image(e.target.files[0])}
 
 					/>
-{errors.profile_image && (
-            <p style={{ fontSize: "10px", color: "red" }}>*{errors.profile_image}</p>
-          )}
-
 				</label>
-        <label>
+        <label className="label">
 					About
 					<textarea value={about} onChange={(e) => setAbout(e.target.value)} className="signup-about"/>
-					{errors.about && (
-            <p style={{ fontSize: "10px", color: "red" }}>*{errors.about}</p>
-          )}
+          <div className="errors-div">					{errors.about && (
+            <>*{errors.about}</>
+          )}</div>
         </label>
-        <label>
+        <label className="label">
 					Banner Image
 					<input
+            className="file-input"
 						type="file"
-						accept="immage/*"
+						accept="image/*"
 						onChange={(e) => setBanner_Image(e.target.files[0])}
 
 					/>
-{errors.banner_image && (
-            <p style={{ fontSize: "10px", color: "red" }}>*{errors.banner_image}</p>
-          )}
-
 				</label>
-        <label>
-          Password
+        <label className="label">
+          *Password
           <input
             type="password"
             value={password}
@@ -122,9 +118,9 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.password && <p>{errors.password}</p>}
-        <label>
-          Confirm Password
+        <div className="errors-div">{errors.password && <>{errors.password}</>}</div>
+        <label className="label">
+          *Confirm Password
           <input
             type="password"
             value={confirmPassword}
@@ -132,10 +128,12 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
-        <button type="submit">Sign Up</button>
+        <div className="errors-div">
+          {errors.confirmPassword && <>{errors.confirmPassword}</>}
+        </div>
+        <button id="sign-up-submit" type="submit">Sign Up</button>
       </form>
-    </>
+    </div>
   );
 }
 

@@ -2,6 +2,7 @@ from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from .bookmark import bookmarks
+from datetime import datetime
 
 
 class User(db.Model, UserMixin):
@@ -19,6 +20,7 @@ class User(db.Model, UserMixin):
     profileImageName = db.Column(db.String(255), nullable=True)
     bannerImage = db.Column(db.String(256), nullable=True)
     bannerImageName = db.Column(db.String(255), nullable=True)
+    joined = db.Column(db.DateTime, default=datetime.now)
 
     books = db.relationship("Book", back_populates="author")
     pages = db.relationship("Page", back_populates="author")
@@ -47,5 +49,6 @@ class User(db.Model, UserMixin):
             'bannerImage': self.bannerImage,
             'bannerImageName': self.bannerImageName,
             "books": len(self.books),
-            "pages": len(self.pages)
+            "pages": len(self.pages),
+            "joined": self.joined
         }

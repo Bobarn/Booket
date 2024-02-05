@@ -34,6 +34,7 @@ function BookForm({formType, book, bookId}) {
         if(!category) errorList.category = "Category is required"
         if(!title) errorList.title = "Title is required"
         if(!synopsis) errorList.synopsis = "Synopsis is required"
+        if(synopsis.length > 350) errorList.synopsis = "Synopsis cannot be longer than 350 characters."
         if(formType == "Publish Book" && !coverImage) errorList.coverImage = "Please add a cover image for this book (.jpg, .jpeg, .png, .gif, .pdf)"
 
 
@@ -71,22 +72,24 @@ function BookForm({formType, book, bookId}) {
       }, [submitted]);
 
       if(!user) {
-        return null
+        navigate('/')
       }
 
   return (
+    <>
+    <div id="buffer"></div>
     <div className="create-book-container">
         {formType == "Publish Book" ?
         <>
-            <h1>Publish Your New Book</h1>
+            <h1 id="book-form-heading">Publish Your New Book</h1>
             <div>Write out your story, one page and one picture at a time.</div>
         </>
         :
         <>
-            <h1>Revise Your Book</h1>
+            <h1 id="book-form-heading">Revise Your Book</h1>
             <div>Stories change and this is yours, tell us what you want to change.</div>
         </>}
-      <form onSubmit={handleSubmit} encType="multipart/form-data">
+      <form className="book-form" onSubmit={handleSubmit} encType="multipart/form-data">
         <label>
           Category
           <select
@@ -117,6 +120,7 @@ function BookForm({formType, book, bookId}) {
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
+            className="form-title"
           />
           <div className="error">
             {errors.title && (
@@ -162,12 +166,13 @@ function BookForm({formType, book, bookId}) {
              />
             <span className="slider round"></span>
         </label>
-        <div>
-        <button type="submit">{formType == "Publish Book" ? <>Publish Book</> : <>Update Book</>}</button>
+        <div className="form-foot">
+          <button id="form-submit" type="submit">{formType == "Publish Book" ? <>Publish Book</> : <>Update Book</>}</button>
         </div>
 
       </form>
     </div>
+    </>
   );
 }
 
