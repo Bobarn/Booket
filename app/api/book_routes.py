@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from flask_login import login_required, current_user
-from app.models import db, Book, Page
+from app.models import db, Book, Page, User
 from app.forms import BookForm, PageForm
 from .AWS import upload_file_to_s3, get_unique_filename, remove_file_from_s3
 
@@ -67,7 +67,6 @@ def start_book():
             category=data["category"]
         )
 
-        print(newBook)
 
         db.session.add(newBook)
         db.session.commit()
@@ -150,19 +149,6 @@ def burn_book(id):
     return {"message": "Book deleted successfully"}
 
 
-# @book_routes.route('/<int:id>/pages')
-# def get_book_pages(id):
-#     """
-#     Get all pages of a book
-#     """
-
-#     pages = Page.query.filter_by(book_id=id).all();
-
-#     if not pages:
-#         return {"message": "Book is Empty"}, 404
-
-#     return {"pages": [page.to_dict() for page in pages]}, 200
-
 # CREATING A PAGE ON A BOOK (PUBLISHING A NEW PAGE TO A BOOK)
 @book_routes.route('/<int:id>/new', methods=["POST"])
 @login_required
@@ -208,3 +194,33 @@ def write_page(id):
 
         return newPage.to_dict(), 201
     return {"errors": form.errors}, 400
+
+@book_routes.route('/bookmarks')
+@login_required
+def getBookmarks():
+
+    return {"bookmarks": [bookmark.to_dict() for bookmark in current_user.bookmarks]}, 200
+
+@book_routes.route('/bookmarks/<int:id>', methods=['POST'])
+@login_required
+def addBookmark(id):
+    book = Book.query.get(id)
+
+    current_user.bookmarks.append(book)
+    db.session.commit()
+
+    return book.to_dict(), 201
+
+@book_routes.route('/bookmarks/<int:id>', methods=['DELETE'])
+@login_required
+def removeBookmark(id):
+
+    book = Book.query.get(id)
+
+    if not book:
+        return {"error": "Book not found"}, 404
+
+    current_user.bookmarks.remove(book)
+    db.session.commit()
+
+    return {"message": "Successfully removed bookmark"}, 201
