@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 import BookTile from '../BookTile/BookTile';
 import { thunkGetAllBooks} from '../../redux/books';
 import { thunkGetAllUsers } from '../../redux/users';
+// import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
+// import EditProfileModal from "../EditProfileModal/EditProfileModal";
 import "./UserPage.css";
 
 export default function UserPage() {
@@ -50,6 +52,11 @@ export default function UserPage() {
         <div className="users-stats">
           <h3>{user.books} Book(s)      {user.pages} Page(s)</h3>
         </div>
+        {/* <OpenModalMenuItem
+        itemText={"Edit Profile"}
+        modalComponent={<EditProfileModal />}
+        /> */}
+
         <div className="user-joined">
           {`Joined ${new Date(user.joined).getFullYear()}`}
         </div>

@@ -1,17 +1,64 @@
 
 .create-book-container label{
     padding-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    margin: 5px;
+}
 
+.create-book-container {
+  background-color: #eee2dc;
+  margin: 0px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+html {
+  background-color: #eee2dc;
 }
 
 .create-book-container input{
     height: 20px;
 }
 
-.create-book-container{
-   margin: 25px;
+#book-form-heading {
+  margin: 0px;
 }
 
+.book-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 520px;
+  width: 60%;
+  border: 1px solid #374151;
+}
+
+.form-title {
+  width: 25%;
+  text-align: center;
+}
+
+.form-synopsis {
+  width: 30%;
+  height: 100px;
+}
+
+.form-foot {
+  display: flex;
+  justify-content: flex-end;
+}
+
+#form-submit {
+  background-color: #eee2dc;
+  line-height: 2rem;
+  position: relative;
+  bottom: 10px;
+  right: 20px;
+  cursor: pointer;
+}
 
 /* The switch - the box around the slider */
 .switch {
@@ -19,6 +66,7 @@
     display: inline-block;
     width: 30px;
     height: 17px;
+    right: 0px;
   }
 
   /* Hide default HTML checkbox */

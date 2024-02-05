@@ -35,14 +35,24 @@ nav {
   cursor: pointer;
 }
 
-.modal-button:first-child {
+.user-options .modal-button:first-child {
   border: none;
   background-color: #edc7b7;
   text-decoration: none;
   color: black;
 }
 
-.modal-button:nth-child(2) {
+.user-options .modal-button:nth-child(2) {
   border: none;
   background-color: #eee2dc;
+}
+
+.user-page-button {
+  margin: 5px;
+  line-height: 2.1rem;
+  font-size: large;
+  border-radius: 3px;
+  cursor: pointer;
+  border: none;
+  background-color: #AC3B61;
 }
