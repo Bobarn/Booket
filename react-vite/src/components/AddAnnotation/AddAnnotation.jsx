@@ -66,8 +66,8 @@ export default function AddAnnotation( {pageId} ) {
             className="page-annotation-text"
           />
         </label>
-
                 <button className="annotation-submit" disabled={disabled} type="submit"><i className="fa-solid fa-pencil"></i></button>
+
 
       </form>
   );

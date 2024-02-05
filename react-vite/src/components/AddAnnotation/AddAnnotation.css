@@ -10,7 +10,7 @@
     position: absolute;
     justify-content: flex-start;
     align-items: center;
-    bottom: 5%;
+    bottom: 2%;
 }
 
 .page-annotation-area {
@@ -22,7 +22,7 @@
     background-color: white;
     position: relative;
     right: -15px;
-    bottom: 5px;
+    bottom: 3px;
     cursor: pointer;
 }
 
@@ -33,7 +33,13 @@
 .page-annotation-text {
     height: 15px;
     width: 100%;
-    border-radius: 30px;
+    border-radius: 10px;
     padding: 5px;
     line-height: 10px;
+    border-color: #eee2dc;
+}
+
+.page-annotation-text:focus {
+    box-shadow: 0px 0px 2px 2px #183a1d;
+    border: none;
 }

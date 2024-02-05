@@ -71,9 +71,11 @@ export default function Welcome() {
 
     const user = useSelector((state) => state.session.user)
 
+   useEffect(() => {
     if(user) {
         navigate('/home')
     }
+   }, [user])
 
     return (
         <>

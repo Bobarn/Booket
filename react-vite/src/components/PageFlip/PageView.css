@@ -144,16 +144,14 @@
 .annotation-container {
     position: relative;
     top: 10%;
-    border: 1px solid lightgray;
-    border-radius: 10px;
+    border: 1px solid #eee2dc;
 
     padding: 10px;
     width: 95%;
     height: 250px;
     margin-bottom: 10px;
-
-    overflow: auto;
-    font-style: italic;
+    /* overflow-y: auto; */
+	word-wrap: break-word;
     text-align: left;
 }
 
@@ -167,6 +165,27 @@
 }
 
 .annotation-content  {
-    display: flex;
-    justify-content: space-between;
+	display: grid;
+	max-width: 100%;
+	font-size: 1;
+	word-wrap: break-word;
+	grid-template-columns: 95% 5%;
+}
+
+
+.annotation-user {
+	font-size: 1.1em;
+	text-decoration: underline;
+}
+
+#annotation-text {
+	margin: 2px;
+	word-wrap: break-word;
+}
+
+.page-revise-button, .tear-button {
+	background-color: white;
+	border: none;
+	margin: 0px 15px 15px 0px;
+	cursor: pointer;
 }

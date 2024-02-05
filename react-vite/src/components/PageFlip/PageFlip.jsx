@@ -57,12 +57,12 @@ export default function PageFlip() {
                 {page?.annotations.map((annotation) => {
                     return (
                         <div key={annotation?.id} className="annotation-tile">
-                            <div style={{ fontWeight: "bold" }}>
+                            <div className='annotation-user'>
                             {annotation.user}:
                             </div>
 
                             <div className="annotation-content">
-                                {annotation?.text}
+                                <p id='annotation-text'>{annotation?.text}</p>
 
                                 {user && user.id == annotation.user_id ? (
                                         <AnnotationOptions annotationId={annotation?.id} />
@@ -118,10 +118,10 @@ export default function PageFlip() {
                             {user.id == page.user_id &&
                         <>
                             <button onClick={() => navigate(`/books/${page.book_id}/page/${page.id}/edit`)} className='page-revise-button'>
-                                <i className="fa-regular fa-pen-to-square"></i>
+                                <i className="fa-regular fa-xl fa-pen-to-square"></i>
                             </button>
                             <button className='tear-button' onClick={() => tearPage(page.id)}>
-                                <i className="fa-solid fa-scissors"></i>
+                                <i className="fa-xl fa-solid fa-scissors"></i>
                             </button>
                         </>
                         }
