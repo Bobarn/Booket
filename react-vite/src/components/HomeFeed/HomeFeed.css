@@ -2,6 +2,33 @@
     margin: 0px;
 }
 
+.cat-logo {
+    width: 40px;
+    height: 40px;
+}
+
+.cat-logo-specific {
+    color: #374151;
+    z-index: 1;
+    position: relative;
+    top: 18px;
+    right: 2px;
+}
+
+.cat-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    color: #374151;
+}
+
+.main-shelf {
+    padding-top: 5%;
+    background-color: #eee2dc;
+    padding-bottom: 15%;
+}
+
 .books-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -13,7 +40,13 @@
 }
 
 .category-main-cont {
+    height: 150px;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-  }
+    align-items: center;
+}
+
+body {
+    margin: 0px;
+}

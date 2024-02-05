@@ -2,6 +2,7 @@ from flask import Blueprint, request
 from app.models import User, db
 from app.forms import LoginForm
 from app.forms import SignUpForm
+from app.forms import ProfileEditForm
 from flask_login import current_user, login_user, logout_user, login_required
 from .AWS import get_unique_filename, upload_file_to_s3, remove_file_from_s3
 
@@ -59,8 +60,6 @@ def sign_up():
             "password": form.data['password'],
         }
 
-        print(form.data)
-
         if form.about:
             user["about"] = form.about.data
 
@@ -95,6 +94,48 @@ def sign_up():
         return new_user.to_dict()
     return form.errors, 401
 
+@auth_routes.route('/edit_profile', methods=['PUT'])
+@login_required
+def edit_profile():
+    """
+    Edits a user's profile
+    """
+    form = ProfileEditForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+
+        if form.about.data:
+            current_user["about"] = form.about.data
+
+        if form.profile_image.data:
+            remove_file_from_s3(current_user.profileImage)
+            image = form.profile_image.data
+            profileImageName = image.filename
+            image.filename = get_unique_filename(image.filename)
+            upload = upload_file_to_s3(image)
+
+            if "url" not in upload:
+                return upload, 400
+            else:
+                current_user["profileImage"] = upload["url"]
+                current_user["profileImageName"] = profileImageName
+
+        if form.banner_image.data:
+            remove_file_from_s3(current_user.bannerImage)
+            ban_image = form.banner_image.data
+            bannerImageName = ban_image.filename
+            ban_image.filename = get_unique_filename(ban_image.filename)
+            ban_upload = upload_file_to_s3(ban_image)
+
+            if "url" not in ban_upload:
+                return ban_upload, 400
+            else:
+                current_user["bannerImage"] = ban_upload["url"]
+                current_user["bannerImageName"] = bannerImageName
+
+        db.session.commit()
+        return updated_user.to_dict()
+    return form.errors, 401
 
 @auth_routes.route('/unauthorized')
 def unauthorized():

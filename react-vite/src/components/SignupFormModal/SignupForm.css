@@ -1,0 +1,57 @@
+#sign-up-modal {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    height: 550px;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#sign-up-form {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+
+#sign-up-form > * {
+    margin: 5px 0px;
+    width: 100%;
+}
+
+#sign-up-form > p {
+    color: red;
+}
+
+#sign-up-submit {
+    line-height: 2rem;
+    border-radius: 5px;
+    border: none;
+    margin: 0px;
+    margin-top: 20px;
+}
+
+.file-input {
+    position: relative;
+    right: -7%;
+    line-height: 1.5rem;
+    font-family: 'Raleway', sans-serif;
+    width: 180px;
+    background-color: white;
+}
+
+.label {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.errors-div {
+    height: 14px;
+    font-size: 14px;
+    color: red;
+}
+
+.signup-about {
+    position: relative;
+    right: -18%;
+}

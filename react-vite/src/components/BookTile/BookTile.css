@@ -4,18 +4,45 @@
     height: 300px;
     width: 300px;
     position: relative;
+    align-items: center;
     margin: 10%;
+}
+
+.book-title {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+    font-style: italic;
+    color: #AC3B61;
+    word-wrap: break-word;
 }
 
 .book-tile .book-cover-link,
 .book-tile .tile-author-area,
-.book-tile .tile-index {
+.book-tile .tile-index,
+.book-tile .tile-back-cover,
+.book-tile .tile-front-cover,
+.book-tile .tile-spine,
+.tile-synopsis,
+.tile-index-item {
     transition: opacity 0.5s ease-in-out;
 }
 
+.tile-synopsis {
+    opacity: 0;
+    display: none;
+    font-size: 14px;
+    word-wrap: break-word;
+}
+
+.book-tile:hover .tile-synopsis {
+    opacity: 1;
+    display: block;
+}
+
 .cover-image {
-    width: 300px;
-    height: 300px;
+    width: 100%;
+    height: 100%;
+    border-radius: 0 5px 5px 0;
 }
 
 .book-tile:hover .book-cover-link {
@@ -27,50 +54,103 @@
 .book-tile:hover .tile-author-area,
 .book-tile:hover .tile-index {
     opacity: 1;
-    height: 300px;
+    height: 90%;
     border: 1px #183a1d solid;
+    background-color: #f6eee3;
 }
 
 .tile-author-area {
-    width: 220px;
+    width: 200px;
     position: absolute;
     text-align: center;
-    top: 0%;
-    left: -30%;
+    padding-top: 2%;
+    top: 4%;
+    right: -5%;
     opacity: 0;
     height: 0;
+    padding-right: 6.5%;
+    border-radius: 15px 0 0 15px;
 }
 
 .tile-index {
-    width: 220px;
+    width: 200px;
     position: absolute;
     height: 0px;
-    top: 0%;
-    right: -40%;
+    top: 4%;
+    left: -5%;
+    padding-left: 6.5%;
+    padding-top: 2%;
     opacity: 0;
     display: flex;
     text-align: center;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+    border-radius: 0 15px 15px 0;
+}
+
+.tile-index-item {
+    position: relative;
+    left: -15%;
+    word-wrap: break-word;
+    list-style: none;
+    opacity: 0;
+}
+
+.book-tile:hover .tile-index-item {
+    opacity: 1;
+    list-style: decimal;
+}
+.tile-synopsis {
+    text-decoration: none;
+    color: black;
+}
+
+.tile-synopsis > p:first-child {
+    margin-top: 15px;
+}
+
+#synopsis-text {
+    text-decoration: none;
 }
 
 .tile-book-author-image {
+    display: none;
     width: 30px;
     height: 30px;
+    border-radius: 100%;
+}
+
+.book-tile:hover .tile-book-author-image {
+    display: block;
 }
 
 .tile-book-author {
+    display: none;
+}
+
+.TOC {
+
+}
+
+.tile-author {
+    text-decoration: none;
+    color: black;
+}
+
+.book-tile:hover .tile-book-author {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .book-cover-link {
-    width: 300px;
-    height: 300px;
+    width: 100%;
+    height: 100%;
     text-align: center;
     border: #183a1d solid 2px;
+    text-decoration: none;
+    border-radius: 0 5px 5px 0;
 }
 
 .index-link, .tile-index > p {
@@ -80,4 +160,68 @@
 .book-tile:hover .index-link,
 .book-tile:hover .tile-index > p {
     display: block;
+}
+
+.burn-button, .new-page-button, .revise-button {
+    display:none;
+    position: absolute;
+    background-color: #f6eee3;
+    border: none;
+    border-radius: 100%;
+}
+
+.revise-button {
+    top: 6%;
+    left: 7%;
+}
+
+.burn-button {
+    top: 2%;
+    right: 2%;
+}
+
+.new-page-button {
+    bottom: 0%;
+    right: 1%;
+}
+
+.book-tile:hover .burn-button, .book-tile:hover .new-page-button, .book-tile:hover .revise-button {
+    display: block;
+    cursor: pointer;
+}
+
+.tile-front-cover {
+    width: 81%;
+    position: absolute;
+    top: 0%;
+    left: -30%;
+    opacity: 0;
+    height: 0;
+    background-color: #123c69;
+    border-radius: 5px 0 0 5px;
+}
+
+.tile-back-cover {
+    background-color: #123c69;
+    width: 81%;
+    position: absolute;
+    height: 0px;
+    top: 0%;
+    right: -40%;
+    opacity: 0;
+    border-radius: 0 5px 5px 0;
+}
+
+.tile-spine {
+    background-color: #123c69;
+    position: absolute;
+    top: 0%;
+    height: 0px;
+    opacity: 0;
+    width: 90%;
+}
+
+.book-tile:hover .tile-front-cover, .book-tile:hover .tile-back-cover, .book-tile:hover .tile-spine {
+    height: 100%;
+    opacity: 1;
 }

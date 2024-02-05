@@ -1,3 +1,15 @@
 .annotation-dropdown {
     position: absolute;
+    right: 0%;
+}
+
+.annotation-options-button {
+    background-color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.open-modal-button {
+    background-color: lightblue;
+    border-radius: 5px;
 }

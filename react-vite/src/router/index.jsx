@@ -10,6 +10,8 @@ import UserPage from '../components/UserPage/UserPage';
 import PageFlip from '../components/PageFlip/PageFlip';
 import CreatePage from '../components/PageForm/CreatePage/CreatePage';
 import EditPage from '../components/PageForm/EditPage/EditPage';
+import Welcome from '../components/WelcomePage/Welcome';
+
 
 export const router = createBrowserRouter([
   {
@@ -17,7 +19,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <h1>Welcome!</h1>,
+        element: <Welcome />
       },
       {
         path: "login",

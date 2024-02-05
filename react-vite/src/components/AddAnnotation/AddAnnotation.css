@@ -4,15 +4,36 @@
     border-radius: 50%;
 }
 
-#annotation-form-container {
-    display: flex;
-}
-
 #annotation-form {
     display: flex;
     width: 100%;
+    position: absolute;
+    justify-content: flex-start;
+    align-items: center;
+    bottom: 5%;
+}
+
+.page-annotation-area {
+    width: 80%;
+}
+
+.annotation-submit {
+    border: none;
+    background-color: white;
+    position: relative;
+    right: -15px;
+    bottom: 5px;
+    cursor: pointer;
+}
+
+.annotation-submit:disabled {
+    cursor: default;
 }
 
 .page-annotation-text {
-    height: 20px;
+    height: 15px;
+    width: 100%;
+    border-radius: 30px;
+    padding: 5px;
+    line-height: 10px;
 }

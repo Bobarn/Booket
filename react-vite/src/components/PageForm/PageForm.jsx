@@ -70,21 +70,24 @@ function PageForm({formType, page, bookId, pageId}) {
       }
 
   return (
+    <>
+    <div id="buffer"></div>
     <div className="create-page-container">
         {formType == "Publish Page" ?
         <>
-            <h1>Add A New Page to Your Book!</h1>
+            <h1 id="page-form-heading">Add A New Page to Your Book!</h1>
             <div>Write out your story, one page and one picture at a time.</div>
         </>
         :
         <>
-            <h1>Revise Your Page!</h1>
+            <h1 id="page-form-heading">Revise Your Page!</h1>
             <div>Stories change and this is yours, tell us what you want to change.</div>
         </>}
-      <form onSubmit={handleSubmit} encType="multipart/form-data">
+      <form className="page-form" onSubmit={handleSubmit} encType="multipart/form-data">
         <label>
           Page Title
           <input
+            className="form-title"
             type="text"
             value={page_name}
             onChange={(e) => setPage_Name(e.target.value)}
@@ -124,12 +127,13 @@ function PageForm({formType, page, bookId, pageId}) {
             )}
           </div>
         </label>
-        <div>
-        <button type="submit">{formType == "Publish Page" ? <>Add Page</> : <>Update Page</>}</button>
+        <div className="form-foot">
+        <button id="form-submit" type="submit">{formType == "Publish Page" ? <>Add Page</> : <>Update Page</>}</button>
         </div>
 
       </form>
     </div>
+    </>
   );
 }
 
