@@ -1,6 +1,7 @@
 import { useNavigate, NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { thunkLogout } from "../../redux/session";
+import ProfileButton from './ProfileButton';
 import OpenModalMenuItem from "./OpenModalMenuItem";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
@@ -48,21 +49,9 @@ function Navigation() {
         </>
         }
       </div>
-      {/* <ul className="nav-list">
-        <li>
-          <NavLink to="/">Opening</NavLink>
-        </li>
-
-        <li>
-          <ProfileButton />
-        </li>
-        <li>
-          <NavLink to="/home">Feed</NavLink>
-        </li>
-        <li>
-          <NavLink to="/books/new">Publish a Book</NavLink>
-        </li>
-      </ul> */}
+      {user &&
+      <ProfileButton />
+      }
     </nav>
   );
 }

@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { thunkGetAllBooks } from '../../redux/books';
+import { thunkAddCheckout, thunkGetCheckouts, thunkRemoveCheckout, } from '../../redux/checkouts'
 import './BookPage.css'
 
 
@@ -17,6 +18,7 @@ export default function BookPage() {
 
     const user = useSelector((state) => state.session.user);
     const book = useSelector((state) => state.books[bookId]);
+    const checkouts = useSelector((state) => state.checkouts)
 
     if(!user || (book?.private && book.author.id != user.id)) {
         navigate('/home')
@@ -24,7 +26,16 @@ export default function BookPage() {
 
     useEffect(() => {
         dispatch(thunkGetAllBooks())
+        dispatch(thunkGetCheckouts())
     }, [dispatch])
+
+    function removeCheckout(bookId) {
+        dispatch(thunkRemoveCheckout(bookId))
+    }
+
+    function addCheckout(bookId) {
+        dispatch(thunkAddCheckout(bookId))
+    }
 
     if(!book) return null;
 
@@ -46,6 +57,12 @@ export default function BookPage() {
                             Flipping...
                         </div>
                         <div className="back-page">
+                            {user && user.id !== book.user_id && !checkouts[book.id] &&
+                            <button className='checkouts-button' onClick={() => addCheckout(book.id)}><i className="fa-solid fa-square-plus"></i></button>
+                            }
+                            {user && user.id !== book.user_id && checkouts[book.id] &&
+                            <button className='checkouts-button' onClick={() => removeCheckout(book.id)}><i className="fa-solid fa-book-open-reader"></i></button>
+                            }
                         <h4>{book.title}</h4>
                             <img id='book-image' src={book.cover}/>
                         </div>

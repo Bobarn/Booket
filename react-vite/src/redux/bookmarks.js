@@ -25,14 +25,14 @@ const removeBookmark = (bookmarkId) => {
 
 
 export const thunkGetBookmarks = () => async (dispatch) => {
-    const response = await fetch('/api/books/bookmarks')
+    const response = await fetch('/api/pages/bookmarks')
 
     if(response.ok) {
-        const {bookmarks} = await response.json()
+        const {pages} = await response.json()
 
-        dispatch(getBookmarks(bookmarks))
+        dispatch(getBookmarks(pages))
 
-        return bookmarks
+        return pages
     } else {
         const error = await response.json()
 
@@ -41,7 +41,7 @@ export const thunkGetBookmarks = () => async (dispatch) => {
 }
 
 export const thunkAddBookmark = (bookId) => async (dispatch) => {
-    const response = await fetch(`/api/books/bookmarks/${bookId}`, {
+    const response = await fetch(`/api/pages/bookmarks/${bookId}`, {
         method: "POST"
     })
 
@@ -59,7 +59,7 @@ export const thunkAddBookmark = (bookId) => async (dispatch) => {
 }
 
 export const thunkRemoveBookmark = (bookId) => async (dispatch) => {
-    const response = await fetch(`/api/books/bookmarks/${bookId}`, {
+    const response = await fetch(`/api/pages/bookmarks/${bookId}`, {
         method: "DELETE"
     })
 

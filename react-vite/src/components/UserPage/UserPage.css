@@ -111,3 +111,11 @@
     grid-template-columns: 1fr 4fr;
     min-height: 417px;
 }
+
+.user-profile-container > .modal-button {
+    background-color: #FFFDDA;
+    position: absolute;
+    bottom: 0%;
+    left: 30%;
+    font-size: medium;
+}

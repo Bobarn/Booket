@@ -11,6 +11,7 @@ import pagesReducer from "./pages";
 import userReducer from "./users";
 import annotationsReducer from "./annotations";
 import bookmarksReducer from "./bookmarks";
+import checkoutsReducer from "./checkouts";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
   pages: pagesReducer,
   users: userReducer,
   annotations: annotationsReducer,
-  bookmarks: bookmarksReducer
+  bookmarks: bookmarksReducer,
+  checkouts: checkoutsReducer
 });
 
 let enhancer;

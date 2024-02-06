@@ -1,6 +1,7 @@
-from app.models import db, Page, environment, SCHEMA
+from app.models import db, Page, User, environment, SCHEMA
 from sqlalchemy.sql import text
 from datetime import datetime
+from random import choices, randint
 from faker import Faker
 
 fake = Faker()
@@ -124,8 +125,15 @@ def seed_pages():
     )
 
 
+    users = User.query.all()
+
 
     all_pages = [page1, page2, page3, page4, page5, page6, page7, page8, page9, page10]
+
+    for page in all_pages:
+        usersToAdd = list(set(choices(users, k=randint(1,5))))
+        for user in usersToAdd:
+            page.readers.append(user)
 
     db.session.add_all(all_pages)
 

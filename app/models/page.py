@@ -1,5 +1,6 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from datetime import datetime
+from .bookmark import bookmarks
 
 class Page(db.Model):
     __tablename__ = "pages"
@@ -19,6 +20,7 @@ class Page(db.Model):
 
     author = db.relationship("User", back_populates="pages")
     book = db.relationship("Book", back_populates="pages")
+    readers = db.relationship("User", secondary=bookmarks, back_populates="bookmarks")
     annotations = db.relationship("Annotation", back_populates="page", cascade="all, delete-orphan")
 
 

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import { thunkGetAllPages, thunkDeletePage } from '../../redux/pages';
 import { thunkGetAllAnnotations} from '../../redux/annotations';
+import { thunkGetBookmarks, thunkRemoveBookmark, thunkAddBookmark } from '../../redux/bookmarks';
 import AnnotationOptions from '../AnnotationOptions/AnnotationOptions';
 import AddAnnotation from '../AddAnnotation/AddAnnotation';
 import './PageView.css'
@@ -24,6 +25,7 @@ export default function PageFlip() {
     const user = useSelector((state) => state.session.user);
     const page = useSelector((state) => state.pages[pageId]);
     const pages = useSelector((state) => state.pages);
+    const bookmarks = useSelector((state) => state.bookmarks)
 
     if(!user || (page?.private && page.user_id != user.id)) {
         navigate('/home')
@@ -39,9 +41,18 @@ export default function PageFlip() {
     useEffect(() => {
         dispatch(thunkGetAllPages())
         dispatch(thunkGetAllAnnotations())
+        dispatch(thunkGetBookmarks())
     }, [dispatch])
 
     if(!page) return null;
+
+    function removeBookmark(pageId) {
+        dispatch(thunkRemoveBookmark(pageId))
+    }
+
+    function addBookmark(pageId) {
+        dispatch(thunkAddBookmark(pageId))
+    }
 
 
     function tearPage(pageId) {
@@ -91,7 +102,8 @@ export default function PageFlip() {
 
                     <div className="cover">
                     </div>
-                    <div className="page" onTransitionEnd={() => {
+                    <div className="page" onTransitionEnd={(e) => {
+                        e.stopPropagation()
                         if(checked === false && checked2 === false) {
                             setChecked(true)
                             navigate(`/books/${bookId}/page/${prevPage.id}`)
@@ -102,6 +114,13 @@ export default function PageFlip() {
                             Flipping...
                         </div>
                         <div className="back-page">
+                            {user && user.id !== page.user_id && !bookmarks[page.id] &&
+                            <button className='bookmark-button' onClick={() => addBookmark(page.id)}><i className="fa-xl fa-regular fa-bookmark"></i></button>
+                            }
+                            {user && user.id !== page.user_id && bookmarks[page.id] &&
+                            <button className='bookmark-button' onClick={() => removeBookmark(page.id)} ><i className="fa-xl fa-solid fa-bookmark"></i></button>
+                            }
+
                         <h4>{page.page_name}</h4>
                             <img id='page-image' src={page.image}/>
                             {prevPage && <label className="flip prev" onClick={() => setChecked(false)} htmlFor="checkbox-page1"><i className="turn-page-prev fas fa-chevron-left"></i></label>}

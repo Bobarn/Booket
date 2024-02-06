@@ -2,6 +2,7 @@ from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from .bookmark import bookmarks
+from .checkouts import checkouts
 from datetime import datetime
 
 
@@ -25,7 +26,8 @@ class User(db.Model, UserMixin):
     books = db.relationship("Book", back_populates="author")
     pages = db.relationship("Page", back_populates="author")
     annotations = db.relationship("Annotation", back_populates="user")
-    bookmarks = db.relationship("Book", secondary=bookmarks, back_populates="readers")
+    checkouts = db.relationship("Book", secondary=checkouts, back_populates="borrowing")
+    bookmarks = db.relationship("Page", secondary=bookmarks, back_populates="readers")
     # chats = db.relationship("Chat", back_populates=)
 
     @property

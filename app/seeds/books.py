@@ -93,7 +93,7 @@ def seed_books():
     for book in all_books:
         usersToAdd = list(set(choices(users, k=randint(1,5))))
         for user in usersToAdd:
-            book.readers.append(user)
+            book.borrowing.append(user)
 
     db.session.add_all(all_books)
     db.session.commit()

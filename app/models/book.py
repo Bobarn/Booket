@@ -1,6 +1,6 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from datetime import datetime
-from .bookmark import bookmarks
+from .checkouts import checkouts
 
 class Book(db.Model):
     __tablename__ = "books"
@@ -20,8 +20,8 @@ class Book(db.Model):
 
 
     author = db.relationship("User", back_populates="books")
+    borrowing = db.relationship("User", secondary=checkouts, back_populates="checkouts")
     pages = db.relationship("Page", back_populates="book", cascade="all, delete-orphan")
-    readers = db.relationship("User", secondary=bookmarks, back_populates="bookmarks")
 
     def to_dict(self):
         pages = sorted(self.pages, key= lambda page: page.id)

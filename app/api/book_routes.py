@@ -195,32 +195,32 @@ def write_page(id):
         return newPage.to_dict(), 201
     return {"errors": form.errors}, 400
 
-@book_routes.route('/bookmarks')
+@book_routes.route('/checkouts')
 @login_required
-def getBookmarks():
+def getBorrowed():
 
-    return {"bookmarks": [bookmark.to_dict() for bookmark in current_user.bookmarks]}, 200
+    return {"checkouts": [checkout.to_dict() for checkout in current_user.checkouts]}, 200
 
-@book_routes.route('/bookmarks/<int:id>', methods=['POST'])
+@book_routes.route('/checkouts/<int:id>', methods=['POST'])
 @login_required
-def addBookmark(id):
+def addBorrowed(id):
     book = Book.query.get(id)
 
-    current_user.bookmarks.append(book)
+    current_user.checkouts.append(book)
     db.session.commit()
 
     return book.to_dict(), 201
 
-@book_routes.route('/bookmarks/<int:id>', methods=['DELETE'])
+@book_routes.route('/checkouts/<int:id>', methods=['DELETE'])
 @login_required
-def removeBookmark(id):
+def removeBorrowed(id):
 
     book = Book.query.get(id)
 
     if not book:
         return {"error": "Book not found"}, 404
 
-    current_user.bookmarks.remove(book)
+    current_user.checkouts.remove(book)
     db.session.commit()
 
-    return {"message": "Successfully removed bookmark"}, 201
+    return {"message": "Successfully removed from checked out"}, 201
