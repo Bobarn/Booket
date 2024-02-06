@@ -48,15 +48,15 @@ export default function AnnotationEdit( {annotationId} ) {
 
 
   return (
-    <div style={{margin: "18px"}}>
+    <div className="edit-annotation-modal">
       <h1>Edit Annotation</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
+      <form className="annotation-edit-form" onSubmit={handleSubmit}>
+        <label className="annotation-edit-label">
           Text
           <textarea
             value={text}
             onChange={(e) => setText(e.target.value)}
-            className="annotation-text"
+            className="annotation-edit-text"
           />
           {errors.text && (
             <p style={{ fontSize: "10px", color: "red" }}>*{errors.text}</p>
@@ -65,7 +65,7 @@ export default function AnnotationEdit( {annotationId} ) {
 
             <div className="lb2">
 
-        <button type="submit">Update Annotation</button>
+        <button className="annotation-edit-submit" type="submit">Update Annotation</button>
             </div>
       </form>
 

@@ -1,3 +1,5 @@
+import { thunkGetAllUsers } from "./users";
+
 const SET_USER = 'session/setUser';
 const REMOVE_USER = 'session/removeUser';
 
@@ -66,6 +68,7 @@ export const thunkEditUser = (formData) => async (dispatch) => {
 
   if(response.ok) {
     const data = await response.json();
+    dispatch(thunkGetAllUsers())
     dispatch(setUser(data))
   } else if (response.status < 500) {
     const errorMessages = await response.json();

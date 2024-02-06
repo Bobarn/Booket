@@ -102,13 +102,15 @@ def edit_profile():
     """
     form = ProfileEditForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    user = User.query.get(current_user.id)
+
     if form.validate_on_submit():
 
         if form.about.data:
-            current_user["about"] = form.about.data
+            user.about = form.about.data
 
         if form.profile_image.data:
-            remove_file_from_s3(current_user.profileImage)
+            remove_file_from_s3(user.profileImage)
             image = form.profile_image.data
             profileImageName = image.filename
             image.filename = get_unique_filename(image.filename)
@@ -117,11 +119,11 @@ def edit_profile():
             if "url" not in upload:
                 return upload, 400
             else:
-                current_user["profileImage"] = upload["url"]
-                current_user["profileImageName"] = profileImageName
+                user.profileImage = upload["url"]
+                user.profileImageName = profileImageName
 
         if form.banner_image.data:
-            remove_file_from_s3(current_user.bannerImage)
+            remove_file_from_s3(user.bannerImage)
             ban_image = form.banner_image.data
             bannerImageName = ban_image.filename
             ban_image.filename = get_unique_filename(ban_image.filename)
@@ -130,11 +132,11 @@ def edit_profile():
             if "url" not in ban_upload:
                 return ban_upload, 400
             else:
-                current_user["bannerImage"] = ban_upload["url"]
-                current_user["bannerImageName"] = bannerImageName
+                user.bannerImage = ban_upload["url"]
+                user.bannerImageName = bannerImageName
 
         db.session.commit()
-        return updated_user.to_dict()
+        return user.to_dict()
     return form.errors, 401
 
 @auth_routes.route('/unauthorized')

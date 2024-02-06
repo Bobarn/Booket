@@ -1,7 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { thunkDeleteBook } from '../../redux/books';
-import { useEffect } from 'react';
 import './BookTile.css'
 
 export default function BookTile({book, currUser}) {
@@ -11,14 +10,13 @@ export default function BookTile({book, currUser}) {
 
     const navigate = useNavigate()
 
-    useEffect(() => {
-    }, [dispatch, book.id])
-
     function burnBook(bookId) {
         dispatch(thunkDeleteBook(bookId));
     }
 
-    if(!currUser) {
+    if(!book) return null
+
+    if(!currUser && book.id !== 8) {
         return null
     }
     return (
@@ -47,7 +45,7 @@ export default function BookTile({book, currUser}) {
                             </div>
                         </Link>
                     </div>
-                    {
+                    {currUser &&
                         book.author.id == currUser.id &&
                         <button onClick={() => navigate(`/books/${book.id}/edit`)} className='revise-button'>
                             <i className="fa-regular fa-pen-to-square"></i>
@@ -56,7 +54,7 @@ export default function BookTile({book, currUser}) {
                 </div>
                 <div className='tile-back-cover'>
                     <div className='tile-index'>
-                        {book.author.id == currUser.id &&
+                        {currUser && book.author.id == currUser.id &&
                         <>
                             <button onClick={() => burnBook(book.id)} className='burn-button'>
                                 <i className="fa-solid fa-fire"></i>
@@ -69,7 +67,7 @@ export default function BookTile({book, currUser}) {
                         <ol>
                             {book?.pages.slice(0, 5).map((page) => (
                                 <li className='tile-index-item' key={page.id}>
-                                    <Link className='index-link' to={`/books/${book.id}/page/${page.id}`}>
+                                    <Link className='index-link' to={`/page/${page.id}`}>
                                         {page.page_name}
                                     </Link>
                                 </li>
