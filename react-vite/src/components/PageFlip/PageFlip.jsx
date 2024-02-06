@@ -15,7 +15,7 @@ export default function PageFlip() {
 
     const navigate = useNavigate()
 
-    const {pageId, bookId} = useParams();
+    const {pageId} = useParams();
 
     const dispatch = useDispatch();
 
@@ -27,7 +27,7 @@ export default function PageFlip() {
     const pages = useSelector((state) => state.pages);
     const bookmarks = useSelector((state) => state.bookmarks)
 
-    if(!user || (page?.private && page.user_id != user.id)) {
+    if(!user && page?.book_id !== 8 || (page?.private && page.book_id !== 8 && page.user_id != user.id)) {
         navigate('/home')
     }
 
@@ -61,6 +61,8 @@ export default function PageFlip() {
     }
 
     function displayAnnotations() {
+
+        if(!user) return null
 
        return(
         <>
@@ -133,7 +135,7 @@ export default function PageFlip() {
                         }
                     }}>
                         <div className="front-page">
-                            {user.id == page.user_id &&
+                            {user && user.id == page.user_id &&
                         <>
                             <button onClick={() => navigate(`/books/${page.book_id}/page/${page.id}/edit`)} className='page-revise-button'>
                                 <i className="fa-regular fa-xl fa-pen-to-square"></i>

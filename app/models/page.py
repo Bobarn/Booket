@@ -23,7 +23,6 @@ class Page(db.Model):
     readers = db.relationship("User", secondary=bookmarks, back_populates="bookmarks")
     annotations = db.relationship("Annotation", back_populates="page", cascade="all, delete-orphan")
 
-
     def to_dict(self):
         return{
             "id": self.id,

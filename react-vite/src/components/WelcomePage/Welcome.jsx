@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import BookTile from '../BookTile/BookTile';
 
 export function SampleBookTile() {
 
@@ -35,7 +36,7 @@ export function SampleBookTile() {
 
     return (
         <div className='sample-book'>
-        Here's a sample of what you can read on the site!
+        Here&rsquo;s a sample of what you can read on the site!
         <div className='book-tile'>
             <div className='book-cover-link'>
                 <img src={book.cover} alt={book.coverName} className='cover-image'/>
@@ -86,6 +87,9 @@ export default function Welcome() {
 
     const user = useSelector((state) => state.session.user)
 
+    const tutorialBook = useSelector((state) => state.books[8])
+
+
    useEffect(() => {
     if(user) {
         navigate('/home')
@@ -106,6 +110,10 @@ export default function Welcome() {
                     </div>
                 </div>
                 <SampleBookTile />
+                <div id='tutorial-book'>
+                    This is a brief tutorial of some of the main features of our site!
+                    <BookTile book={tutorialBook}/>
+                </div>
             </div>
         </>
     )

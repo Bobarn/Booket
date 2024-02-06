@@ -124,6 +124,28 @@ def seed_pages():
         createdAt = datetime.now()
     )
 
+    page11 = Page(
+        user_id = 7,
+        book_id = 8,
+        page_name = "Looking for a Book",
+        page_number = 1,
+        caption = "Upon signing up you'll be brought to the home feed where you can find all books or browse by category. Looking at your own book, you can delete (burn), edit(revise), or add a page(post) to your book.",
+        image= "https://cdn.discordapp.com/attachments/1187515837817557065/1204319755477975070/Screenshot_2024-02-05_225517.png?ex=65d44d2c&is=65c1d82c&hm=f41328b8d21771485dbe6d06ac1ed8674f60b3cf6b67157990252bbc30b3880e&",
+        imageName="Landing_page.jpg",
+        createdAt = datetime.now()
+    )
+
+    page12 = Page(
+        user_id = 7,
+        book_id = 8,
+        page_name = "Reading a book/Viewing a Page",
+        page_number = 2,
+        caption = "After creating a book using the 'Publish' button found at the top or clicking a book you have found, you can view the posts that have been added to that book by the author. If viewing your own book, you can delete(tear) or edit(revise) a page!",
+        image = "https://cdn.discordapp.com/attachments/1187515837817557065/1204319755805270067/Screenshot_2024-02-05_225603.png?ex=65d44d2c&is=65c1d82c&hm=548d22aa256bb74b789189b627118dd5ed515fc8d9d13f9decd752be56516401&",
+        imageName = "Page_View.jpg",
+        createdAt = datetime.now()
+    )
+
 
     users = User.query.all()
 
@@ -136,7 +158,8 @@ def seed_pages():
             page.readers.append(user)
 
     db.session.add_all(all_pages)
-
+    db.session.add(page11)
+    db.session.add(page12)
     db.session.commit()
 
 
