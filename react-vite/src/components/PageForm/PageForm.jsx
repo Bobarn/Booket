@@ -29,7 +29,7 @@ function PageForm({formType, page, bookId, pageId}) {
         let errorList = {}
 
         if(!page_name) errorList.page_name = "Page Title is required"
-        if(page_name.length > 25) errorList.page_name = "Page Title cannot be longer than 25 characters"
+        if(page_name.length > 30) errorList.page_name = "Page Title cannot be longer than 30 characters"
         if(!caption) errorList.caption = "Caption is required"
         if(caption.length > 300) errorList.caption = "Caption cannot be longer than 300 characters"
         if(formType == "Publish Page" && !image) {
@@ -94,7 +94,7 @@ function PageForm({formType, page, bookId, pageId}) {
             value={page_name}
             onChange={(e) => setPage_Name(e.target.value)}
           />
-          <p>{page_name?.length}/25</p>
+          <p>{page_name?.length}/30</p>
           <div className="error">
             {errors.page_name && (
               <p style={{ fontSize: "10px", color: "red" }}>*{errors.page_name}</p>
