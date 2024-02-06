@@ -69,7 +69,7 @@ export default function BookTile({book, currUser}) {
                         <ol>
                             {book?.pages.slice(0, 5).map((page) => (
                                 <li className='tile-index-item' key={page.id}>
-                                    <Link className='index-link' to={`/books/${book.id}/page/${page.id}`}>
+                                    <Link className='index-link' to={`/page/${page.id}`}>
                                         {page.page_name}
                                     </Link>
                                 </li>

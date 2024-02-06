@@ -75,7 +75,7 @@ export default function BookPage() {
                         <h4 id='book-toc'>Table of Contents</h4>
                         <div className='table-of-contents'>
                         <ol className='toc'>
-                            {book?.pages.slice(0, 5).map((page) => (
+                            {book?.pages.map((page) => (
                                     <li className='toc-item' key={page.id}>
                                         <Link className='toc-link' to={`/books/${book.id}/page/${page.id}`}>
                                             {page.page_name}

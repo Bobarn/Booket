@@ -33,9 +33,9 @@ export default function PageFlip() {
 
     const allPages = Object.values(pages)
 
-    const prevPage = allPages.findLast((p) => p.book_id == bookId && p.page_number < page.page_number)
+    const prevPage = allPages.findLast((p) => p.book_id == page.book_id && p.page_number < page.page_number)
 
-    const nextPage = allPages.find((p) => p.book_id == bookId && p.page_number > page.page_number)
+    const nextPage = allPages.find((p) => p.book_id == page.book_id && p.page_number > page.page_number)
 
 
     useEffect(() => {
@@ -106,7 +106,7 @@ export default function PageFlip() {
                         e.stopPropagation()
                         if(checked === false && checked2 === false) {
                             setChecked(true)
-                            navigate(`/books/${bookId}/page/${prevPage.id}`)
+                            navigate(`/page/${prevPage.id}`)
                         }
                     }
                         } id="page1">
@@ -129,7 +129,7 @@ export default function PageFlip() {
                     <div className="page" id="page2" onTransitionEnd={() => {
                         if(checked2 && checked) {
                             setChecked2(false)
-                            navigate(`/books/${bookId}/page/${nextPage.id}`)
+                            navigate(`/page/${nextPage.id}`)
                         }
                     }}>
                         <div className="front-page">

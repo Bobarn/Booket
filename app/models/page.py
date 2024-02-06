@@ -36,5 +36,6 @@ class Page(db.Model):
             "book_id": self.book_id,
             "user_id": self.user_id,
             "private": self.book.private,
+            "author": self.author.username,
             "annotations": [annotation.to_dict() for annotation in self.annotations]
         }

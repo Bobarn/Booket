@@ -34,7 +34,6 @@ function Navigation() {
         {user ?
         <>
         <button className={'modal-button'} onClick={() => navigate('/books/new')}>Publish</button>
-        <button className="modal-button" onClick={logout}>Log Out</button>
         </>
         :
         <>

@@ -7,6 +7,7 @@ import Layout from './Layout';
 import CreateBook from '../components/BookForm/CreateBook/CreateBook';
 import EditBook from '../components/BookForm/EditBook/EditBook';
 import UserPage from '../components/UserPage/UserPage';
+import UserPicks from '../components/UserPicks/UserPicks';
 import PageFlip from '../components/PageFlip/PageFlip';
 import CreatePage from '../components/PageForm/CreatePage/CreatePage';
 import EditPage from '../components/PageForm/EditPage/EditPage';
@@ -43,7 +44,7 @@ export const router = createBrowserRouter([
         element: <BookPage />
       },
       {
-        path: '/books/:bookId/page/:pageId',
+        path: '/page/:pageId',
         element: <PageFlip />
       },
       {
@@ -65,6 +66,10 @@ export const router = createBrowserRouter([
       {
         path: '/users/:userId',
         element: <UserPage />
+      },
+      {
+        path: '/user/picks',
+        element: <UserPicks />
       }
     ],
   },

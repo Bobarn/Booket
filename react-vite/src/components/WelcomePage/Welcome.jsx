@@ -13,7 +13,19 @@ export function SampleBookTile() {
 
     const allBooksArr = Object.values(allBooks).filter((book) => book.private === false)
 
-    const book = allBooksArr[Math.floor(Math.random() * allBooksArr.length)];
+    let book;
+
+    if(!localStorage.getItem("book_of_the_day")) {
+        const randomBook = allBooksArr[Math.floor(Math.random() * allBooksArr.length)];
+        localStorage.setItem("book_of_the_day", JSON.stringify(randomBook))
+
+    } else {
+        book = JSON.parse(localStorage.getItem("book_of_the_day"))
+
+    }
+
+
+
 
     useEffect(() => {
         dispatch(thunkGetAllBooks())
@@ -22,6 +34,8 @@ export function SampleBookTile() {
     if(!book) return null;
 
     return (
+        <div className='sample-book'>
+        Here's a sample of what you can read on the site!
         <div className='book-tile'>
             <div className='book-cover-link'>
                 <img src={book.cover} alt={book.coverName} className='cover-image'/>
@@ -62,6 +76,7 @@ export function SampleBookTile() {
                 </div>
             </div>
         </div>
+        </div>
     )
 }
 
@@ -80,7 +95,7 @@ export default function Welcome() {
     return (
         <>
             <div id='buffer'></div>
-            <div>
+            <div className='welcome-landing'>
                 <div className="welcome-background">
 
                     <div className="welcome-page-container">

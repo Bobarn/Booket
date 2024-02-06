@@ -48,7 +48,7 @@ function ProfileButton() {
           {user && (
             <>
               <li>{user.username}</li>
-              <li><button className="saved-button">Your Picks</button></li>
+              <li><button onClick={() => navigate('/user/picks')} className="saved-button">Your Picks</button></li>
               <li>
                 <button className="user-logout" onClick={logout}>Log Out</button>
               </li>
