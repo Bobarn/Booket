@@ -16,14 +16,18 @@ export function SampleBookTile() {
 
     let book;
 
-    if(!localStorage.getItem("book_of_the_day")) {
+    const checkBook = localStorage.getItem("book_of_the_day")
+
+    if(checkBook === "undefined") {
+
         const randomBook = allBooksArr[Math.floor(Math.random() * allBooksArr.length)];
         localStorage.setItem("book_of_the_day", JSON.stringify(randomBook))
 
     } else {
-        book = JSON.parse(localStorage.getItem("book_of_the_day"))
+        book = JSON.parse(checkBook)
 
     }
+
 
 
 
