@@ -1,0 +1,31 @@
+#edit-modal {
+        display: flex;
+    flex-direction: column;
+    width: 400px;
+    height: 350px;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#edit-profile-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+}
+
+#edit-profile-form > * {
+    margin: 5px 0px;
+    width: 100%;
+}
+
+#edit-profile-form > p {
+    color: red;
+}
+
+.edit-about {
+    height: 100px;
+    width: 60%;
+    position: relative;
+    right: -18%;
+}

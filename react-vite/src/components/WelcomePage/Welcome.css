@@ -1,0 +1,12 @@
+.welcome-landing {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#tutorial-book {
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

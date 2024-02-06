@@ -111,3 +111,34 @@ def create_annotation(id):
         db.session.add(annotation)
         db.session.commit()
         return annotation.to_dict()
+
+@page_routes.route('/bookmarks')
+@login_required
+def get_bookmarks():
+
+    return {"pages": [page.to_dict() for page in current_user.bookmarks]}, 200
+
+
+@page_routes.route('/bookmarks/<int:id>', methods=["POST"])
+def add_bookmark(id):
+    page = Page.query.get(id)
+
+    current_user.bookmarks.append(page)
+    db.session.commit()
+
+    return page.to_dict(), 201
+
+
+@page_routes.route('/bookmarks/<int:id>', methods=['DELETE'])
+@login_required
+def remove_bookmark(id):
+
+    page = Page.query.get(id)
+
+    if not page:
+        return {"error": "Page not found"}, 404
+
+    current_user.bookmarks.remove(page)
+    db.session.commit()
+
+    return {"message": "Successfully removed bookmark"}, 201

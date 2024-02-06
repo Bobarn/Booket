@@ -54,4 +54,6 @@
 .signup-about {
     position: relative;
     right: -18%;
+    height: 100px;
+    width: 60%;
 }

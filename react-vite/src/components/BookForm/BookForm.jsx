@@ -33,6 +33,7 @@ function BookForm({formType, book, bookId}) {
 
         if(!category) errorList.category = "Category is required"
         if(!title) errorList.title = "Title is required"
+        if(title.length > 35) errorList.title = "Title cannot be longer than 35 characters"
         if(!synopsis) errorList.synopsis = "Synopsis is required"
         if(synopsis.length > 350) errorList.synopsis = "Synopsis cannot be longer than 350 characters."
         if(formType == "Publish Book" && !coverImage) errorList.coverImage = "Please add a cover image for this book (.jpg, .jpeg, .png, .gif, .pdf)"
@@ -118,23 +119,28 @@ function BookForm({formType, book, bookId}) {
           Title
           <input
             type="text"
+            maxLength={35}
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             className="form-title"
           />
+          <p>{title.length}/35</p>
           <div className="error">
             {errors.title && (
               <p style={{ fontSize: "10px", color: "red" }}>*{errors.title}</p>
             )}
           </div>
+
         </label>
         <label>
           Synopsis
           <textarea
             value={synopsis}
+            maxLength={350}
             onChange={(e) => setSynopsis(e.target.value)}
             className="form-synopsis"
           />
+          <p>{synopsis.length}/350</p>
           <div className="error">
             {errors.synopsis && (
               <p style={{ fontSize: "10px", color: "red" }}>*{errors.synopsis}</p>

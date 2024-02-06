@@ -10,13 +10,17 @@ import booksReducer from "./books";
 import pagesReducer from "./pages";
 import userReducer from "./users";
 import annotationsReducer from "./annotations";
+import bookmarksReducer from "./bookmarks";
+import checkoutsReducer from "./checkouts";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   books: booksReducer,
   pages: pagesReducer,
   users: userReducer,
-  annotations: annotationsReducer
+  annotations: annotationsReducer,
+  bookmarks: bookmarksReducer,
+  checkouts: checkoutsReducer
 });
 
 let enhancer;

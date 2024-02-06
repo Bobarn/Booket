@@ -11,6 +11,7 @@ export default function CreatePage() {
 
   const page = {
     page: '',
+    page_name: '',
     caption: '',
     image: null,
     imageName: ''

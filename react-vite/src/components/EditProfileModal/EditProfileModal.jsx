@@ -2,10 +2,11 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { thunkEditUser } from "../../redux/session";
+import './EditProfileModal.css'
 
-function EditProfileModal() {
+function EditProfileModal({user}) {
   const dispatch = useDispatch();
-  const [about, setAbout] = useState('')
+  const [about, setAbout] = useState(user?.about)
   const [profile_image, setProfile_Image] = useState(null)
   const [banner_image, setBanner_Image] = useState(null)
   // const [imageLoading, setImageLoading] = useState(false);
@@ -41,10 +42,10 @@ function EditProfileModal() {
   };
 
   return (
-    <div id="sign-up-modal">
-      <h1>Sign Up</h1>
+    <div id="edit-modal">
+      <h1>Edit Profile</h1>
       {errors.server && <p>{errors.server}</p>}
-      <form id="sign-up-form" onSubmit={handleSubmit} encType="multipart/form-data">
+      <form id="edit-profile-form" onSubmit={handleSubmit} encType="multipart/form-data">
         <label className="label">
 					Profile Image
 					<input
@@ -57,7 +58,7 @@ function EditProfileModal() {
 				</label>
         <label className="label">
 					About
-					<textarea value={about} onChange={(e) => setAbout(e.target.value)} className="signup-about"/>
+					<textarea value={about} onChange={(e) => setAbout(e.target.value)} className="edit-about"/>
           <div className="errors-div">					{errors.about && (
             <>*{errors.about}</>
           )}</div>

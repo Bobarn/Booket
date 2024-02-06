@@ -5,7 +5,8 @@ from faker import Faker
 about = [
     'Adventure enthusiast exploring the world one destination at a time. From scaling mountain peaks to diving into deep blue seas, I thrive on adrenaline and capturing moments that take your breath away. Life is an adventure, and I am here for the thrill!',
     'Tech guru by day, gaming legend by night. Whether I am coding the next big thing or defeating virtual foes, I am always in pursuit of innovation and fun. Join me on a journey through the digital realm, where every line of code tells a story.',
-    "Savoring life's finest flavors and weaving tales with words. As a connoisseur of both literature and culinary arts, I believe in the magic of storytelling over a delicious meal. Join me for a literary feast where every page turned and every dish savored adds another layer to the story of life."
+    "Savoring life's finest flavors and weaving tales with words. As a connoisseur of both literature and culinary arts, I believe in the magic of storytelling over a delicious meal. Join me for a literary feast where every page turned and every dish savored adds another layer to the story of life.",
+    "I write tutorials! You might have seen some of my work!"
 ]
 
 f = Faker(locale='en_US')
@@ -22,7 +23,7 @@ def seed_users():
     db.session.add(bobbie)
     newUsers = []
 
-    for i in range(3):
+    for i in range(4):
         newUser = User(
             username=f.user_name(),
             email=f.email(),

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import { thunkGetAllPages, thunkDeletePage } from '../../redux/pages';
 import { thunkGetAllAnnotations} from '../../redux/annotations';
+import { thunkGetBookmarks, thunkRemoveBookmark, thunkAddBookmark } from '../../redux/bookmarks';
 import AnnotationOptions from '../AnnotationOptions/AnnotationOptions';
 import AddAnnotation from '../AddAnnotation/AddAnnotation';
 import './PageView.css'
@@ -14,7 +15,7 @@ export default function PageFlip() {
 
     const navigate = useNavigate()
 
-    const {pageId, bookId} = useParams();
+    const {pageId} = useParams();
 
     const dispatch = useDispatch();
 
@@ -24,24 +25,34 @@ export default function PageFlip() {
     const user = useSelector((state) => state.session.user);
     const page = useSelector((state) => state.pages[pageId]);
     const pages = useSelector((state) => state.pages);
+    const bookmarks = useSelector((state) => state.bookmarks)
 
-    if(!user || (page?.private && page.user_id != user.id)) {
+    if(!user && page?.book_id !== 8 || (page?.private && page.book_id !== 8 && page.user_id != user.id)) {
         navigate('/home')
     }
 
     const allPages = Object.values(pages)
 
-    const prevPage = allPages.findLast((p) => p.book_id == bookId && p.page_number < page.page_number)
+    const prevPage = allPages.findLast((p) => p.book_id == page.book_id && p.page_number < page.page_number)
 
-    const nextPage = allPages.find((p) => p.book_id == bookId && p.page_number > page.page_number)
+    const nextPage = allPages.find((p) => p.book_id == page.book_id && p.page_number > page.page_number)
 
 
     useEffect(() => {
         dispatch(thunkGetAllPages())
         dispatch(thunkGetAllAnnotations())
+        dispatch(thunkGetBookmarks())
     }, [dispatch])
 
     if(!page) return null;
+
+    function removeBookmark(pageId) {
+        dispatch(thunkRemoveBookmark(pageId))
+    }
+
+    function addBookmark(pageId) {
+        dispatch(thunkAddBookmark(pageId))
+    }
 
 
     function tearPage(pageId) {
@@ -50,6 +61,8 @@ export default function PageFlip() {
     }
 
     function displayAnnotations() {
+
+        if(!user) return null
 
        return(
         <>
@@ -90,12 +103,12 @@ export default function PageFlip() {
                 <div className="book">
 
                     <div className="cover">
-                        <label htmlFor="#checkbox-cover"></label>
                     </div>
-                    <div className="page" onTransitionEnd={() => {
+                    <div className="page" onTransitionEnd={(e) => {
+                        e.stopPropagation()
                         if(checked === false && checked2 === false) {
                             setChecked(true)
-                            navigate(`/books/${bookId}/page/${prevPage.id}`)
+                            navigate(`/page/${prevPage.id}`)
                         }
                     }
                         } id="page1">
@@ -103,6 +116,13 @@ export default function PageFlip() {
                             Flipping...
                         </div>
                         <div className="back-page">
+                            {user && user.id !== page.user_id && !bookmarks[page.id] &&
+                            <button className='bookmark-button' onClick={() => addBookmark(page.id)}><i className="fa-xl fa-regular fa-bookmark"></i></button>
+                            }
+                            {user && user.id !== page.user_id && bookmarks[page.id] &&
+                            <button className='bookmark-button' onClick={() => removeBookmark(page.id)} ><i className="fa-xl fa-solid fa-bookmark"></i></button>
+                            }
+
                         <h4>{page.page_name}</h4>
                             <img id='page-image' src={page.image}/>
                             {prevPage && <label className="flip prev" onClick={() => setChecked(false)} htmlFor="checkbox-page1"><i className="turn-page-prev fas fa-chevron-left"></i></label>}
@@ -111,11 +131,11 @@ export default function PageFlip() {
                     <div className="page" id="page2" onTransitionEnd={() => {
                         if(checked2 && checked) {
                             setChecked2(false)
-                            navigate(`/books/${bookId}/page/${nextPage.id}`)
+                            navigate(`/page/${nextPage.id}`)
                         }
                     }}>
                         <div className="front-page">
-                            {user.id == page.user_id &&
+                            {user && user.id == page.user_id &&
                         <>
                             <button onClick={() => navigate(`/books/${page.book_id}/page/${page.id}/edit`)} className='page-revise-button'>
                                 <i className="fa-regular fa-xl fa-pen-to-square"></i>
