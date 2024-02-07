@@ -19,17 +19,25 @@ export function SampleBookTile() {
     const checkBook = localStorage.getItem("book_of_the_day")
 
     if(checkBook === "undefined") {
-
         const randomBook = allBooksArr[Math.floor(Math.random() * allBooksArr.length)];
         localStorage.setItem("book_of_the_day", JSON.stringify(randomBook))
 
     } else {
+
         book = JSON.parse(checkBook)
 
     }
+    // const randomBook = allBooksArr[Math.floor(Math.random() * allBooksArr.length)];
 
-
-
+    // useEffect(() => {
+    //     console.log(checkBook, "OUTSIDE")
+    //     if(checkBook === "undefined" || checkBook == null) {
+    //         localStorage.setItem("book_of_the_day", JSON.stringify(randomBook))
+    //         book = JSON.parse(checkBook)
+    //     } else {
+    //         book = JSON.parse(checkBook)
+    //     }
+    // }, [book])
 
 
     useEffect(() => {

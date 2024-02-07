@@ -123,7 +123,8 @@ def edit_profile():
                 user.profileImageName = profileImageName
 
         if form.banner_image.data:
-            remove_file_from_s3(user.bannerImage)
+            if user.bannerImage:
+                remove_file_from_s3(user.bannerImage)
             ban_image = form.banner_image.data
             bannerImageName = ban_image.filename
             ban_image.filename = get_unique_filename(ban_image.filename)

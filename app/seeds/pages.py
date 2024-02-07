@@ -128,8 +128,8 @@ def seed_pages():
         user_id = 7,
         book_id = 8,
         page_name = "Looking for a Book",
-        page_number = 1,
-        caption = "Upon signing up you'll be brought to the home feed where you can find all books or browse by category. Looking at your own book, you can delete (burn), edit(revise), or add a page(post) to your book.",
+        page_number = 2,
+        caption = "Upon signing up you'll be brought to the home feed where you can find all books or browse by category. There are six categories 'Home', 'Fitness, 'Outdoors', 'Self-Improvement', 'Tech', and 'Other'. Additionally, hovering over books reveals additional information.",
         image= "https://cdn.discordapp.com/attachments/1187515837817557065/1204319755477975070/Screenshot_2024-02-05_225517.png?ex=65d44d2c&is=65c1d82c&hm=f41328b8d21771485dbe6d06ac1ed8674f60b3cf6b67157990252bbc30b3880e&",
         imageName="Landing_page.jpg",
         createdAt = datetime.now()
@@ -139,10 +139,54 @@ def seed_pages():
         user_id = 7,
         book_id = 8,
         page_name = "Reading a book/Viewing a Page",
-        page_number = 2,
-        caption = "After creating a book using the 'Publish' button found at the top or clicking a book you have found, you can view the posts that have been added to that book by the author. If viewing your own book, you can delete(tear) or edit(revise) a page!",
-        image = "https://cdn.discordapp.com/attachments/1187515837817557065/1204319755805270067/Screenshot_2024-02-05_225603.png?ex=65d44d2c&is=65c1d82c&hm=548d22aa256bb74b789189b627118dd5ed515fc8d9d13f9decd752be56516401&",
+        page_number = 3,
+        caption = "Once you have found a book you like, you can hover over it to reveal additional details. If you click the (1)synopsis, you get taken to the book's page, clicking the (2)author takes you to their page, and clicking the links in the (3)Table of Contents brings you to that page!",
+        image = "https://cdn.discordapp.com/attachments/1187515837817557065/1204685625522126889/Navigating_Book.png?ex=65d5a1eb&is=65c32ceb&hm=68bff50df8ed4264fb96b2842ad93ae1fcdccfd4b1e502298733c0d9f7159862&",
+        imageName = "Book_View.jpg",
+        createdAt = datetime.now()
+    )
+
+    page13 = Page(
+        user_id = 7,
+        book_id = 8,
+        page_name = "Managing Your Book",
+        page_number = 4,
+        caption = "While we're here let us also go over the options for your book. You can (1) edit your book by clicking on the blue pencil and paper icon on the book's tile, (2)burn your book and delete it by clicking the red fire icon, or (3)add a page to your book by clicking the green plus page icon.",
+        image = "https://cdn.discordapp.com/attachments/1187515837817557065/1204685625287122974/Book_Options.png?ex=65d5a1eb&is=65c32ceb&hm=63694be58c1f437bc3f705a4b7490d41ae19acfc7f51b06d6cde2a908c5dc07b&",
+        imageName = "Book_Options.jpg",
+        createdAt = datetime.now()
+    )
+
+    page14 = Page(
+        user_id = 7,
+        book_id = 8,
+        page_name = "Viewing a Page",
+        page_number = 1,
+        caption = "When viewing a page, you can see the page's name and photo (left side) as well as the caption, and associated comments from yourself and other users(right side). You can navigate between pages in books by clicking the arrows pointing left and right on the pages",
+        image = "https://cdn.discordapp.com/attachments/1187515837817557065/1204687488766058586/Screenshot_2024-02-06_231745.png?ex=65d5a3a7&is=65c32ea7&hm=205a9faef83a04cb53545dec2f41546adabbc2a5d65fa28650c636266a9d5d3f&",
         imageName = "Page_View.jpg",
+        createdAt = datetime.now()
+    )
+
+    page15 = Page(
+        user_id = 7,
+        book_id = 8,
+        page_name = "Options on a Page",
+        page_number = 5,
+        caption = "You will also notice the option to (1)bookmark the viewed page. Bookmarking the page will save it on the 'Your Picks' page to view later. Additionally, if the page is yours, you can (2)tear out(delete) the page by clicking the scissors icon or (3)edit the page with the blue paper and pencil icon.",
+        image = "https://cdn.discordapp.com/attachments/1187515837817557065/1204688700638760991/Page_View_Actions.png?ex=65d5a4c8&is=65c32fc8&hm=91febd68efbfa01a2ed24fe0b63437a3265f0ea9c957f0d3fd9cb53285ee7d54&",
+        imageName = "Page_Action.jpg",
+        createdAt = datetime.now()
+    )
+
+    page16 = Page(
+        user_id = 7,
+        book_id = 8,
+        page_name = "The Nav Bar",
+        page_number = 6,
+        caption = "Looking to the top of the screen you'll see a few options, (1)a button to visit your own page to view your books/pages and edit your profile, (2)a button to navigate to the form to make a new book, and (3)a user button to view a drop down to logout or view your saved books/pages.",
+        image = "https://cdn.discordapp.com/attachments/1187515837817557065/1204690180905107497/Screenshot_2024-02-06_232728.png?ex=65d5a629&is=65c33129&hm=ea3ea0a5d28bb67d8433f4d5d99e2a611b8768583d175aaa9e60d1427774cbf3&",
+        imageName = "Page_Action.jpg",
         createdAt = datetime.now()
     )
 
@@ -151,6 +195,7 @@ def seed_pages():
 
 
     all_pages = [page1, page2, page3, page4, page5, page6, page7, page8, page9, page10]
+    tutorial_pages = [page14, page11, page12, page13, page15, page16]
 
     for page in all_pages:
         usersToAdd = list(set(choices(users, k=randint(1,5))))
@@ -158,8 +203,7 @@ def seed_pages():
             page.readers.append(user)
 
     db.session.add_all(all_pages)
-    db.session.add(page11)
-    db.session.add(page12)
+    db.session.add_all(tutorial_pages)
     db.session.commit()
 
 

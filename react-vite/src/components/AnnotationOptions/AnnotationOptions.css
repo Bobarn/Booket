@@ -1,6 +1,9 @@
 .annotation-dropdown {
     position: absolute;
     right: 0%;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: #AC3B61;
 }
 
 .annotation-options-button {
@@ -9,8 +12,8 @@
     cursor: pointer;
 }
 
-.open-modal-button {
-    background-color: lightblue;
+.annotation-dropdown > .open-modal-button {
+    background-color: #edc7b7;
     border-radius: 5px;
 }
 

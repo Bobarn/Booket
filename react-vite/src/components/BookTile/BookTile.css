@@ -129,10 +129,6 @@
     display: none;
 }
 
-.TOC {
-
-}
-
 .tile-author {
     text-decoration: none;
     color: black;
@@ -168,6 +164,12 @@
     background-color: #f6eee3;
     border: none;
     border-radius: 100%;
+}
+
+.burn-button > .open-modal-button {
+    background-color: #f6eee3;
+    border: none;
+    cursor: pointer;
 }
 
 .revise-button {

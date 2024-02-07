@@ -13,6 +13,7 @@ function PageForm({formType, page, bookId, pageId}) {
     const [page_name, setPage_Name] = useState(page.page_name)
     const [caption, setCaption] = useState(page.caption)
     const [image, setImage] = useState(null)
+    const [loading, setLoading] = useState(false)
 
     const [errors, setErrors] = useState({})
     const [submitted, setSubmitted] = useState(false)
@@ -50,12 +51,26 @@ function PageForm({formType, page, bookId, pageId}) {
         if (image) {
             form.append("image", image)
           }
+        setLoading(true)
         if(formType == "Publish Page") {
-            dispatch(thunkCreatePage(form, bookId))
+            dispatch(thunkCreatePage(form, bookId)).then((res) => {
+              setLoading(false)
+              if(res.errors) {
+                setErrors(res.errors)
+              } else {
+                navigate(`/books/${bookId}`)
+              }
+            })
         } else {
-            dispatch(thunkEditPage(form, pageId))
+            dispatch(thunkEditPage(form, pageId)).then((res) => {
+              setLoading(false)
+              if(res.errors) {
+                setErrors(res.errors)
+              } else {
+                navigate(`/books/${bookId}`)
+              }
+            })
         }
-        navigate(`/users/${user.id}`)
     }
 
 
@@ -134,7 +149,9 @@ function PageForm({formType, page, bookId, pageId}) {
         <div className="form-foot">
         <button id="form-submit" type="submit">{formType == "Publish Page" ? <>Add Page</> : <>Update Page</>}</button>
         </div>
-
+        <div className="loading">
+              {loading && <>Loading...</>}
+        </div>
       </form>
     </div>
     </>

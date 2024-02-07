@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
-import { thunkGetAllPages, thunkDeletePage } from '../../redux/pages';
+import { thunkGetAllPages } from '../../redux/pages';
 import { thunkGetAllAnnotations} from '../../redux/annotations';
 import { thunkGetBookmarks, thunkRemoveBookmark, thunkAddBookmark } from '../../redux/bookmarks';
 import AnnotationOptions from '../AnnotationOptions/AnnotationOptions';
 import AddAnnotation from '../AddAnnotation/AddAnnotation';
+import PageDelete from '../DeleteModals/DeletePage';
+import OpenModalButton from '../OpenModalButton/OpenModalButton';
 import './PageView.css'
 
 
@@ -55,10 +57,10 @@ export default function PageFlip() {
     }
 
 
-    function tearPage(pageId) {
-        dispatch(thunkDeletePage(pageId));
-        navigate(`/users/${page.user_id}`)
-    }
+    // function tearPage(pageId) {
+    //     dispatch(thunkDeletePage(pageId));
+    //     navigate(`/users/${page.user_id}`)
+    // }
 
     function displayAnnotations() {
 
@@ -116,10 +118,10 @@ export default function PageFlip() {
                             Flipping...
                         </div>
                         <div className="back-page">
-                            {user && user.id !== page.user_id && !bookmarks[page.id] &&
+                            {user && !bookmarks[page.id] &&
                             <button className='bookmark-button' onClick={() => addBookmark(page.id)}><i className="fa-xl fa-regular fa-bookmark"></i></button>
                             }
-                            {user && user.id !== page.user_id && bookmarks[page.id] &&
+                            {user && bookmarks[page.id] &&
                             <button className='bookmark-button' onClick={() => removeBookmark(page.id)} ><i className="fa-xl fa-solid fa-bookmark"></i></button>
                             }
 
@@ -140,9 +142,15 @@ export default function PageFlip() {
                             <button onClick={() => navigate(`/books/${page.book_id}/page/${page.id}/edit`)} className='page-revise-button'>
                                 <i className="fa-regular fa-xl fa-pen-to-square"></i>
                             </button>
-                            <button className='tear-button' onClick={() => tearPage(page.id)}>
+                            {/* <button className='tear-button' onClick={() => tearPage(page.id)}>
                                 <i className="fa-xl fa-solid fa-scissors"></i>
-                            </button>
+                            </button> */}
+                            <div className='tear-button'>
+                                <OpenModalButton
+                                buttonText={<i className="fa-xl fa-solid fa-scissors"></i>}
+                                modalComponent={<PageDelete pageId={page.id}/>}
+                                 />
+                            </div>
                         </>
                         }
                         <h2>Caption</h2>

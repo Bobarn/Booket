@@ -19,6 +19,10 @@
     width: 100%;
 }
 
+#sign-up-submit {
+    cursor: pointer;
+}
+
 #edit-profile-form > p {
     color: red;
 }
@@ -28,4 +32,9 @@
     width: 60%;
     position: relative;
     right: -18%;
+}
+
+.loading {
+    height: 10px;
+    font-size: 10px;
 }

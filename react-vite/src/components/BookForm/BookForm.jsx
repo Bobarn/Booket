@@ -15,6 +15,7 @@ function BookForm({formType, book, bookId}) {
     const [synopsis, setSynopsis] = useState(book.synopsis)
     const [coverImage, setCoverImage] = useState(null)
     const [privacy, setPrivate] = useState(book.private)
+    const [loading, setLoading] = useState(false)
 
     const [errors, setErrors] = useState({})
     const [submitted, setSubmitted] = useState(false)
@@ -54,13 +55,28 @@ function BookForm({formType, book, bookId}) {
           form.append("cover_image", coverImage)
         }
         form.append("private", privacy)
+        setLoading(true)
 
         if(formType == "Publish Book") {
-            dispatch(thunkCreateBook(form))
+            dispatch(thunkCreateBook(form)).then((res) => {
+              setLoading(false)
+              if(res.errors) {
+                setErrors(res.errors)
+              } else {
+                navigate(`/users/${user.id}`)
+              }
+            })
         } else {
-            dispatch(thunkEditBook(form, bookId))
+            dispatch(thunkEditBook(form, bookId)).then((res) => {
+              setLoading(false)
+              if(res.errors) {
+                setErrors(res.errors)
+              } else {
+                navigate(`/users/${user.id}`)
+              }
+            })
         }
-        navigate(`/users/${user.id}`)
+        // navigate(`/users/${user.id}`)
     }
 
 
@@ -175,7 +191,9 @@ function BookForm({formType, book, bookId}) {
         <div className="form-foot">
           <button id="form-submit" type="submit">{formType == "Publish Book" ? <>Publish Book</> : <>Update Book</>}</button>
         </div>
-
+        <div className="loading">
+              {loading && <>Loading...</>}
+        </div>
       </form>
     </div>
     </>

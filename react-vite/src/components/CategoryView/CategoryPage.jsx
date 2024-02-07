@@ -19,7 +19,6 @@ export default function CategoryPage() {
     if(!allBooks) return null
     if(!currUser) return null
     const booksArray = Object.values(allBooks).filter((book) => book.private != true && book.category == category);
-    console.log(booksArray, category)
 
     return (
         <>

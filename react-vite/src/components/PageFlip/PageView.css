@@ -14,7 +14,9 @@
 #page-image {
     position: relative;
     width: 400px;
-    max-height:350px;
+	height: auto;
+	/* object-fit: cover; */
+    /* max-height:350px; */
     border-radius: 10px;
 }
 
@@ -185,11 +187,22 @@
 	word-wrap: break-word;
 }
 
-.page-revise-button, .tear-button {
+.page-revise-button, .tear-button > .open-modal-button {
 	background-color: white;
 	border: none;
 	margin: 0px 15px 15px 0px;
 	cursor: pointer;
+}
+
+.page-revise-button {
+	position: relative;
+	left: -30%;
+}
+
+.tear-button {
+	width: fit-content;
+	position: relative;
+	top: -6.5%;
 }
 
 .bookmark-button {
@@ -197,7 +210,7 @@
 	border: none;
 	position: relative;
 	top: 3%;
-	right: -40%;
+	right: 35%;
 	cursor: pointer;
 }
 
