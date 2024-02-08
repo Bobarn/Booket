@@ -79,23 +79,23 @@ function BookForm({formType, book, bookId}) {
         // navigate(`/users/${user.id}`)
     }
 
-    const fileWrap = (e) => {
-      e.stopPropagation();
+    // const fileWrap = (e) => {
+    //   e.stopPropagation();
 
-      const tempFile = e.target.files[0];
+    //   const tempFile = e.target.files[0];
 
-      // Check for max image size of 5Mb
-      if (tempFile.size > 5000000) {
-        setFilename(maxFileError); // "Selected image exceeds the maximum file size of 5Mb"
-        return
-      }
+    //   // Check for max image size of 5Mb
+    //   if (tempFile.size > 5000000) {
+    //     setFilename(maxFileError); // "Selected image exceeds the maximum file size of 5Mb"
+    //     return
+    //   }
 
-      const newImageURL = URL.createObjectURL(tempFile); // Generate a local URL to render the image file inside of the <img> tag.
-      setImageURL(newImageURL);
-      setFile(tempFile);
-      setFilename(tempFile.name);
-      setOptional("");
-    }
+    //   const newImageURL = URL.createObjectURL(tempFile); // Generate a local URL to render the image file inside of the <img> tag.
+    //   setImageURL(newImageURL);
+    //   setFile(tempFile);
+    //   setFilename(tempFile.name);
+    //   setOptional("");
+    // }
 
 
 
@@ -132,20 +132,8 @@ function BookForm({formType, book, bookId}) {
             <input
               type="file"
               accept="image/*"
-              onChange={(e) => {
-                e.stopPropagation()
-                const tempFile = e.target.files[0];
-                if (tempFile.size > 5000000) {
-                  setFilename(maxFileError); // "Selected image exceeds the maximum file size of 5Mb"
-                  return
-                }
-                const newImageURL = URL.createObjectURL(tempFile); // Generate a local URL to render the image file inside of the <img> tag.
-                setImageURL(newImageURL);
-                setFile(tempFile);
-                setFilename(tempFile.name);
-                setCoverImage(e.target.files[0])
-              }
-              }
+              onChange={(e) =>
+                setCoverImage(e.target.files[0])}
             />
             <div className="error">
               {errors.coverImage && (

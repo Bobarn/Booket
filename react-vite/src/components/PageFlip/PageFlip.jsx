@@ -106,8 +106,8 @@ export default function PageFlip() {
 
                     <div className="cover">
                     </div>
-                    <div className="page" onTransitionEnd={(e) => {
-                        e.stopPropagation()
+                    <div className="page" onTransitionEnd={() => {
+                        // e.stopPropagation()
                         if(checked === false && checked2 === false) {
                             setChecked(true)
                             navigate(`/page/${prevPage.id}`)
