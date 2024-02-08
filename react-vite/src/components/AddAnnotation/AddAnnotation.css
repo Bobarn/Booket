@@ -17,7 +17,7 @@
     width: 80%;
 }
 
-.annotation-submit {
+#annotation-submit {
     border: none;
     background-color: white;
     position: relative;
@@ -26,11 +26,11 @@
     cursor: pointer;
 }
 
-.annotation-submit:disabled {
+#annotation-submit:disabled {
     cursor: default;
 }
 
-.page-annotation-text {
+#page-annotation-text {
     height: 15px;
     width: 100%;
     border-radius: 10px;

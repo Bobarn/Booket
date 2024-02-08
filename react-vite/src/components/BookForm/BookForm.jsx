@@ -79,6 +79,24 @@ function BookForm({formType, book, bookId}) {
         // navigate(`/users/${user.id}`)
     }
 
+    const fileWrap = (e) => {
+      e.stopPropagation();
+
+      const tempFile = e.target.files[0];
+
+      // Check for max image size of 5Mb
+      if (tempFile.size > 5000000) {
+        setFilename(maxFileError); // "Selected image exceeds the maximum file size of 5Mb"
+        return
+      }
+
+      const newImageURL = URL.createObjectURL(tempFile); // Generate a local URL to render the image file inside of the <img> tag.
+      setImageURL(newImageURL);
+      setFile(tempFile);
+      setFilename(tempFile.name);
+      setOptional("");
+    }
+
 
 
 
@@ -107,93 +125,111 @@ function BookForm({formType, book, bookId}) {
             <div>Stories change and this is yours, tell us what you want to change.</div>
         </>}
       <form className="book-form" onSubmit={handleSubmit} encType="multipart/form-data">
-        <label>
-          Category
-          <select
-            id='category-input'
-            value={category}
-            onChange={(e) => {
-                setCategory(e.target.value);
-                console.log(category);
-            }}
-            >
-                <option value={'Home'}>Home</option>
-                <option value={'Fitness'}>Fitness</option>
-                <option value={'Outdoors'}>Outdoors</option>
-                <option value={'Self-Improvement'}>Self-Improvement</option>
-                <option value={'Tech'}>Tech</option>
-                <option value={'Other'}>Other</option>
-                <option value='' disabled>&#40;select one&#41;</option>
-            </select>
+        <div className="left-form-container">
+          <label>
+            Cover Image
+            {formType == "Edit Book" && <div>Current Image Name: {book.coverName}</div>}
+            <input
+              type="file"
+              accept="image/*"
+              onChange={(e) => {
+                e.stopPropagation()
+                const tempFile = e.target.files[0];
+                if (tempFile.size > 5000000) {
+                  setFilename(maxFileError); // "Selected image exceeds the maximum file size of 5Mb"
+                  return
+                }
+                const newImageURL = URL.createObjectURL(tempFile); // Generate a local URL to render the image file inside of the <img> tag.
+                setImageURL(newImageURL);
+                setFile(tempFile);
+                setFilename(tempFile.name);
+                setCoverImage(e.target.files[0])
+              }
+              }
+            />
             <div className="error">
-              {errors.category && (
-                <p style={{ fontSize: "10px", color: "red" }}>*{errors.category}</p>
+              {errors.coverImage && (
+                <p style={{ fontSize: "10px", color: "red" }}>*{errors.coverImage}</p>
               )}
             </div>
-        </label>
-        <label>
-          Title
-          <input
-            type="text"
-            maxLength={35}
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            className="form-title"
-          />
-          <p>{title.length}/35</p>
-          <div className="error">
-            {errors.title && (
-              <p style={{ fontSize: "10px", color: "red" }}>*{errors.title}</p>
-            )}
-          </div>
+          </label>
+            <div className="display-curr-image"></div>
+          <div className="loading">
+              {loading && <>Loading...</>}
+        </div>
+        </div>
+        <div className="right-form-container">
+          <label className="category-label">
+            Category
+            <select
+              id='category-input'
+              value={category}
+              onChange={(e) => {
+                  setCategory(e.target.value);
+                  console.log(category);
+              }}
+              >
+                  <option value={'Home'}>Home</option>
+                  <option value={'Fitness'}>Fitness</option>
+                  <option value={'Outdoors'}>Outdoors</option>
+                  <option value={'Self-Improvement'}>Self-Improvement</option>
+                  <option value={'Tech'}>Tech</option>
+                  <option value={'Other'}>Other</option>
+                  <option value='' disabled>&#40;select one&#41;</option>
+              </select>
+              <div className="error">
+                {errors.category && (
+                  <p style={{ fontSize: "10px", color: "red" }}>*{errors.category}</p>
+                )}
+              </div>
+          </label>
+          <label className="title-label">
+            Title<br></br>
+            {title.length}/35
+            <input
+              type="text"
+              maxLength={35}
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              className="form-title"
+            />
+            <div className="error">
+              {errors.title && (
+                <p style={{ fontSize: "10px", color: "red" }}>*{errors.title}</p>
+              )}
+            </div>
 
-        </label>
-        <label>
-          Synopsis
-          <textarea
-            value={synopsis}
-            maxLength={350}
-            onChange={(e) => setSynopsis(e.target.value)}
-            className="form-synopsis"
-          />
-          <p>{synopsis.length}/350</p>
-          <div className="error">
-            {errors.synopsis && (
-              <p style={{ fontSize: "10px", color: "red" }}>*{errors.synopsis}</p>
-            )}
-          </div>
-        </label>
+          </label>
+          <label className="synopsis-label">
+            Synopsis <br/>
+            {synopsis.length}/350
+            <textarea
+              value={synopsis}
+              maxLength={350}
+              onChange={(e) => setSynopsis(e.target.value)}
+              className="form-synopsis"
+            />
+            <p></p>
+            <div className="error">
+              {errors.synopsis && (
+                <p style={{ fontSize: "10px", color: "red" }}>*{errors.synopsis}</p>
+              )}
+            </div>
+          </label>
+          <p id="private-label">Private? (Toggle for a private album only you will see)</p>
+          <label className="switch">
 
-        <label>
-          Cover Image
-          {formType == "Edit Book" && <div>Current Image Name: {book.coverName}</div>}
-          <input
-            // value={coverImage}
-            type="file"
-            accept="image/*"
-            onChange={(e) => setCoverImage(e.target.files[0])}
-          />
-          <div className="error">
-            {errors.coverImage && (
-              <p style={{ fontSize: "10px", color: "red" }}>*{errors.coverImage}</p>
-            )}
-          </div>
-        </label>
-        Private? (Toggle for a private album only you will see)
-        <label className="switch">
-
-            <input type="checkbox"
-            checked={privacy}
-            onChange={() => setPrivate(!privacy)}
-             />
-            <span className="slider round"></span>
-        </label>
+              <input type="checkbox"
+              checked={privacy}
+              onChange={() => setPrivate(!privacy)}
+              />
+              <span className="slider round"></span>
+          </label>
         <div className="form-foot">
           <button id="form-submit" type="submit">{formType == "Publish Book" ? <>Publish Book</> : <>Update Book</>}</button>
         </div>
-        <div className="loading">
-              {loading && <>Loading...</>}
         </div>
+
       </form>
     </div>
     </>
