@@ -44,7 +44,7 @@ export default function AnnotationOptions({ annotationId }) {
             />
 
             <OpenModalButton
-              buttonText="Delete Annotation"
+              buttonText={"Delete Annotation"}
               onItemClick={closeMenu}
               modalComponent={<AnnotationDelete annotationId={annotationId} />}
             />

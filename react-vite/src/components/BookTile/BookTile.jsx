@@ -1,18 +1,11 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { thunkDeleteBook } from '../../redux/books';
+import OpenModalButton from '../OpenModalButton/OpenModalButton';
 import './BookTile.css'
+import BookDelete from '../DeleteModals/DeleteBook';
 
 export default function BookTile({book, currUser}) {
 
-
-    const dispatch = useDispatch()
-
     const navigate = useNavigate()
-
-    function burnBook(bookId) {
-        dispatch(thunkDeleteBook(bookId));
-    }
 
     if(!book) return null
 
@@ -21,20 +14,34 @@ export default function BookTile({book, currUser}) {
     }
     return (
         <div className='book-tile'>
-            <Link to={`/books/${book.id}`} className="book-cover-link">
+            {currUser ? <Link to={`/books/${book.id}`} className="book-cover-link">
                 <img src={book.cover} alt={book.coverName} className='cover-image'/>
                 <div className='book-title'>{book.title}</div>
             </Link>
+            :
+            <div className='book-cover-link'>
+                <img src={book.cover} alt={book.coverName} className='cover-image'/>
+                <div className='book-title'>{book.title}</div>
+            </div>
+            }
             <div className='tile-spine'>
                 <div className='tile-front-cover'>
                     <div className='tile-author-area'>
-                        <Link className='tile-synopsis' to={`/books/${book.id}`}>
+                        {currUser ? <Link className='tile-synopsis' to={`/books/${book.id}`}>
                             <p>Synopsis:</p>
                             <p id='synopsis-text'>
                                 {book.synopsis}
                             </p>
                         </Link>
-                        <Link className='tile-author' to={`/users/${book.author.id}`}>
+                        :
+                        <div className='tile-synopsis'>
+                            <p>Synopsis:</p>
+                            <p id='synopsis-text'>
+                                {book.synopsis}
+                            </p>
+                        </div>
+                        }
+                        {currUser ? <Link className='tile-author' to={`/users/${book.author.id}`}>
                             <div className='tile-book-author'>
                             <img
                             src={book.author.profileImage}
@@ -44,6 +51,18 @@ export default function BookTile({book, currUser}) {
                                 {book.author.username}
                             </div>
                         </Link>
+                        :
+                        <div className='tile-author'>
+                            <div className='tile-book-author'>
+                            <img
+                            src={book.author.profileImage}
+                            alt={book.author.profileImageName}
+                            className='tile-book-author-image'
+                            />
+                                {book.author.username}
+                            </div>
+                        </div>
+                        }
                     </div>
                     {currUser &&
                         book.author.id == currUser.id &&
@@ -56,9 +75,15 @@ export default function BookTile({book, currUser}) {
                     <div className='tile-index'>
                         {currUser && book.author.id == currUser.id &&
                         <>
-                            <button onClick={() => burnBook(book.id)} className='burn-button'>
+                            {/* <button onClick={() => burnBook(book.id)} className='burn-button'>
                                 <i className="fa-solid fa-fire"></i>
-                            </button>
+                            </button> */}
+                            <div className='burn-button'>
+                            <OpenModalButton
+                                buttonText={<i className="fa-solid fa-fire"></i>}
+                                modalComponent={<BookDelete bookId={book.id}/>}
+                             />
+                            </div>
                             <button onClick={() => navigate(`/books/${book.id}/page/new`)} className='new-page-button'>
                                 <i className="fa-solid fa-file-circle-plus"></i>
                             </button>

@@ -77,7 +77,7 @@ export default function BookPage() {
                         <ol className='toc'>
                             {book?.pages.map((page) => (
                                     <li className='toc-item' key={page.id}>
-                                        <Link className='toc-link' to={`/books/${book.id}/page/${page.id}`}>
+                                        <Link className='toc-link' to={`/page/${page.id}`}>
                                             {page.page_name}
                                         </Link>
                                     </li>
