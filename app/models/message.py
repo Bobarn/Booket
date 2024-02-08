@@ -10,8 +10,8 @@ class Message(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.Text, nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('user.id')))
-    chat_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('chat.id')))
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
+    chat_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('chats.id')))
     created_at = db.Column(db.DateTime, default=datetime.now)
 
     user = db.relationship('User', back_populates='messages')
