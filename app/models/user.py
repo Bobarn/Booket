@@ -28,7 +28,7 @@ class User(db.Model, UserMixin):
     annotations = db.relationship("Annotation", back_populates="user")
     checkouts = db.relationship("Book", secondary=checkouts, back_populates="borrowing")
     bookmarks = db.relationship("Page", secondary=bookmarks, back_populates="readers")
-    # chats = db.relationship("Chat", back_populates=)
+    # chats = db.relationship('Chat', secondary='user_chat', back_populates='users')
 
     @property
     def password(self):
@@ -52,5 +52,6 @@ class User(db.Model, UserMixin):
             'bannerImageName': self.bannerImageName,
             "books": len(self.books),
             "pages": len(self.pages),
-            "joined": self.joined
+            "joined": self.joined,
+            # "chats": [chat.id for chat in self.chats]
         }

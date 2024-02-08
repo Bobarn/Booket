@@ -34,14 +34,14 @@ function ProfileButton() {
   const logout = (e) => {
     e.preventDefault();
     dispatch(thunkLogout());
-    navigate('/')
+    // navigate('/')
     closeMenu();
   };
 
   return (
     <>
       <button className="user-button" onClick={toggleMenu}>
-        <i className="fas fa-xl fa-user-circle" />
+        <img id="user-button-image" src={user.profileImage} />
       </button>
       {showMenu && (
         <ul className={"profile-dropdown"} ref={ulRef}>

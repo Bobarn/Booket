@@ -62,7 +62,7 @@ export const thunkSignup = (formData) => async (dispatch) => {
 
 export const thunkEditUser = (formData) => async (dispatch) => {
   const response = await fetch("/api/auth/edit_profile", {
-    method: "PUT",
+    method: "PATCH",
     body: formData
   });
 

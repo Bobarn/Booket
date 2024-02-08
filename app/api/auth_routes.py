@@ -94,7 +94,7 @@ def sign_up():
         return new_user.to_dict()
     return form.errors, 401
 
-@auth_routes.route('/edit_profile', methods=['PUT'])
+@auth_routes.route('/edit_profile', methods=['PATCH'])
 @login_required
 def edit_profile():
     """
