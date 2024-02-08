@@ -32,6 +32,7 @@ export default function AddAnnotation( {pageId} ) {
     const handleSubmit = async (e) => {
         e.preventDefault()
         let errorList = {}
+        if(text === '') return false
 
         if(text.length > 300) errorList.text = "Text must be less than 300 characters"
 
@@ -46,6 +47,15 @@ export default function AddAnnotation( {pageId} ) {
         dispatch(thunkCreateAnnotation(form, pageId))
         setText('')
     }
+
+    document.getElementById("page-annotation-text")?.addEventListener("keydown", (e) => {
+      if(e.key === "Enter" && !e.shiftKey) {
+        e.preventDefault()
+        document.getElementById("annotation-submit").click()
+        return false
+      }
+      return true
+    })
 
 
   return (
@@ -63,10 +73,10 @@ export default function AddAnnotation( {pageId} ) {
           <textarea
             value={text}
             onChange={(e) => setText(e.target.value)}
-            className="page-annotation-text"
+            id="page-annotation-text"
           />
         </label>
-                <button className="annotation-submit" disabled={disabled} type="submit"><i className="fa-solid fa-pencil"></i></button>
+                <button id="annotation-submit" disabled={disabled} type="submit"><i className="fa-solid fa-pencil"></i></button>
 
 
       </form>

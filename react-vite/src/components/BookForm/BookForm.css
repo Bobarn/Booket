@@ -28,9 +28,10 @@ html {
 }
 
 .book-form {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  /* flex-direction: column;
+  justify-content: space-around; */
   height: 520px;
   width: 60%;
   border: 1px solid #374151;
@@ -67,6 +68,14 @@ html {
     width: 30px;
     height: 17px;
     right: 0px;
+  }
+
+  #category-input {
+    display: flex;
+  }
+
+  .title-label, .synopsis-label, .category-label, #private-label {
+    display: flex;
   }
 
   /* Hide default HTML checkbox */
@@ -122,4 +131,12 @@ html {
 
   .slider.round:before {
     border-radius: 50%;
+  }
+
+
+  .right-form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
   }

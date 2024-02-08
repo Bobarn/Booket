@@ -19,12 +19,31 @@ function SignupFormModal() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    let errorList = {}
 
     if (password !== confirmPassword) {
-      return setErrors({
-        confirmPassword:
-          "Confirm Password field must be the same as the Password field",
-      });
+      errorList.confirmPassword = "Confirm Password field must be the same as the Password field"
+    }
+
+    if(about.length > 300) {
+      errorList.about = "About cannot be longer than 300 characters"
+    }
+
+    if(username.length > 16 || username.length < 4) {
+      errorList.username = "Username must be between 4 and 16 characters"
+    }
+
+    if(password.length > 20 || password.length < 8) {
+      errorList.password = "Username must be between 8 and 20 characters"
+    }
+
+    if(email.length > 255) {
+      errorList.email = "Email must be less than 255 characters long"
+    }
+
+    if(Object.values(errorList).length > 0) {
+      setErrors(errorList);
+      return
     }
 
     const formData = new FormData()
