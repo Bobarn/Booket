@@ -16,6 +16,9 @@ function BookForm({formType, book, bookId}) {
     const [coverImage, setCoverImage] = useState(null)
     const [privacy, setPrivate] = useState(book.private)
     const [loading, setLoading] = useState(false)
+    // const [imageURL, setImageURL] = useState('')
+    // const [file, setFile] = useState()
+    // const [filename, setFilename] = useState()
 
     const [errors, setErrors] = useState({})
     const [submitted, setSubmitted] = useState(false)
@@ -76,7 +79,6 @@ function BookForm({formType, book, bookId}) {
               }
             })
         }
-        // navigate(`/users/${user.id}`)
     }
 
     // const fileWrap = (e) => {
@@ -86,7 +88,7 @@ function BookForm({formType, book, bookId}) {
 
     //   // Check for max image size of 5Mb
     //   if (tempFile.size > 5000000) {
-    //     setFilename(maxFileError); // "Selected image exceeds the maximum file size of 5Mb"
+    //     setFilename("Selected image exceeds the maximum file size of 5Mb"); // "Selected image exceeds the maximum file size of 5Mb"
     //     return
     //   }
 
@@ -94,7 +96,6 @@ function BookForm({formType, book, bookId}) {
     //   setImageURL(newImageURL);
     //   setFile(tempFile);
     //   setFilename(tempFile.name);
-    //   setOptional("");
     // }
 
 
@@ -128,7 +129,9 @@ function BookForm({formType, book, bookId}) {
         <div className="left-form-container">
           <label>
             Cover Image
-            {formType == "Edit Book" && <div>Current Image Name: {book.coverName}</div>}
+            <br></br>
+            <br></br>
+            {formType == "Edit Book" && <>Current Image Name: {book.coverName}</>}
             <input
               type="file"
               accept="image/*"
@@ -142,9 +145,7 @@ function BookForm({formType, book, bookId}) {
             </div>
           </label>
             <div className="display-curr-image"></div>
-          <div className="loading">
-              {loading && <>Loading...</>}
-        </div>
+              {loading && <div className="loading-bars"><div></div><div></div><div></div></div>}
         </div>
         <div className="right-form-container">
           <label className="category-label">
@@ -154,7 +155,6 @@ function BookForm({formType, book, bookId}) {
               value={category}
               onChange={(e) => {
                   setCategory(e.target.value);
-                  console.log(category);
               }}
               >
                   <option value={'Home'}>Home</option>

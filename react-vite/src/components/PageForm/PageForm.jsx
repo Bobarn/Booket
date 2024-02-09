@@ -101,6 +101,26 @@ function PageForm({formType, page, bookId, pageId}) {
             <div>Stories change and this is yours, tell us what you want to change.</div>
         </>}
       <form className="page-form" onSubmit={handleSubmit} encType="multipart/form-data">
+        <div className="left-form-container">
+        <label>
+          Page Image
+          <br></br>
+          <br></br>
+          {formType == "Edit Page" && <>Current Image Name: {page.imageName}</>}
+          <input
+            type="file"
+            accept="image/*"
+            onChange={(e) => setImage(e.target.files[0])}
+          />
+
+          <div className="error">
+            {errors.image && (
+              <p style={{ fontSize: "10px", color: "red" }}>*{errors.image}</p>
+            )}
+          </div>
+        </label>
+        </div>
+        <div className="right-form-container">
         <label>
           Page Title
           <input
@@ -130,28 +150,11 @@ function PageForm({formType, page, bookId, pageId}) {
             )}
           </div>
         </label>
-
-        <label>
-          Page Image
-          {formType == "Edit Page" && <div>Current Image Name: {page.imageName}</div>}
-          <input
-            // value={coverImage}
-            type="file"
-            accept="image/*"
-            onChange={(e) => setImage(e.target.files[0])}
-          />
-          <div className="error">
-            {errors.image && (
-              <p style={{ fontSize: "10px", color: "red" }}>*{errors.image}</p>
-            )}
-          </div>
-        </label>
         <div className="form-foot">
         <button id="form-submit" type="submit">{formType == "Publish Page" ? <>Add Page</> : <>Update Page</>}</button>
         </div>
-        <div className="loading">
-              {loading && <>Loading...</>}
         </div>
+        {loading && <div className="page-loading-bars"><div></div><div></div><div></div></div>}
       </form>
     </div>
     </>

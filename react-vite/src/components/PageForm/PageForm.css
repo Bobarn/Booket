@@ -7,6 +7,7 @@
 
 .create-page-container {
   background-color: #eee2dc;
+  position: relative;
   margin: 0px;
   width: 100%;
   display: flex;
@@ -23,8 +24,8 @@
 }
 
 .page-form {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(2, 50%);
   justify-content: space-around;
   height: 520px;
   width: 60%;
@@ -32,12 +33,12 @@
 }
 
 .form-title {
-  width: 25%;
+  width: 80%;
   text-align: center;
 }
 
 .form-caption {
-  width: 30%;
+  width: 80%;
   height: 100px;
 }
 
@@ -53,4 +54,43 @@
   bottom: 10px;
   right: 20px;
   cursor: pointer;
+}
+
+.page-loading-bars {
+  display: inline-block;
+  position: absolute;
+  top: 35%;
+  left: 47%;
+  width: 80px;
+  height: 80px;
+}
+.page-loading-bars div {
+  display: inline-block;
+  position: absolute;
+  left: 8px;
+  width: 16px;
+  background: #fff;
+  animation: page-loading-bars 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+}
+.page-loading-bars div:nth-child(1) {
+  left: 8px;
+  animation-delay: -0.24s;
+}
+.page-loading-bars div:nth-child(2) {
+  left: 32px;
+  animation-delay: -0.12s;
+}
+.page-loading-bars div:nth-child(3) {
+  left: 56px;
+  animation-delay: 0;
+}
+@keyframes page-loading-bars {
+  0% {
+    top: 8px;
+    height: 64px;
+  }
+  50%, 100% {
+    top: 24px;
+    height: 32px;
+  }
 }
