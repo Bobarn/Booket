@@ -1,17 +1,21 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useModal } from '../../context/Modal';
 import { thunkDeletePage } from '../../redux/pages';
+import { useNavigate } from 'react-router-dom';
 
 export default function PageDelete({ pageId }) {
 
   const dispatch = useDispatch();
   const {closeModal} = useModal();
+  const navigate = useNavigate()
 
+  const user = useSelector((state) => state.session.user);
 
   const handleDelete = async (e) => {
         e.preventDefault();
         dispatch(thunkDeletePage(pageId))
         closeModal()
+        navigate(`/users/${user.id}`)
     }
 
 

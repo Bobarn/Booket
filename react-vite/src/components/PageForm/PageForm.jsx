@@ -12,8 +12,10 @@ function PageForm({formType, page, bookId, pageId}) {
 
     const [page_name, setPage_Name] = useState(page.page_name)
     const [caption, setCaption] = useState(page.caption)
-    const [image, setImage] = useState(null)
+    const [image, setImage] = useState(page?.imageName)
     const [loading, setLoading] = useState(false)
+    const [imageURL, setImageURL] = useState(page?.image)
+    const [filename, setFilename] = useState(page?.imageName)
 
     const [errors, setErrors] = useState({})
     const [submitted, setSubmitted] = useState(false)
@@ -72,7 +74,22 @@ function PageForm({formType, page, bookId, pageId}) {
             })
         }
     }
+    const fileWrap = (e) => {
+      e.stopPropagation();
 
+      const tempFile = e.target.files[0];
+
+      // Check for max image size of 5Mb
+      if (tempFile.size > 5000000) {
+        setFilename("Selected image exceeds the maximum file size of 5Mb"); // "Selected image exceeds the maximum file size of 5Mb"
+        return
+      }
+
+      const newImageURL = URL.createObjectURL(tempFile); // Generate a local URL to render the image file inside of the <img> tag.
+      setImageURL(newImageURL);
+      setFilename(tempFile.name);
+      setImage(e.target.files[0])
+    }
 
 
 
@@ -106,12 +123,12 @@ function PageForm({formType, page, bookId, pageId}) {
           Page Image
           <br></br>
           <br></br>
-          {formType == "Edit Page" && <>Current Image Name: {page.imageName}</>}
-          <input
-            type="file"
-            accept="image/*"
-            onChange={(e) => setImage(e.target.files[0])}
-          />
+          <div className="page-file-inputs-container">
+              <input type="file" accept="image/png, image/jpeg, image/jpg" id="post-image-input" onChange={fileWrap}></input>
+              <label htmlFor="post-image-input" className="file-input-labels">Choose File</label>
+              <div className="file-inputs-filename" style={{ color: filename === "Selected image exceeds the maximum file size of 5Mb" ? "red" : "#B7BBBF" }}>{filename}</div>
+              <div className="thumbnails-container"><img style={{width: "400px", max_height: "450px"}} src={imageURL} className="thumbnails"></img></div>
+          </div>
 
           <div className="error">
             {errors.image && (
@@ -122,31 +139,33 @@ function PageForm({formType, page, bookId, pageId}) {
         </div>
         <div className="right-form-container">
         <label>
-          Page Title
+          Page Title <br></br>
+          {page_name?.length}/30
           <input
             className="form-title"
             type="text"
             value={page_name}
             onChange={(e) => setPage_Name(e.target.value)}
           />
-          <p>{page_name?.length}/30</p>
+
           <div className="error">
             {errors.page_name && (
-              <p style={{ fontSize: "10px", color: "red" }}>*{errors.page_name}</p>
+              <>*{errors.page_name}</>
             )}
           </div>
         </label>
         <label>
-          Caption
+          Caption <br></br>
+          {caption.length}/300
           <textarea
             value={caption}
             onChange={(e) => setCaption(e.target.value)}
             className="form-caption"
           />
-          <p>{caption.length}/300</p>
+
           <div className="error">
             {errors.caption && (
-              <p style={{ fontSize: "10px", color: "red" }}>*{errors.caption}</p>
+              <>*{errors.caption}</>
             )}
           </div>
         </label>

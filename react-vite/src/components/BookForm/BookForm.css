@@ -186,3 +186,18 @@ html {
       height: 32px;
     }
   }
+
+#post-image-input {
+  visibility: hidden;
+  /* Here we make the default file input button invisible on the page.
+      As the label for this input is connected to it using the htmlFor property, we can style the label as a button instead, and have it behave the same as the <input type="file" />
+      This extra step is necessary as the default <input type="file" /> CANNOT be styled with CSS!!
+  */
+}
+
+
+.error {
+  font-size: 10px;
+  color: red;
+  height: 10px;
+}

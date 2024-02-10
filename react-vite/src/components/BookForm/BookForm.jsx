@@ -13,12 +13,11 @@ function BookForm({formType, book, bookId}) {
     const [category, setCategory] = useState(book.category)
     const [title, setTitle] = useState(book.title)
     const [synopsis, setSynopsis] = useState(book.synopsis)
-    const [coverImage, setCoverImage] = useState(null)
+    const [coverImage, setCoverImage] = useState(book.coverImage)
     const [privacy, setPrivate] = useState(book.private)
     const [loading, setLoading] = useState(false)
-    // const [imageURL, setImageURL] = useState('')
-    // const [file, setFile] = useState()
-    // const [filename, setFilename] = useState()
+    const [imageURL, setImageURL] = useState(book?.coverImage)
+    const [filename, setFilename] = useState(book?.coverName)
 
     const [errors, setErrors] = useState({})
     const [submitted, setSubmitted] = useState(false)
@@ -28,7 +27,6 @@ function BookForm({formType, book, bookId}) {
     useEffect(() => {
         dispatch(thunkGetAllBooks())
     }, [dispatch])
-    // console.log(coverImage)
 
 
     const handleSubmit = async (e) => {
@@ -81,22 +79,23 @@ function BookForm({formType, book, bookId}) {
         }
     }
 
-    // const fileWrap = (e) => {
-    //   e.stopPropagation();
+    const fileWrap = (e) => {
+      e.stopPropagation();
 
-    //   const tempFile = e.target.files[0];
+      const tempFile = e.target.files[0];
 
-    //   // Check for max image size of 5Mb
-    //   if (tempFile.size > 5000000) {
-    //     setFilename("Selected image exceeds the maximum file size of 5Mb"); // "Selected image exceeds the maximum file size of 5Mb"
-    //     return
-    //   }
+      // Check for max image size of 5Mb
+      if (tempFile.size > 5000000) {
+        setFilename("Selected image exceeds the maximum file size of 5Mb"); // "Selected image exceeds the maximum file size of 5Mb"
+        return
+      }
 
-    //   const newImageURL = URL.createObjectURL(tempFile); // Generate a local URL to render the image file inside of the <img> tag.
-    //   setImageURL(newImageURL);
-    //   setFile(tempFile);
-    //   setFilename(tempFile.name);
-    // }
+      const newImageURL = URL.createObjectURL(tempFile); // Generate a local URL to render the image file inside of the <img> tag.
+      setImageURL(newImageURL);
+      // setFile(tempFile);
+      setFilename(tempFile.name);
+      setCoverImage(e.target.files[0])
+    }
 
 
 
@@ -131,16 +130,15 @@ function BookForm({formType, book, bookId}) {
             Cover Image
             <br></br>
             <br></br>
-            {formType == "Edit Book" && <>Current Image Name: {book.coverName}</>}
-            <input
-              type="file"
-              accept="image/*"
-              onChange={(e) =>
-                setCoverImage(e.target.files[0])}
-            />
+            <div className="file-inputs-container">
+              <input type="file" accept="image/png, image/jpeg, image/jpg" id="post-image-input" onChange={fileWrap}></input>
+              <div className="file-inputs-filename" style={{ color: filename === "Selected image exceeds the maximum file size of 5Mb" ? "red" : "#B7BBBF" }}>{filename}</div>
+              <div style={{ position: "absolute", top: "80px", left: "39px"}}><img style={{width: "300px", height: "300px"}} src={imageURL} className="thumbnails"></img></div>
+              <label htmlFor="post-image-input" className="file-input-labels">Choose File</label>
+            </div>
             <div className="error">
               {errors.coverImage && (
-                <p style={{ fontSize: "10px", color: "red" }}>*{errors.coverImage}</p>
+                <>*{errors.coverImage}</>
               )}
             </div>
           </label>
@@ -167,7 +165,7 @@ function BookForm({formType, book, bookId}) {
               </select>
               <div className="error">
                 {errors.category && (
-                  <p style={{ fontSize: "10px", color: "red" }}>*{errors.category}</p>
+                  <>*{errors.category}</>
                 )}
               </div>
           </label>
@@ -183,7 +181,7 @@ function BookForm({formType, book, bookId}) {
             />
             <div className="error">
               {errors.title && (
-                <p style={{ fontSize: "10px", color: "red" }}>*{errors.title}</p>
+                <>*{errors.title}</>
               )}
             </div>
 
@@ -200,7 +198,7 @@ function BookForm({formType, book, bookId}) {
             <p></p>
             <div className="error">
               {errors.synopsis && (
-                <p style={{ fontSize: "10px", color: "red" }}>*{errors.synopsis}</p>
+                <>*{errors.synopsis}</>
               )}
             </div>
           </label>
