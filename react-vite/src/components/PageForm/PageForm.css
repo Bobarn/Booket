@@ -108,4 +108,6 @@
 .thumbnails-container {
   border: solid 1px grey;
   min-height: 100px;
+  position: relative;
+  top: 20px;
 }
