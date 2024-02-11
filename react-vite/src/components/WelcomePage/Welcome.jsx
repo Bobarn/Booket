@@ -17,7 +17,6 @@ export function SampleBookTile() {
     let book;
 
     if(localStorage.getItem("book_of_the_day") !== null && localStorage.getItem("book_of_the_day") !== "undefined") {
-        console.log("Inside here", localStorage.getItem("book_of_the_day"))
         book = JSON.parse(localStorage.getItem("book_of_the_day"))
     }
 

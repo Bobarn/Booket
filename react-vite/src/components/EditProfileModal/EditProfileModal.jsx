@@ -4,9 +4,9 @@ import { useModal } from "../../context/Modal";
 import { thunkEditUser } from "../../redux/session";
 import './EditProfileModal.css'
 
-function EditProfileModal({user}) {
+function EditProfileModal({currUser}) {
   const dispatch = useDispatch();
-  const [about, setAbout] = useState(user?.about)
+  const [about, setAbout] = useState(currUser?.about)
   const [profile_image, setProfile_Image] = useState(null)
   const [banner_image, setBanner_Image] = useState(null)
   const [loading, setLoading] = useState(false)
