@@ -29,7 +29,7 @@ export default function PageFlip() {
     const pages = useSelector((state) => state.pages);
     const bookmarks = useSelector((state) => state.bookmarks)
 
-    if(!user && page?.book_id !== 8 || (page?.private && page.book_id !== 8 && page.user_id != user.id)) {
+    if(!page || !user && page?.book_id !== 8 || (page?.private && page.book_id !== 8 && page.user_id != user.id)) {
         navigate('/home')
     }
 
@@ -40,13 +40,12 @@ export default function PageFlip() {
     const nextPage = allPages.find((p) => p.book_id == page.book_id && p.page_number > page.page_number)
 
 
+
     useEffect(() => {
         dispatch(thunkGetAllPages())
         dispatch(thunkGetAllAnnotations())
         dispatch(thunkGetBookmarks())
     }, [dispatch])
-
-    if(!page) return null;
 
     function removeBookmark(pageId) {
         dispatch(thunkRemoveBookmark(pageId))
@@ -56,11 +55,6 @@ export default function PageFlip() {
         dispatch(thunkAddBookmark(pageId))
     }
 
-
-    // function tearPage(pageId) {
-    //     dispatch(thunkDeletePage(pageId));
-    //     navigate(`/users/${page.user_id}`)
-    // }
 
     function displayAnnotations() {
 
@@ -118,15 +112,15 @@ export default function PageFlip() {
                             Flipping...
                         </div>
                         <div className="back-page">
-                            {user && !bookmarks[page.id] &&
+                            {user && !bookmarks[page?.id] &&
                             <button className='bookmark-button' onClick={() => addBookmark(page.id)}><i className="fa-xl fa-regular fa-bookmark"></i></button>
                             }
-                            {user && bookmarks[page.id] &&
+                            {user && bookmarks[page?.id] &&
                             <button className='bookmark-button' onClick={() => removeBookmark(page.id)} ><i className="fa-xl fa-solid fa-bookmark"></i></button>
                             }
 
-                        <h4>{page.page_name}</h4>
-                            <img id='page-image' src={page.image}/>
+                        <h4>{page?.page_name}</h4>
+                            <img id='page-image' src={page?.image}/>
                             {prevPage && <label className="flip prev" onClick={() => setChecked(false)} htmlFor="checkbox-page1"><i className="turn-page-prev fas fa-chevron-left"></i></label>}
                         </div>
                     </div>
@@ -137,24 +131,21 @@ export default function PageFlip() {
                         }
                     }}>
                         <div className="front-page">
-                            {user && user.id == page.user_id &&
+                            {user && user.id == page?.user_id &&
                         <>
-                            <button onClick={() => navigate(`/books/${page.book_id}/page/${page.id}/edit`)} className='page-revise-button'>
+                            <button onClick={() => navigate(`/books/${page?.book_id}/page/${page?.id}/edit`)} className='page-revise-button'>
                                 <i className="fa-regular fa-xl fa-pen-to-square"></i>
                             </button>
-                            {/* <button className='tear-button' onClick={() => tearPage(page.id)}>
-                                <i className="fa-xl fa-solid fa-scissors"></i>
-                            </button> */}
                             <div className='tear-button'>
                                 <OpenModalButton
                                 buttonText={<i className="fa-xl fa-solid fa-scissors"></i>}
-                                modalComponent={<PageDelete pageId={page.id}/>}
+                                modalComponent={<PageDelete pageId={page?.id}/>}
                                  />
                             </div>
                         </>
                         }
                         <h2>Caption</h2>
-                        <p className='page-caption'>{page.caption}</p>
+                        <p className='page-caption'>{page?.caption}</p>
                         {displayAnnotations()}
 
                             {nextPage && <label className="flip next" onClick={() => setChecked2(true)} htmlFor="checkbox-page2"><i className="turn-page-next fas fa-chevron-right"></i></label>}

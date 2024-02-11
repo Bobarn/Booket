@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import BookTile from '../BookTile/BookTile';
 import { thunkGetAllBooks} from '../../redux/books';
 import { thunkGetAllUsers } from '../../redux/users';
@@ -11,6 +11,7 @@ import "./UserPage.css";
 export default function UserPage() {
   const dispatch = useDispatch();
   const { userId } = useParams();
+  const navigate = useNavigate()
 
   const user = useSelector((state) => state.users[userId]);
   const currUser = useSelector((state) => state.session.user)
@@ -26,7 +27,7 @@ export default function UserPage() {
 
   if (!user) return null;
 
-  if(!currUser) return null;
+  if(!currUser) navigate('/');
 
   const booksArr = Object.values(allBooks);
 
