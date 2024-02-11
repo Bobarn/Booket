@@ -132,9 +132,9 @@ function BookForm({formType, book, bookId}) {
             <br></br>
             <div className="file-inputs-container">
               <input type="file" accept="image/png, image/jpeg, image/jpg" id="post-image-input" onChange={fileWrap}></input>
-              <div className="file-inputs-filename" style={{ color: filename === "Selected image exceeds the maximum file size of 5Mb" ? "red" : "#B7BBBF" }}>{filename}</div>
-              <div style={{ position: "absolute", top: "80px", left: "39px"}}><img style={{width: "300px", height: "300px"}} src={imageURL} className="thumbnails"></img></div>
               <label htmlFor="post-image-input" className="file-input-labels">Choose File</label>
+              <div className="file-inputs-filename" style={{ color: filename === "Selected image exceeds the maximum file size of 5Mb" ? "red" : "#374151" }}>{filename}</div>
+              <div style={{ position: "absolute", top: "100px", left: "39px"}}><img style={{width: "300px", height: "300px"}} src={imageURL} className="thumbnails"></img></div>
             </div>
             <div className="error">
               {errors.coverImage && (
