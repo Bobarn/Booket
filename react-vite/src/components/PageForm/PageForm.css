@@ -99,6 +99,13 @@
   text-align: center;
 }
 
-.thumbnails {
+.file-input-labels {
   border: solid 1px grey;
+  width: fit-content;
+  padding: 5px;
+}
+
+.thumbnails-container {
+  border: solid 1px grey;
+  min-height: 100px;
 }
