@@ -10,10 +10,14 @@ from .api.auth_routes import auth_routes
 from .api.book_routes import book_routes
 from .api.page_routes import page_routes
 from .api.annotation_routes import annotation_routes
+from .api.chat_routes import chat_routes
+from .api.message_routes import message_routes
 from .seeds import seed_commands
 from .config import Config
+from .socket import socketio
 
 app = Flask(__name__, static_folder='../react-vite/dist', static_url_path='/')
+socketio.init_app(app)
 
 # Setup login manager
 login = LoginManager(app)
@@ -34,8 +38,14 @@ app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(book_routes, url_prefix='/api/books')
 app.register_blueprint(page_routes, url_prefix='/api/pages')
 app.register_blueprint(annotation_routes, url_prefix='/api/annotations')
+app.register_blueprint(chat_routes, url_prefix='/api/chats')
+app.register_blueprint(message_routes, url_prefix='/api/messages')
+
 db.init_app(app)
 Migrate(app, db)
+
+if __name__ == '__main__':
+    socketio.run(app)
 
 # Application Security
 CORS(app)
