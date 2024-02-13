@@ -20,7 +20,7 @@ export default function BookPage() {
     const book = useSelector((state) => state.books[bookId]);
     const checkouts = useSelector((state) => state.checkouts)
 
-    if(!user || (book?.private && book.author.id != user.id)) {
+    if(!user || (book?.private && book.author.id != user.id) || !book) {
         navigate('/home')
     }
 
@@ -36,8 +36,6 @@ export default function BookPage() {
     function addCheckout(bookId) {
         dispatch(thunkAddCheckout(bookId))
     }
-
-    if(!book) return null;
 
 
     return (

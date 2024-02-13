@@ -84,10 +84,10 @@ export const thunkDeletePage = (pageId) => async (dispatch) => {
     const response = await fetch(`/api/pages/${pageId}/delete`, {
         method: "DELETE"
     })
+    await dispatch(thunkGetAllBooks())
 
     if (response.ok){
         await dispatch(deletePage(pageId))
-        await dispatch(thunkGetAllPages())
     } else {
         const error = await response.json()
         return error

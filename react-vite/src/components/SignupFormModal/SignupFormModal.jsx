@@ -34,7 +34,7 @@ function SignupFormModal() {
     }
 
     if(password.length > 20 || password.length < 8) {
-      errorList.password = "Username must be between 8 and 20 characters"
+      errorList.password = "Password must be between 8 and 20 characters"
     }
 
     if(email.length > 255) {

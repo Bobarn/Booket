@@ -1,13 +1,16 @@
 
 .create-book-container label{
-    padding-bottom: 8px;
-    display: flex;
-    justify-content: space-between;
-    margin: 5px;
+    /* padding-bottom: 8px;
+    /* display: flex; */
+    /* justify-content: space-between; */
+    /* margin: 5px; */
+    display: grid;
+    grid-template-columns: 1fr 2fr;
 }
 
 .create-book-container {
   background-color: #eee2dc;
+  position: relative;
   margin: 0px;
   width: 100%;
   display: flex;
@@ -27,22 +30,26 @@ html {
   margin: 0px;
 }
 
+#category-input {
+  width: 50%;
+}
+
 .book-form {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
   height: 520px;
   width: 60%;
   border: 1px solid #374151;
 }
 
 .form-title {
-  width: 25%;
+  width: 80%;
   text-align: center;
 }
 
 .form-synopsis {
-  width: 30%;
+  width: 80%;
   height: 100px;
 }
 
@@ -69,6 +76,14 @@ html {
     right: 0px;
   }
 
+  #category-input {
+    display: flex;
+  }
+
+  .title-label, .synopsis-label, .category-label, #private-label {
+    display: flex;
+  }
+
   /* Hide default HTML checkbox */
   .switch input {
     opacity: 0;
@@ -80,7 +95,7 @@ html {
   .slider {
     position: absolute;
     cursor: pointer;
-    top: 6px;
+    top: 0px;
     left: 0;
     right: 0;
     bottom: 0;
@@ -123,3 +138,66 @@ html {
   .slider.round:before {
     border-radius: 50%;
   }
+
+
+  .right-form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
+
+
+  .loading-bars {
+    display: inline-block;
+    position: absolute;
+    top: 30%;
+    right: 47%;
+    width: 80px;
+    height: 80px;
+  }
+  .loading-bars div {
+    display: inline-block;
+    position: absolute;
+    left: 8px;
+    width: 16px;
+    background: #fff;
+    animation: loading-bars 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+  }
+  .loading-bars div:nth-child(1) {
+    left: 8px;
+    animation-delay: -0.24s;
+  }
+  .loading-bars div:nth-child(2) {
+    left: 32px;
+    animation-delay: -0.12s;
+  }
+  .loading-bars div:nth-child(3) {
+    left: 56px;
+    animation-delay: 0;
+  }
+  @keyframes loading-bars {
+    0% {
+      top: 8px;
+      height: 64px;
+    }
+    50%, 100% {
+      top: 24px;
+      height: 32px;
+    }
+  }
+
+#post-image-input {
+  visibility: hidden;
+  /* Here we make the default file input button invisible on the page.
+      As the label for this input is connected to it using the htmlFor property, we can style the label as a button instead, and have it behave the same as the <input type="file" />
+      This extra step is necessary as the default <input type="file" /> CANNOT be styled with CSS!!
+  */
+}
+
+
+.error {
+  font-size: 10px;
+  color: red;
+  height: 10px;
+}

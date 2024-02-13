@@ -15,8 +15,8 @@
     position: relative;
     width: 400px;
 	height: auto;
-	/* object-fit: cover; */
-    /* max-height:350px; */
+	overflow-y: hidden;
+    max-height:450px;
     border-radius: 10px;
 }
 

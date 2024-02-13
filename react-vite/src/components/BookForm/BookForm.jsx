@@ -13,9 +13,11 @@ function BookForm({formType, book, bookId}) {
     const [category, setCategory] = useState(book.category)
     const [title, setTitle] = useState(book.title)
     const [synopsis, setSynopsis] = useState(book.synopsis)
-    const [coverImage, setCoverImage] = useState(null)
+    const [coverImage, setCoverImage] = useState(book.coverImage)
     const [privacy, setPrivate] = useState(book.private)
     const [loading, setLoading] = useState(false)
+    const [imageURL, setImageURL] = useState(book?.coverImage)
+    const [filename, setFilename] = useState(book?.coverName)
 
     const [errors, setErrors] = useState({})
     const [submitted, setSubmitted] = useState(false)
@@ -25,7 +27,6 @@ function BookForm({formType, book, bookId}) {
     useEffect(() => {
         dispatch(thunkGetAllBooks())
     }, [dispatch])
-    // console.log(coverImage)
 
 
     const handleSubmit = async (e) => {
@@ -76,7 +77,24 @@ function BookForm({formType, book, bookId}) {
               }
             })
         }
-        // navigate(`/users/${user.id}`)
+    }
+
+    const fileWrap = (e) => {
+      e.stopPropagation();
+
+      const tempFile = e.target.files[0];
+
+      // Check for max image size of 5Mb
+      if (tempFile.size > 5000000) {
+        setFilename("Selected image exceeds the maximum file size of 5Mb"); // "Selected image exceeds the maximum file size of 5Mb"
+        return
+      }
+
+      const newImageURL = URL.createObjectURL(tempFile); // Generate a local URL to render the image file inside of the <img> tag.
+      setImageURL(newImageURL);
+      // setFile(tempFile);
+      setFilename(tempFile.name);
+      setCoverImage(e.target.files[0])
     }
 
 
@@ -107,93 +125,97 @@ function BookForm({formType, book, bookId}) {
             <div>Stories change and this is yours, tell us what you want to change.</div>
         </>}
       <form className="book-form" onSubmit={handleSubmit} encType="multipart/form-data">
-        <label>
-          Category
-          <select
-            id='category-input'
-            value={category}
-            onChange={(e) => {
-                setCategory(e.target.value);
-                console.log(category);
-            }}
-            >
-                <option value={'Home'}>Home</option>
-                <option value={'Fitness'}>Fitness</option>
-                <option value={'Outdoors'}>Outdoors</option>
-                <option value={'Self-Improvement'}>Self-Improvement</option>
-                <option value={'Tech'}>Tech</option>
-                <option value={'Other'}>Other</option>
-                <option value='' disabled>&#40;select one&#41;</option>
-            </select>
+        <div className="left-form-container">
+          <label>
+            Cover Image
+            <br></br>
+            <br></br>
+            <div className="file-inputs-container">
+              <input type="file" accept="image/png, image/jpeg, image/jpg" id="post-image-input" onChange={fileWrap}></input>
+              <label htmlFor="post-image-input" className="file-input-labels">Choose File</label>
+              <div className="file-inputs-filename" style={{ color: filename === "Selected image exceeds the maximum file size of 5Mb" ? "red" : "#374151" }}>{filename}</div>
+              <div style={{ position: "absolute", top: "100px", left: "39px"}}><img style={{width: "300px", height: "300px"}} src={imageURL} className="thumbnails"></img></div>
+            </div>
             <div className="error">
-              {errors.category && (
-                <p style={{ fontSize: "10px", color: "red" }}>*{errors.category}</p>
+              {errors.coverImage && (
+                <>*{errors.coverImage}</>
               )}
             </div>
-        </label>
-        <label>
-          Title
-          <input
-            type="text"
-            maxLength={35}
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            className="form-title"
-          />
-          <p>{title.length}/35</p>
-          <div className="error">
-            {errors.title && (
-              <p style={{ fontSize: "10px", color: "red" }}>*{errors.title}</p>
-            )}
-          </div>
+          </label>
+            <div className="display-curr-image"></div>
+              {loading && <div className="loading-bars"><div></div><div></div><div></div></div>}
+        </div>
+        <div className="right-form-container">
+          <label className="category-label">
+            Category
+            <select
+              id='category-input'
+              value={category}
+              onChange={(e) => {
+                  setCategory(e.target.value);
+              }}
+              >
+                  <option value={'Home'}>Home</option>
+                  <option value={'Fitness'}>Fitness</option>
+                  <option value={'Outdoors'}>Outdoors</option>
+                  <option value={'Self-Improvement'}>Self-Improvement</option>
+                  <option value={'Tech'}>Tech</option>
+                  <option value={'Other'}>Other</option>
+                  <option value='' disabled>&#40;select one&#41;</option>
+              </select>
+              <div className="error">
+                {errors.category && (
+                  <>*{errors.category}</>
+                )}
+              </div>
+          </label>
+          <label className="title-label">
+            Title<br></br>
+            {title.length}/35
+            <input
+              type="text"
+              maxLength={35}
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              className="form-title"
+            />
+            <div className="error">
+              {errors.title && (
+                <>*{errors.title}</>
+              )}
+            </div>
 
-        </label>
-        <label>
-          Synopsis
-          <textarea
-            value={synopsis}
-            maxLength={350}
-            onChange={(e) => setSynopsis(e.target.value)}
-            className="form-synopsis"
-          />
-          <p>{synopsis.length}/350</p>
-          <div className="error">
-            {errors.synopsis && (
-              <p style={{ fontSize: "10px", color: "red" }}>*{errors.synopsis}</p>
-            )}
-          </div>
-        </label>
+          </label>
+          <label className="synopsis-label">
+            Synopsis <br/>
+            {synopsis.length}/350
+            <textarea
+              value={synopsis}
+              maxLength={350}
+              onChange={(e) => setSynopsis(e.target.value)}
+              className="form-synopsis"
+            />
+            <p></p>
+            <div className="error">
+              {errors.synopsis && (
+                <>*{errors.synopsis}</>
+              )}
+            </div>
+          </label>
+          <p id="private-label">Private? (Toggle for a private album only you will see)</p>
+          <label className="switch">
 
-        <label>
-          Cover Image
-          {formType == "Edit Book" && <div>Current Image Name: {book.coverName}</div>}
-          <input
-            // value={coverImage}
-            type="file"
-            accept="image/*"
-            onChange={(e) => setCoverImage(e.target.files[0])}
-          />
-          <div className="error">
-            {errors.coverImage && (
-              <p style={{ fontSize: "10px", color: "red" }}>*{errors.coverImage}</p>
-            )}
-          </div>
-        </label>
-        Private? (Toggle for a private album only you will see)
-        <label className="switch">
-
-            <input type="checkbox"
-            checked={privacy}
-            onChange={() => setPrivate(!privacy)}
-             />
-            <span className="slider round"></span>
-        </label>
+              <input type="checkbox"
+              checked={privacy}
+              onChange={() => setPrivate(!privacy)}
+              />
+              <span className="slider round"></span>
+          </label>
         <div className="form-foot">
           <button id="form-submit" type="submit">{formType == "Publish Book" ? <>Publish Book</> : <>Update Book</>}</button>
         </div>
-        <div className="loading">
-              {loading && <>Loading...</>}
         </div>
+
       </form>
     </div>
     </>
