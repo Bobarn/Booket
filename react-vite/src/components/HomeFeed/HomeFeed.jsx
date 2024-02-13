@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { thunkGetAllBooks } from '../../redux/books';
+import { thunkGetBookmarks } from '../../redux/bookmarks';
 import { Link, useNavigate } from 'react-router-dom';
 import BookTile from '../BookTile/BookTile';
 import './HomeFeed.css'
@@ -14,6 +15,7 @@ export default function HomeFeed() {
 
     useEffect(() => {
         dispatch(thunkGetAllBooks())
+        dispatch(thunkGetBookmarks())
     }, [dispatch])
 
     if(!allBooks) return null
