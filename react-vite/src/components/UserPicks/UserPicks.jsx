@@ -20,7 +20,7 @@ export default function UserPicks() {
         dispatch(thunkGetAllBooks())
         dispatch(thunkGetBookmarks())
         dispatch(thunkGetCheckouts())
-    }, [dispatch])
+    }, [dispatch, Object.values(allBooks).length])
 
     if(!allBooks) return null
     if(!bookmarks) return null

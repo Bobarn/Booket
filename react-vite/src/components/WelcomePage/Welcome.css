@@ -5,6 +5,10 @@
     position: relative;
 }
 
+body {
+    width: 100%;
+}
+
 #tutorial-book {
     display: flex;
     flex-direction: column;
@@ -13,6 +17,7 @@
 
 #welcome-img {
     width: 100%;
+    height: auto;
     top: 0%;
     left: 0%;
     z-index: -1;
@@ -27,6 +32,7 @@
 }
 
 .welcome-book-containers {
+    width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
 }

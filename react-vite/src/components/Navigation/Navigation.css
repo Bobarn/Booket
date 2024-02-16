@@ -36,8 +36,8 @@
   line-height: 1.5rem;
   border-radius: 5px;
 }
-
-nav {
+/* Write css for a responsive nav-bar */
+#nav-bar {
   background-color: #FFFDDA;
   position: fixed;
   width: 100%;

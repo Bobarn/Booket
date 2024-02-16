@@ -1,6 +1,7 @@
 const GET_BOOKMARKS = 'bookmarks/GET_BOOKMARKS';
 const ADD_BOOKMARK = 'bookmarks/ADD_BOOKMARK';
 const REMOVE_BOOKMARK = 'bookmarks/REMOVE_BOOKMARK';
+const CLEAR_STATE = 'bookmarks/CLEAR_STATE';
 
 const getBookmarks = (bookmarks) => {
     return {
@@ -20,6 +21,12 @@ const removeBookmark = (bookmarkId) => {
     return {
         type: REMOVE_BOOKMARK,
         bookmarkId
+    }
+}
+
+export const clearState = () => {
+    return {
+        type: CLEAR_STATE
     }
 }
 
@@ -78,7 +85,7 @@ export const thunkRemoveBookmark = (bookId) => async (dispatch) => {
 const bookmarksReducer = (state = {}, action) => {
     switch (action.type) {
         case GET_BOOKMARKS:{
-            const newState = { ...state }
+            const newState = {}
             const bookmarks = action.bookmarks
             bookmarks.forEach((bookmark) => {
                 newState[bookmark.id] = bookmark
@@ -94,6 +101,9 @@ const bookmarksReducer = (state = {}, action) => {
             const newState = { ...state }
             delete newState[action.bookmarkId]
             return newState
+        }
+        case CLEAR_STATE:{
+            return {}
         }
         default:
             return state
