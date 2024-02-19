@@ -18,7 +18,7 @@ export default function HomeFeed() {
 
     if(!allBooks) return null
     if(!currUser) navigate('/')
-    const booksArray = Object.values(allBooks).filter((book) => book.private != true)
+    const booksArray = Object.values(allBooks).filter((book) => book.private != true).sort((a, b) => b.id - a.id)
 
     return (
         <>
