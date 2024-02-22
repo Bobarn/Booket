@@ -89,7 +89,7 @@ def seed_books():
         user_id = 7,
         title = "Navigating the Site",
         category = "Other",
-        coverImage = "https://cdn.discordapp.com/attachments/1187515837817557065/1203213784932679690/booket-logo-color.png?ex=65d04728&is=65bdd228&hm=034fd9d46f6ac6095c37e21409051c3fe086af7cfdfacfdea1e0be24489e389e&",
+        coverImage = "https://photobooket.s3.amazonaws.com/012a6453f1734cc883a78e051da50965.png",
         coverImageName = "Booket_Logo.png",
         synopsis = "Quick tutorial on how to navigate the site and the key elements to expect as a user!",
         private = True,
