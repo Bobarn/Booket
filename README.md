@@ -2,6 +2,10 @@
 
 Welcome to Booket, a social media platform with a book theme that allows users to publish and share their own virtual books and pages. Dive into a world where storytelling meets social interaction.
 
+## Preview
+[![Image](https://github.com/Bobarn/Photos/raw/main/BooketPrev.png)](https://github.com/Bobarn/Photos/blob/main/BooketPrev.png)
+
+
 ## Features
 
 - **User Authentication:**
@@ -33,37 +37,6 @@ Welcome to Booket, a social media platform with a book theme that allows users t
 - **Frontend:**
   - React-Redux
 
-## Getting Started
-
-1. **Clone the Repository:**
-   ```bash
-   git clone https://github.com/your-username/booket.git
-   ```
-
-2. **Install Dependencies:**
-   ```bash
-   cd booket
-   pip install -r requirements.txt
-   cd frontend
-   npm install
-   ```
-
-3. **Configure AWS:**
-   - Set up your AWS credentials for image storage.
-
-4. **Run the Application:**
-   ```bash
-   # Start the Flask server
-   python run.py
-
-   # Start the React development server
-   cd frontend
-   npm start
-   ```
-
-5. **Open Your Browser:**
-   - Visit `http://localhost:3000` to access Booket.
-
 ## Usage
 
 1. **Create an Account:**
@@ -79,9 +52,17 @@ Welcome to Booket, a social media platform with a book theme that allows users t
    - Explore the books and pages of other users, and interact with annotations. Connect with fellow readers and creators.
 
 
-## Known Issues and Future Enhancements
+## Future Plans
 
-- [List any known issues or limitations]
-- [Outline planned enhancements or features for future releases]
+**Messaging**
+  - A more interactive user experience by incorporating websockets to have a real time messaging feature between two users
+**Friends List**
+  - Keep track of those you've really connected with in this community!
+
+## Contact
+
+If you have any questions or suggestions, please feel free to reach out to me at [b.n.tamayo7@gmail.com](b.n.tamayo7@gmail.com) or my [LinkedIn](https://www.linkedin.com/in/brandon-tamayo-bobarn7/).
+If you're reading this far, I'd love to have a chat with you!
+You can also view more from me and about me by looking at my [portfolio](https://bobarn.netlify.app/)
 
 Enjoy Booket and happy storytelling! 📚
