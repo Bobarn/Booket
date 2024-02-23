@@ -3,6 +3,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from .bookmark import bookmarks
 from .checkouts import checkouts
+from .user_chat import user_chats
 from datetime import datetime
 
 
@@ -28,7 +29,8 @@ class User(db.Model, UserMixin):
     annotations = db.relationship("Annotation", back_populates="user")
     checkouts = db.relationship("Book", secondary=checkouts, back_populates="borrowing")
     bookmarks = db.relationship("Page", secondary=bookmarks, back_populates="readers")
-    # chats = db.relationship('Chat', secondary='user_chat', back_populates='users')
+    chats = db.relationship('Chat', secondary=user_chats, back_populates='users')
+    messages = db.relationship('Message', back_populates="user")
 
     @property
     def password(self):
@@ -53,5 +55,5 @@ class User(db.Model, UserMixin):
             "books": len(self.books),
             "pages": len(self.pages),
             "joined": self.joined,
-            # "chats": [chat.id for chat in self.chats]
+            "chats": [chat.id for chat in self.chats]
         }

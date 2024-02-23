@@ -227,3 +227,29 @@
     height: 100%;
     opacity: 1;
 }
+
+@media screen and (max-width: 768px) {
+    .book-tile {
+        margin: 5%;
+        width: 225px;
+        height: 225px;
+    }
+
+    .tile-author-area {
+        right: -10%;
+        width: 100%;
+        font-size: 12px;
+        text-align: center;
+    }
+
+    .tile-synopsis {
+        font-size: 12px;
+        width: 90%;
+    }
+
+    .tile-index {
+        left: -10%;
+        width: 100%;
+    }
+
+}
