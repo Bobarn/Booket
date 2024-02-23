@@ -97,3 +97,146 @@ html, body {width:100%; overflow-x:hidden;}
 #user-button-image {
   width: 40px;
 }
+
+.navbar {
+  background-color: #FFFDDA;
+  height: 60px;
+  display: none;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.menu-bars {
+  margin-left: 2rem;
+  font-size: 2rem;
+  background: none;
+  color: #000;
+}
+
+.nav-menu {
+  background-color: #ffffff;
+  width: 250px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: -100%;
+  transition: 850ms;
+}
+
+.nav-menu.active {
+  left: 0;
+  transition: 450ms;
+}
+
+.nav-text {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 8px 0px 8px 16px;
+  list-style: none;
+  height: 60px;
+}
+
+.nav-text a {
+  text-decoration: none;
+  color: #151414;
+  font-size: 18px;
+  width: 95%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  border-radius: 4px;
+}
+
+.nav-text a:hover {
+  background-color: #000000;
+  color: #fff;
+}
+
+.nav-menu-items {
+  width: 100%;
+}
+
+.navbar-toggle {
+  background-color: #ffffff;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+
+
+@media screen and (min-width: 475px) and (max-width: 768px) {
+  .navbar {
+    display: flex;
+  }
+
+  .user-button {
+    display: none;
+  }
+
+  #booket-logo {
+    /* margin-left: 20%; */
+  }
+  .publish {
+    display: none;
+  }
+  .user-page-button {
+    display: none;
+  }
+  #user-button-image {
+    width: 30px;
+  }
+  .user-options {
+    padding-right: 5%;
+  }
+  .user-button {
+    right: 3%;
+  }
+  .profile-dropdown {
+    right: 3%;
+  }
+
+}
+
+
+@media screen and (max-width: 475px) {
+  #nav-bar {
+    height: 60px;
+    justify-content: space-between;
+  }
+  #booket-logo {
+    width: 100px;
+    /* margin-left: 15%; */
+  }
+  .publish {
+    display: none;
+  }
+  .user-page-button {
+    display: none;
+  }
+  .user-button {
+    display: none;
+  }
+  #user-button-image {
+    width: 30px;
+  }
+  .user-options {
+    padding-right: 5%;
+  }
+  .user-button {
+    right: 3%;
+  }
+  .profile-dropdown {
+    right: 3%;
+  }
+
+  .navbar {
+    display: flex;
+  }
+}

@@ -4,6 +4,7 @@ import ProfileButton from './ProfileButton';
 import OpenModalMenuItem from "./OpenModalMenuItem";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
+import Navbar from "./Sidebar";
 import "./Navigation.css";
 
 function Navigation() {
@@ -14,6 +15,7 @@ function Navigation() {
 
   return (
     <nav id="nav-bar">
+      {user && <Navbar />}
       {user ?
       <NavLink to='/home'>
         <img id="booket-logo" src="https://photobooket.s3.amazonaws.com/0ff8394c13b543928702e6cccfb0c165.png"/>
@@ -27,7 +29,7 @@ function Navigation() {
       <div className="user-options">
         {user ?
         <>
-        <button className={'modal-button'} onClick={() => navigate('/books/new')}>Publish</button>
+        <button className={'publish modal-button'} onClick={() => navigate('/books/new')}>Publish</button>
         </>
         :
         <>
