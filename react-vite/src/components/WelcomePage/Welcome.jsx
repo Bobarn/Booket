@@ -107,12 +107,9 @@ export default function Welcome() {
                 <div className="welcome-background">
 
                     <div className="welcome-page-container">
-                        <img id='welcome-img' src='https://cdn.discordapp.com/attachments/1187515837817557065/1204940922140229692/pexels-ivo-rainha-1290141_1.jpg?ex=65d68fae&is=65c41aae&hm=df8cffddd4013465b2a11fb47bc17c987d167c5b6ee9b393cb36a4821c3e96de&' />
-                        <div className='welcome-message-box'>
                             <h1 id='welcome-title'>
                             Hello and Welcome to Booket
                             </h1>
-                        </div>
 
                     </div>
                 </div>

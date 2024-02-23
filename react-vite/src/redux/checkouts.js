@@ -1,6 +1,7 @@
 const GET_CHECKOUTS = 'checkouts/GET_CHECKOUTS';
 const ADD_CHECKOUT = 'checkouts/ADD_CHECKOUT';
 const REMOVE_CHECKOUT = 'checkouts/REMOVE_CHECKOUT';
+const CLEAR_STATE = 'checkouts/CLEAR_STATE';
 
 const getCheckouts = (checkouts) => {
     return {
@@ -20,6 +21,12 @@ const removeCheckout = (checkoutId) => {
     return {
         type: REMOVE_CHECKOUT,
         checkoutId
+    }
+}
+
+export const checkoutClearState = () => {
+    return {
+        type: CLEAR_STATE
     }
 }
 
@@ -78,7 +85,7 @@ export const thunkRemoveCheckout = (checkoutId) => async (dispatch) => {
 const checkoutsReducer = (state = {}, action) => {
     switch (action.type) {
         case GET_CHECKOUTS:{
-            const newState = { ...state }
+            const newState = {}
             const checkouts = action.checkouts
             checkouts.forEach((checkout) => {
                 newState[checkout.id] = checkout
@@ -94,6 +101,9 @@ const checkoutsReducer = (state = {}, action) => {
             const newState = { ...state }
             delete newState[action.checkoutId]
             return newState
+        }
+        case CLEAR_STATE:{
+            return {}
         }
         default:
             return state

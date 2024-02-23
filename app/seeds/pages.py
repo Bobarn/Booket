@@ -194,8 +194,8 @@ def seed_pages():
     users = User.query.all()
 
 
-    all_pages = [page1, page2, page3, page4, page5, page6, page7, page8, page9, page10]
-    tutorial_pages = [page14, page11, page12, page13, page15, page16]
+    all_pages = [page1, page2, page3, page4, page5, page6, page7, page8, page9]
+    tutorial_pages = [page10, page14, page11, page12, page13, page15, page16]
 
     for page in all_pages:
         usersToAdd = list(set(choices(users, k=randint(1,5))))
