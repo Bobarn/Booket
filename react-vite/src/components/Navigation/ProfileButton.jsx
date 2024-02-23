@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkLogout } from "../../redux/session";
+import { clearState } from "../../redux/bookmarks";
+import { checkoutClearState } from "../../redux/checkouts";
 import { useNavigate } from "react-router-dom";
 
 function ProfileButton() {
@@ -34,6 +36,8 @@ function ProfileButton() {
   const logout = (e) => {
     e.preventDefault();
     dispatch(thunkLogout());
+    dispatch(checkoutClearState());
+    dispatch(clearState());
     navigate('/')
     closeMenu();
   };
@@ -41,7 +45,7 @@ function ProfileButton() {
   return (
     <>
       <button className="user-button" onClick={toggleMenu}>
-        <i className="fas fa-xl fa-user-circle" />
+        <img id="user-button-image" src={user.profileImage} />
       </button>
       {showMenu && (
         <ul className={"profile-dropdown"} ref={ulRef}>

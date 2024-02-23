@@ -30,6 +30,8 @@ zipp = "==3.17.0"
 faker = "*"
 boto3 = "*"
 email-validator = "*"
+python-socketio = "*"
+flask-socketio = "*"
 
 [dev-packages]
 

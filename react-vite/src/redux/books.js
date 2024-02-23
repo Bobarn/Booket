@@ -1,3 +1,4 @@
+import { thunkGetCheckouts } from "./checkouts"
 import { thunkGetAllUsers } from "./users"
 
 //Action Type Constants
@@ -56,7 +57,7 @@ export const thunkCreateBook = (formData) => async (dispatch) => {
         method: "POST",
         body: formData
     })
-    console.log(response)
+    // console.log(response)
 
     if (response.ok) {
 
@@ -98,7 +99,7 @@ export const thunkDeleteBook = (bookId) => async(dispatch) => {
     const response = await fetch(`/api/books/${bookId}/delete`, {
         method: "DELETE"
     })
-
+    await dispatch(thunkGetCheckouts())
     if(response.ok) {
         const data = await response.json();
         await dispatch(deleteBook(bookId))

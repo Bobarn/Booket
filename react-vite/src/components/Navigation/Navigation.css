@@ -1,7 +1,7 @@
 .profile-dropdown {
   position: absolute;
   right: 6%;
-  top: 45%;
+  top: 47%;
   list-style-type: none;
   background-color: #edc7b7;
   height: 100px;
@@ -12,6 +12,8 @@
   align-items: center;
   justify-content: space-around;
 }
+
+html, body {width:100%; overflow-x:hidden;}
 
 .user-button {
   background-color: #FFFDDA;
@@ -36,13 +38,13 @@
   line-height: 1.5rem;
   border-radius: 5px;
 }
-
-nav {
+/* Write css for a responsive nav-bar */
+#nav-bar {
   background-color: #FFFDDA;
   position: fixed;
   width: 100%;
   height: 80px;
-  z-index: 2;
+  z-index: 5;
   top: 0%;
   display: flex;
   justify-content: space-between;
@@ -90,4 +92,8 @@ nav {
   cursor: pointer;
   border: none;
   background-color: #AC3B61;
+}
+
+#user-button-image {
+  width: 40px;
 }

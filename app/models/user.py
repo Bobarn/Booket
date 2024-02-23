@@ -3,6 +3,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from .bookmark import bookmarks
 from .checkouts import checkouts
+from .user_chat import user_chats
 from datetime import datetime
 
 
@@ -13,7 +14,7 @@ class User(db.Model, UserMixin):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(40), nullable=False, unique=True)
+    username = db.Column(db.String(16), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
     about = db.Column(db.String(400), nullable=True)
@@ -28,7 +29,8 @@ class User(db.Model, UserMixin):
     annotations = db.relationship("Annotation", back_populates="user")
     checkouts = db.relationship("Book", secondary=checkouts, back_populates="borrowing")
     bookmarks = db.relationship("Page", secondary=bookmarks, back_populates="readers")
-    # chats = db.relationship("Chat", back_populates=)
+    chats = db.relationship('Chat', secondary=user_chats, back_populates='users')
+    messages = db.relationship('Message', back_populates="user")
 
     @property
     def password(self):
@@ -52,5 +54,6 @@ class User(db.Model, UserMixin):
             'bannerImageName': self.bannerImageName,
             "books": len(self.books),
             "pages": len(self.pages),
-            "joined": self.joined
+            "joined": self.joined,
+            "chats": [chat.id for chat in self.chats]
         }

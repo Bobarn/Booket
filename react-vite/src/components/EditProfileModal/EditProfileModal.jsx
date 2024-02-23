@@ -4,12 +4,12 @@ import { useModal } from "../../context/Modal";
 import { thunkEditUser } from "../../redux/session";
 import './EditProfileModal.css'
 
-function EditProfileModal({user}) {
+function EditProfileModal({currUser}) {
   const dispatch = useDispatch();
-  const [about, setAbout] = useState(user?.about)
+  const [about, setAbout] = useState(currUser?.about)
   const [profile_image, setProfile_Image] = useState(null)
   const [banner_image, setBanner_Image] = useState(null)
-  // const [imageLoading, setImageLoading] = useState(false);
+  const [loading, setLoading] = useState(false)
   const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
 
@@ -30,15 +30,16 @@ function EditProfileModal({user}) {
       formData.append("banner_image", banner_image)
     }
 
-    const serverResponse = await dispatch(
-      thunkEditUser(formData)
-    );
+    setLoading(true)
 
-    if (serverResponse) {
-      setErrors(serverResponse);
-    } else {
-      closeModal();
-    }
+    dispatch(thunkEditUser(formData)).then((res) => {
+      if(res) {
+        setErrors(res)
+      } else {
+        setLoading(false)
+        closeModal()
+      }
+    })
   };
 
   return (
@@ -74,6 +75,9 @@ function EditProfileModal({user}) {
 					/>
 				</label>
         <button id="sign-up-submit" type="submit">Edit Profile</button>
+        <div className="loading">
+          {loading && <>Loading...</>}
+        </div>
       </form>
     </div>
   );

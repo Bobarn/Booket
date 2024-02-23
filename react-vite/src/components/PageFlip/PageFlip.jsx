@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
-import { thunkGetAllPages, thunkDeletePage } from '../../redux/pages';
+import { thunkGetAllPages } from '../../redux/pages';
 import { thunkGetAllAnnotations} from '../../redux/annotations';
 import { thunkGetBookmarks, thunkRemoveBookmark, thunkAddBookmark } from '../../redux/bookmarks';
 import AnnotationOptions from '../AnnotationOptions/AnnotationOptions';
 import AddAnnotation from '../AddAnnotation/AddAnnotation';
+import PageDelete from '../DeleteModals/DeletePage';
+import OpenModalButton from '../OpenModalButton/OpenModalButton';
 import './PageView.css'
 
 
@@ -27,7 +29,8 @@ export default function PageFlip() {
     const pages = useSelector((state) => state.pages);
     const bookmarks = useSelector((state) => state.bookmarks)
 
-    if(!user && page?.book_id !== 8 || (page?.private && page.book_id !== 8 && page.user_id != user.id)) {
+    //Reconfigure to place inside useEffect on line 44.
+    if((!page && !user) || !user && page?.book_id !== 8 || (page?.private && page?.book_id !== 8 && page?.user_id != user.id)) {
         navigate('/home')
     }
 
@@ -37,14 +40,17 @@ export default function PageFlip() {
 
     const nextPage = allPages.find((p) => p.book_id == page.book_id && p.page_number > page.page_number)
 
+    useEffect(() => {
+        if(!page?.book_id) {
+            navigate("/home")
+        }
+    }, [page])
 
     useEffect(() => {
         dispatch(thunkGetAllPages())
         dispatch(thunkGetAllAnnotations())
         dispatch(thunkGetBookmarks())
     }, [dispatch])
-
-    if(!page) return null;
 
     function removeBookmark(pageId) {
         dispatch(thunkRemoveBookmark(pageId))
@@ -54,11 +60,6 @@ export default function PageFlip() {
         dispatch(thunkAddBookmark(pageId))
     }
 
-
-    function tearPage(pageId) {
-        dispatch(thunkDeletePage(pageId));
-        navigate(`/users/${page.user_id}`)
-    }
 
     function displayAnnotations() {
 
@@ -106,47 +107,51 @@ export default function PageFlip() {
                     </div>
                     <div className="page" onTransitionEnd={(e) => {
                         e.stopPropagation()
-                        if(checked === false && checked2 === false) {
+                        // if(checked === false && checked2 === false) {
                             setChecked(true)
                             navigate(`/page/${prevPage.id}`)
-                        }
+                        // }
                     }
                         } id="page1">
                         <div className="front-page">
                             Flipping...
                         </div>
                         <div className="back-page">
-                            {user && user.id !== page.user_id && !bookmarks[page.id] &&
+                            {user && !bookmarks[page?.id] &&
                             <button className='bookmark-button' onClick={() => addBookmark(page.id)}><i className="fa-xl fa-regular fa-bookmark"></i></button>
                             }
-                            {user && user.id !== page.user_id && bookmarks[page.id] &&
+                            {user && bookmarks[page?.id] &&
                             <button className='bookmark-button' onClick={() => removeBookmark(page.id)} ><i className="fa-xl fa-solid fa-bookmark"></i></button>
                             }
 
-                        <h4>{page.page_name}</h4>
-                            <img id='page-image' src={page.image}/>
+                        <h4>{page?.page_name}</h4>
+                            <img id='page-image' src={page?.image}/>
                             {prevPage && <label className="flip prev" onClick={() => setChecked(false)} htmlFor="checkbox-page1"><i className="turn-page-prev fas fa-chevron-left"></i></label>}
                         </div>
                     </div>
-                    <div className="page" id="page2" onTransitionEnd={() => {
-                        if(checked2 && checked) {
+                    <div className="page" id="page2" onTransitionEnd={(e) => {
+                        e.stopPropagation()
+                        // if(checked2 && checked) {
                             setChecked2(false)
                             navigate(`/page/${nextPage.id}`)
-                        }
+                        // }
                     }}>
                         <div className="front-page">
-                            {user && user.id == page.user_id &&
+                            {user && user.id == page?.user_id &&
                         <>
-                            <button onClick={() => navigate(`/books/${page.book_id}/page/${page.id}/edit`)} className='page-revise-button'>
+                            <button onClick={() => navigate(`/books/${page?.book_id}/page/${page?.id}/edit`)} className='page-revise-button'>
                                 <i className="fa-regular fa-xl fa-pen-to-square"></i>
                             </button>
-                            <button className='tear-button' onClick={() => tearPage(page.id)}>
-                                <i className="fa-xl fa-solid fa-scissors"></i>
-                            </button>
+                            <div className='tear-button'>
+                                <OpenModalButton
+                                buttonText={<i className="fa-xl fa-solid fa-scissors"></i>}
+                                modalComponent={<PageDelete pageId={page?.id}/>}
+                                 />
+                            </div>
                         </>
                         }
                         <h2>Caption</h2>
-                        <p className='page-caption'>{page.caption}</p>
+                        <p className='page-caption'>{page?.caption}</p>
                         {displayAnnotations()}
 
                             {nextPage && <label className="flip next" onClick={() => setChecked2(true)} htmlFor="checkbox-page2"><i className="turn-page-next fas fa-chevron-right"></i></label>}

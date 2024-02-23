@@ -129,10 +129,6 @@
     display: none;
 }
 
-.TOC {
-
-}
-
 .tile-author {
     text-decoration: none;
     color: black;
@@ -168,6 +164,12 @@
     background-color: #f6eee3;
     border: none;
     border-radius: 100%;
+}
+
+.burn-button > .open-modal-button {
+    background-color: #f6eee3;
+    border: none;
+    cursor: pointer;
 }
 
 .revise-button {
@@ -224,4 +226,30 @@
 .book-tile:hover .tile-front-cover, .book-tile:hover .tile-back-cover, .book-tile:hover .tile-spine {
     height: 100%;
     opacity: 1;
+}
+
+@media screen and (max-width: 768px) {
+    .book-tile {
+        margin: 5%;
+        width: 225px;
+        height: 225px;
+    }
+
+    .tile-author-area {
+        right: -10%;
+        width: 100%;
+        font-size: 12px;
+        text-align: center;
+    }
+
+    .tile-synopsis {
+        font-size: 12px;
+        width: 90%;
+    }
+
+    .tile-index {
+        left: -10%;
+        width: 100%;
+    }
+
 }

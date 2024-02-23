@@ -16,20 +16,20 @@ export function SampleBookTile() {
 
     let book;
 
-    const checkBook = localStorage.getItem("book_of_the_day")
-
-    if(checkBook === "undefined") {
-
-        const randomBook = allBooksArr[Math.floor(Math.random() * allBooksArr.length)];
-        localStorage.setItem("book_of_the_day", JSON.stringify(randomBook))
-
-    } else {
-        book = JSON.parse(checkBook)
-
+    if(localStorage.getItem("book_of_the_day") !== null && localStorage.getItem("book_of_the_day") !== "undefined") {
+        book = JSON.parse(localStorage.getItem("book_of_the_day"))
     }
 
+    useEffect(() => {
 
+        const checkBook = localStorage.getItem("book_of_the_day")
+        if(checkBook === null || checkBook === "undefined") {
+            const randomBook = allBooksArr[Math.floor(Math.random() * allBooksArr.length)];
+            localStorage.setItem("book_of_the_day", JSON.stringify(randomBook))
+            book = localStorage.getItem("book_of_the_day")
 
+        }
+    })
 
 
     useEffect(() => {
@@ -107,16 +107,18 @@ export default function Welcome() {
                 <div className="welcome-background">
 
                     <div className="welcome-page-container">
-                        <h1>
-                        Hello and Welcome to Booket
-                        </h1>
+                            <h1 id='welcome-title'>
+                            Hello and Welcome to Booket
+                            </h1>
 
                     </div>
                 </div>
-                <SampleBookTile />
-                <div id='tutorial-book'>
-                    This is a brief tutorial of some of the main features of our site!
-                    <BookTile book={tutorialBook}/>
+                <div className='welcome-book-containers'>
+                    <SampleBookTile />
+                    <div id='tutorial-book'>
+                        This is a brief tutorial of some of the main features of our site!
+                        <BookTile book={tutorialBook}/>
+                    </div>
                 </div>
             </div>
         </>
