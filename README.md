@@ -61,8 +61,9 @@ Welcome to Booket, a social media platform with a book theme that allows users t
 
 ## Contact
 
-If you have any questions or suggestions, please feel free to reach out to me at [b.n.tamayo7@gmail.com](b.n.tamayo7@gmail.com) or my [LinkedIn](https://www.linkedin.com/in/brandon-tamayo-bobarn7/).
 If you're reading this far, I'd love to have a chat with you!
+Please feel free to reach out to me at [b.n.tamayo7@gmail.com](b.n.tamayo7@gmail.com) or my [LinkedIn](https://www.linkedin.com/in/brandon-tamayo-bobarn7/).
+
 You can also view more from me and about me by looking at my [portfolio](https://bobarn.netlify.app/)
 
 Enjoy Booket and happy storytelling! 📚
