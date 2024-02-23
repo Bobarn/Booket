@@ -97,3 +97,37 @@ html, body {width:100%; overflow-x:hidden;}
 #user-button-image {
   width: 40px;
 }
+
+#navigation-bar {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  #nav-bar {
+    height: 60px;
+  }
+  #booket-logo {
+    width: 120px;
+  }
+  .modal-button {
+    line-height: 1.5rem;
+    font-size: medium;
+  }
+  .user-page-button {
+    line-height: 1.5rem;
+    font-size: medium;
+  }
+  #user-button-image {
+    width: 30px;
+  }
+  .user-options {
+    padding-right: 5%;
+  }
+  .user-button {
+    right: 3%;
+  }
+  .profile-dropdown {
+    right: 3%;
+  }
+
+}

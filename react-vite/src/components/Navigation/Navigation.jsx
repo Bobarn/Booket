@@ -23,6 +23,7 @@ function Navigation() {
         <img id="booket-logo" src="https://photobooket.s3.amazonaws.com/0ff8394c13b543928702e6cccfb0c165.png"/>
       </NavLink>
       }
+      {user && <button id="navigation-bar"></button>}
       {user && <button className="user-page-button" onClick={() => navigate(`/users/${user.id}`)}>Your Page</button>}
       <div className="user-options">
         {user ?
