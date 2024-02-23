@@ -36,6 +36,8 @@ Welcome to Booket, a social media platform with a book theme that allows users t
 
 - **Frontend:**
   - React-Redux
+  - Javascript
+  - HTML5/CSS3
 
 ## Usage
 
