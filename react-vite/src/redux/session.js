@@ -1,3 +1,4 @@
+import { thunkGetAllBooks } from "./books";
 import { thunkGetAllUsers } from "./users";
 
 const SET_USER = 'session/setUser';
@@ -65,10 +66,11 @@ export const thunkEditUser = (formData) => async (dispatch) => {
     method: "PATCH",
     body: formData
   });
+  dispatch(thunkGetAllUsers())
+  dispatch(thunkGetAllBooks())
 
   if(response.ok) {
     const data = await response.json();
-    dispatch(thunkGetAllUsers())
     dispatch(setUser(data))
   } else if (response.status < 500) {
     const errorMessages = await response.json();
