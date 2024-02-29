@@ -30,9 +30,13 @@ export default function PageFlip() {
     const bookmarks = useSelector((state) => state.bookmarks)
 
     //Reconfigure to place inside useEffect on line 44.
-    if((!page && !user) || !user && page?.book_id !== 8 || (page?.private && page?.book_id !== 8 && page?.user_id != user.id)) {
+    if(!user && page?.book_id !== 8 || (page?.private && page?.book_id !== 8 && page?.user_id != user.id)) {
         navigate('/home')
     }
+
+    // if(!page?.book_id) {
+    //     navigate('/home')
+    // }
 
     const allPages = Object.values(pages)
 
@@ -41,10 +45,10 @@ export default function PageFlip() {
     const nextPage = allPages.find((p) => p.book_id == page.book_id && p.page_number > page.page_number)
 
     useEffect(() => {
-        if(!page?.book_id) {
+        if(page && !page?.book_id) {
             navigate("/home")
         }
-    }, [page])
+    }, [page?.book_id, navigate])
 
     useEffect(() => {
         dispatch(thunkGetAllPages())
@@ -107,10 +111,10 @@ export default function PageFlip() {
                     </div>
                     <div className="page" onTransitionEnd={(e) => {
                         e.stopPropagation()
-                        // if(checked === false && checked2 === false) {
+                        if(checked === false && checked2 === false) {
                             setChecked(true)
                             navigate(`/page/${prevPage.id}`)
-                        // }
+                        }
                     }
                         } id="page1">
                         <div className="front-page">
@@ -118,10 +122,10 @@ export default function PageFlip() {
                         </div>
                         <div className="back-page">
                             {user && !bookmarks[page?.id] &&
-                            <button className='bookmark-button' onClick={() => addBookmark(page.id)}><i className="fa-xl fa-regular fa-bookmark"></i></button>
+                            <button className='bookmark-button' onClick={() => addBookmark(page.id)}><i className="bookmark fa-xl fa-regular fa-bookmark"></i></button>
                             }
                             {user && bookmarks[page?.id] &&
-                            <button className='bookmark-button' onClick={() => removeBookmark(page.id)} ><i className="fa-xl fa-solid fa-bookmark"></i></button>
+                            <button className='bookmark-button' onClick={() => removeBookmark(page.id)} ><i className="bookmark fa-xl fa-solid fa-bookmark"></i></button>
                             }
 
                         <h4>{page?.page_name}</h4>
@@ -131,10 +135,10 @@ export default function PageFlip() {
                     </div>
                     <div className="page" id="page2" onTransitionEnd={(e) => {
                         e.stopPropagation()
-                        // if(checked2 && checked) {
+                        if(checked2 && checked) {
                             setChecked2(false)
                             navigate(`/page/${nextPage.id}`)
-                        // }
+                        }
                     }}>
                         <div className="front-page">
                             {user && user.id == page?.user_id &&

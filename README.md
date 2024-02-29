@@ -1,131 +1,71 @@
-# Flask React Project
+# Booket - Spin Your Own Tale
 
-This is the starter for the Flask React project.
+Welcome to Booket, a social media platform with a book theme that allows users to publish and share their own virtual books and pages. Dive into a world where storytelling meets social interaction.
 
-## Getting started
+## Preview
+[![Image](https://github.com/Bobarn/Photos/raw/main/BooketPrev.png)](https://github.com/Bobarn/Photos/blob/main/BooketPrev.png)
 
-1. Clone this repository (only this branch).
 
-2. Install dependencies.
+## Features
 
-   ```bash
-   pipenv install -r requirements.txt
-   ```
+- **User Authentication:**
+  - Create a personalized account with a profile picture and banner image to make your presence uniquely yours.
 
-3. Create a __.env__ file based on the example with proper settings for your
-   development environment.
+- **Book Creation:**
+  - Craft virtual books (albums) with a cover, title, synopsis, category, and privacy setting, bringing your literary ideas to life.
 
-4. Make sure the SQLite3 database connection URL is in the __.env__ file.
+- **Page Creation:**
+  - Populate your books with pages (posts) containing captivating images, captions, and titles. Express your creativity and share your stories with the world.
 
-5. This starter organizes all tables inside the `flask_schema` schema, defined
-   by the `SCHEMA` environment variable.  Replace the value for
-   `SCHEMA` with a unique name, **making sure you use the snake_case
-   convention.**
+- **Book Navigation:**
+  - Seamlessly navigate between pages within a book, explore the table of contents, and enjoy a smooth reading experience.
 
-6. Get into your pipenv, migrate your database, seed your database, and run your
-   Flask app:
+- **Annotations:**
+  - Engage with the content by adding annotations (comments) on any page within a book. Share your thoughts, connect with other readers, and discuss the stories.
 
-   ```bash
-   pipenv shell
-   ```
+- **Profile Exploration:**
+  - Discover the literary creations of other users by exploring their profiles. View all the books and pages they have crafted and appreciate the diversity of storytelling on Booket.
 
-   ```bash
-   flask db upgrade
-   ```
+## Tech Stack
 
-   ```bash
-   flask seed all
-   ```
+- **Backend:**
+  - Python
+  - Flask
+  - SQLAlchemy
+  - AWS
 
-   ```bash
-   flask run
-   ```
+- **Frontend:**
+  - React-Redux
+  - Javascript
+  - HTML5/CSS3
 
-7. The React frontend has no styling applied. Copy the __.css__ files from your
-   Authenticate Me project into the corresponding locations in the
-   __react-vite__ folder to give your project a unique look.
+## Usage
 
-8. To run the React frontend in development, `cd` into the __react-vite__
-   directory and run `npm i` to install dependencies. Next, run `npm run build`
-   to create the `dist` folder. The starter has modified the `npm run build`
-   command to include the `--watch` flag. This flag will rebuild the __dist__
-   folder whenever you change your code, keeping the production version up to
-   date.
+1. **Create an Account:**
+   - Sign up on Booket by providing an email, username details and upload a profile picture and banner image.
 
-## Deployment through Render.com
+2. **Craft Your Books:**
+   - Create books with cover images, titles, synopses, categories, and privacy settings.
 
-First, recall that Vite is a development dependency, so it will not be used in
-production. This means that you must already have the __dist__ folder located in
-the root of your __react-vite__ folder when you push to GitHub. This __dist__
-folder contains your React code and all necessary dependencies minified and
-bundled into a smaller footprint, ready to be served from your Python API.
+3. **Compose Pages:**
+   - Populate your books with engaging pages, each with images, captions, and titles.
 
-Begin deployment by running `npm run build` in your __react-vite__ folder and
-pushing any changes to GitHub.
+4. **Navigate and Connect:**
+   - Explore the books and pages of other users, and interact with annotations. Connect with fellow readers and creators.
 
-Refer to your Render.com deployment articles for more detailed instructions
-about getting started with [Render.com], creating a production database, and
-deployment debugging tips.
 
-From the Render [Dashboard], click on the "New +" button in the navigation bar,
-and click on "Web Service" to create the application that will be deployed.
+## Future Plans
 
-Select that you want to "Build and deploy from a Git repository" and click
-"Next". On the next page, find the name of the application repo you want to
-deploy and click the "Connect" button to the right of the name.
+**Messaging**
+  - A more interactive user experience by incorporating websockets to have a real time messaging feature between two users
+**Friends List**
+  - Keep track of those you've really connected with in this community!
 
-Now you need to fill out the form to configure your app. Most of the setup will
-be handled by the __Dockerfile__, but you do need to fill in a few fields.
+## Contact
 
-Start by giving your application a name.
+If you're reading this far, I'd love to have a chat with you!
+Please feel free to reach out to me at [b.n.tamayo7@gmail.com](b.n.tamayo7@gmail.com) or my [LinkedIn](https://www.linkedin.com/in/brandon-tamayo-bobarn7/).
 
-Make sure the Region is set to the location closest to you, the Branch is set to
-"main", and Runtime is set to "Docker". You can leave the Root Directory field
-blank. (By default, Render will run commands from the root directory.)
+You can also view more from me and about me by looking at my [portfolio](https://bobarn.netlify.app/)
 
-Select "Free" as your Instance Type.
-
-### Add environment variables
-
-In the development environment, you have been securing your environment
-variables in a __.env__ file, which has been removed from source control (i.e.,
-the file is gitignored). In this step, you will need to input the keys and
-values for the environment variables you need for production into the Render
-GUI.
-
-Add the following keys and values in the Render GUI form:
-
-- SECRET_KEY (click "Generate" to generate a secure secret for production)
-- FLASK_ENV production
-- FLASK_APP app
-- SCHEMA (your unique schema name, in snake_case)
-
-In a new tab, navigate to your dashboard and click on your Postgres database
-instance.
-
-Add the following keys and values:
-
-- DATABASE_URL (copy value from the **External Database URL** field)
-
-**Note:** Add any other keys and values that may be present in your local
-__.env__ file. As you work to further develop your project, you may need to add
-more environment variables to your local __.env__ file. Make sure you add these
-environment variables to the Render GUI as well for the next deployment.
-
-### Deploy
-
-Now you are finally ready to deploy! Click "Create Web Service" to deploy your
-project. The deployment process will likely take about 10-15 minutes if
-everything works as expected. You can monitor the logs to see your Dockerfile
-commands being executed and any errors that occur.
-
-When deployment is complete, open your deployed site and check to see that you
-have successfully deployed your Flask application to Render! You can find the
-URL for your site just below the name of the Web Service at the top of the page.
-
-**Note:** By default, Render will set Auto-Deploy for your project to true. This
-setting will cause Render to re-deploy your application every time you push to
-main, always keeping it up to date.
-
-[Render.com]: https://render.com/
-[Dashboard]: https://dashboard.render.com/
+Enjoy Booket and happy storytelling! 📚
