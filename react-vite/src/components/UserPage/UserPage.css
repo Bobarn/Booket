@@ -17,11 +17,11 @@
 
 .user-page-container {
     background-color: #EEE2DC;
-    min-height: 648px;
+    min-height: 90vh;
 }
 
 .books-container {
-    background-color: #EEE2DC;
+    background-color: #FFFDDA;
     height: fit-content;
 }
 

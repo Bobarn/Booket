@@ -228,6 +228,10 @@
     opacity: 1;
 }
 
+.book-tile:hover .tile-front-cover, .book-tile:hover .tile-back-cover {
+    box-shadow: 2px 3px 3px 3px rgba(172, 59, 97, 0.3);
+}
+
 @media screen and (max-width: 768px) {
     .book-tile {
         margin: 5%;

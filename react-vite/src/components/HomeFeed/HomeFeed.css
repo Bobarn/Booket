@@ -3,6 +3,7 @@
 }
 
 .cat-logo {
+    margin-bottom: 1vh;
     width: 40px;
     height: 40px;
 }
@@ -23,11 +24,21 @@
     color: #374151;
 }
 
+.cat-link:hover, .cat-link:hover > * {
+    color: rgb(172, 59, 97);
+    font-size: large;
+}
+
+.cat-link:hover > .cat-logo {
+    transform: scale(1.3);
+}
+
 .main-shelf {
     padding-top: 5%;
-    background-color: #eee2dc;
-    padding-bottom: 15%;
+    background-color: #FFFDDA;
+    padding-bottom: 5%;
     text-align: center;
+    min-height: 90vh;
 }
 
 .books-container {
