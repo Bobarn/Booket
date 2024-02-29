@@ -29,7 +29,8 @@ export default function PageFlip() {
     const pages = useSelector((state) => state.pages);
     const bookmarks = useSelector((state) => state.bookmarks)
 
-    if(!page || !user && page?.book_id !== 8 || (page?.private && page.book_id !== 8 && page.user_id != user.id)) {
+    //Reconfigure to place inside useEffect on line 44.
+    if((!page && !user) || !user && page?.book_id !== 8 || (page?.private && page?.book_id !== 8 && page?.user_id != user.id)) {
         navigate('/home')
     }
 
@@ -39,7 +40,11 @@ export default function PageFlip() {
 
     const nextPage = allPages.find((p) => p.book_id == page.book_id && p.page_number > page.page_number)
 
-
+    useEffect(() => {
+        if(!page?.book_id) {
+            navigate("/home")
+        }
+    }, [page])
 
     useEffect(() => {
         dispatch(thunkGetAllPages())
@@ -100,12 +105,12 @@ export default function PageFlip() {
 
                     <div className="cover">
                     </div>
-                    <div className="page" onTransitionEnd={() => {
-                        // e.stopPropagation()
-                        if(checked === false && checked2 === false) {
+                    <div className="page" onTransitionEnd={(e) => {
+                        e.stopPropagation()
+                        // if(checked === false && checked2 === false) {
                             setChecked(true)
                             navigate(`/page/${prevPage.id}`)
-                        }
+                        // }
                     }
                         } id="page1">
                         <div className="front-page">
@@ -124,11 +129,12 @@ export default function PageFlip() {
                             {prevPage && <label className="flip prev" onClick={() => setChecked(false)} htmlFor="checkbox-page1"><i className="turn-page-prev fas fa-chevron-left"></i></label>}
                         </div>
                     </div>
-                    <div className="page" id="page2" onTransitionEnd={() => {
-                        if(checked2 && checked) {
+                    <div className="page" id="page2" onTransitionEnd={(e) => {
+                        e.stopPropagation()
+                        // if(checked2 && checked) {
                             setChecked2(false)
                             navigate(`/page/${nextPage.id}`)
-                        }
+                        // }
                     }}>
                         <div className="front-page">
                             {user && user.id == page?.user_id &&

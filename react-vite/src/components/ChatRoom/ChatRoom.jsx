@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+// import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 // import { thunkGetMessages, thunkSendMessage } from '../../redux/chats';
 import { io } from 'socket.io-client';
 let socket;
