@@ -13,7 +13,7 @@ export default function BookTile({book, currUser}) {
         return null
     }
     return (
-        <div className='book-tile'>
+        <div className='slide-in book-tile'>
             {currUser ? <Link to={`/books/${book.id}`} className="book-cover-link">
                 <img src={book.cover} alt={book.coverName} className='cover-image'/>
                 <div className='book-title'>{book.title}</div>

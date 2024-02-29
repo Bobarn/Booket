@@ -21,6 +21,10 @@ html, body {width:100%; overflow-x:hidden;}
   position: relative;
   right: 5%;
   cursor: pointer;
+  width: 40px;
+  height: 40px;
+  padding: 0px;
+  border-radius: 50%;
 }
 
 .user-logout {
@@ -40,15 +44,16 @@ html, body {width:100%; overflow-x:hidden;}
 }
 /* Write css for a responsive nav-bar */
 #nav-bar {
-  background-color: #FFFDDA;
+  background-color: #eee2dc;
   position: fixed;
   width: 100%;
-  height: 80px;
+  height: 70px;
   z-index: 5;
   top: 0%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.25);
 }
 
 .nav-list {
@@ -56,7 +61,7 @@ html, body {width:100%; overflow-x:hidden;}
 }
 
 #booket-logo {
-  width: 160px;
+  width: 140px;
   padding: 5px;
 }
 
@@ -96,10 +101,11 @@ html, body {width:100%; overflow-x:hidden;}
 
 #user-button-image {
   width: 40px;
+  height: 40px;
 }
 
 .navbar {
-  background-color: #FFFDDA;
+  background-color: #eee2dc;
   height: 60px;
   display: none;
   justify-content: flex-start;

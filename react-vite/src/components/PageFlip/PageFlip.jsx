@@ -34,9 +34,9 @@ export default function PageFlip() {
         navigate('/home')
     }
 
-    if(!page?.book_id) {
-        navigate('/home')
-    }
+    // if(!page?.book_id) {
+    //     navigate('/home')
+    // }
 
     const allPages = Object.values(pages)
 
@@ -122,10 +122,10 @@ export default function PageFlip() {
                         </div>
                         <div className="back-page">
                             {user && !bookmarks[page?.id] &&
-                            <button className='bookmark-button' onClick={() => addBookmark(page.id)}><i className="fa-xl fa-regular fa-bookmark"></i></button>
+                            <button className='bookmark-button' onClick={() => addBookmark(page.id)}><i className="bookmark fa-xl fa-regular fa-bookmark"></i></button>
                             }
                             {user && bookmarks[page?.id] &&
-                            <button className='bookmark-button' onClick={() => removeBookmark(page.id)} ><i className="fa-xl fa-solid fa-bookmark"></i></button>
+                            <button className='bookmark-button' onClick={() => removeBookmark(page.id)} ><i className="bookmark fa-xl fa-solid fa-bookmark"></i></button>
                             }
 
                         <h4>{page?.page_name}</h4>
