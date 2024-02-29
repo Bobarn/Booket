@@ -30,6 +30,10 @@
     border: none;
 }
 
+#log-in-submit:hover {
+    cursor: pointer;
+}
+
 .label {
     display: flex;
     justify-content: space-between;
