@@ -21,7 +21,7 @@ def chat_messages(id):
 def get_chats():
     """Get all of a users chats"""
     chats = Chat.query.join(user_chats).join(User).filter(User.id == current_user.id).all()
-    print(chats)
+    # print(chats)
 
     return [chat.to_dict() for chat in chats]
 
@@ -54,7 +54,7 @@ def create_chat():
 def send_message(id):
     form = MessageForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    print("In here!")
+    # print("In here!")
 
     chat = Chat.query.get(id)
 
