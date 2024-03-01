@@ -12,6 +12,7 @@ import userReducer from "./users";
 import annotationsReducer from "./annotations";
 import bookmarksReducer from "./bookmarks";
 import checkoutsReducer from "./checkouts";
+import messagesReducer from "./messages";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
@@ -20,7 +21,8 @@ const rootReducer = combineReducers({
   users: userReducer,
   annotations: annotationsReducer,
   bookmarks: bookmarksReducer,
-  checkouts: checkoutsReducer
+  checkouts: checkoutsReducer,
+  messages: messagesReducer,
 });
 
 let enhancer;
