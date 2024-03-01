@@ -35,6 +35,15 @@ flask-socketio = "*"
 eventlet = "==0.30.2"
 gevent = "*"
 psycopg2-binary = "*"
+requests = "*"
+google = "*"
+cachetools = "*"
+certifi = "*"
+charset-normalizer = "*"
+google-auth-oauthlib = "*"
+oauthlib = "*"
+requests-oauthlib = "*"
+rsa = "*"
 
 [dev-packages]
 

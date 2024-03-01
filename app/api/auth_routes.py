@@ -10,7 +10,7 @@ import os
 import pathlib
 
 import requests
-from flask import abort, redirect # note that you can slap these 2 imports at the end of the 'from flask import' statement that you probably already have.
+from flask import abort, redirect, session # note that you can slap these 2 imports at the end of the 'from flask import' statement that you probably already have.
 from google.oauth2 import id_token
 from google_auth_oauthlib.flow import Flow
 from pip._vendor import cachecontrol
@@ -24,8 +24,8 @@ import json
 	# Some of these values will come from our .env file.
 
 # Import our credentials from the .env file
-CLIENT_SECRET = os.getenv('CLIENT_SECRET')
-CLIENT_ID = os.getenv('CLIENT_ID')
+CLIENT_SECRET = os.getenv('GOOGLE_OAUTH_CLIENT_SECRET')
+CLIENT_ID = os.getenv('GOOGLE_OAUTH_CLIENT_ID')
 BASE_URL = os.getenv('BASE_URL')
 
 client_secrets = {
@@ -37,7 +37,6 @@ client_secrets = {
     "client_secret": CLIENT_SECRET,
     "redirect_uris": [
       "http://localhost:8000/api/auth/callback",
-      "https://breadit-poci.onrender.com/api/auth/callback"
     ]
   }
 }
@@ -56,7 +55,7 @@ ENV = os.getenv("FLASK_ENV")
 redirect_uri = "http://localhost:8000/api/auth/callback"
 
 if ENV != "development":
-    redirect_uri = "https://breadit-poci.onrender.com/api/auth/callback"
+    redirect_uri = "https://photobook-xu65.onrender.com/api/auth/callback"
 
 flow = Flow.from_client_secrets_file(
     client_secrets_file=secrets.name,

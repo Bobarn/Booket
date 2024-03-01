@@ -80,7 +80,7 @@ function LoginFormModal() {
       </form>
       <h5 id='demo' onClick={demoLogin}>Log in as Demo User</h5>
       <span className="google-auth-div">-or-</span>
-        <a href={`${window.origin}/api/auth/oauth_login`} className="google-auth"><button className="button" type="button">Sign in with Google</button></a>
+        <a href={`http://localhost:8000/api/auth/oauth_login`} className="google-auth"><button className="button" type="button">Sign in with Google</button></a>
     </div>
   );
 }
