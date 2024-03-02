@@ -120,3 +120,10 @@
     left: 30%;
     font-size: medium;
 }
+
+
+@media (max-width: 768px) {
+    #buffer {
+        height: 60px;
+    }
+}
