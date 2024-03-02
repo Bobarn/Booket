@@ -56,31 +56,35 @@ function LoginFormModal() {
     <div id='log-in-modal'>
       <h1>Log In</h1>
       <form id='log-in-form' onSubmit={handleSubmit}>
-        <label className="label">
-          Email
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
+        <div className="login-input-container">
+          <label id="signup-email-label" className="label"></label>
+            Email
+            <input
+              id="signup-email-input"
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+        </div>
         <div className="errors-div">{errors.email && <>{errors.email}</>}</div>
-        <label className="label">
-          Password
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
+        <div className="login-input-container">
+          <label id="signup-password-label" className="label"></label>
+            Password
+            <input
+              id="signup-password-input"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+        </div>
         <div className="errors-div">{errors.password && <>{errors.password}</>}</div>
         <button id="log-in-submit" type="submit">Log In</button>
       </form>
       <h5 id='demo' onClick={demoLogin}>Log in as Demo User</h5>
       <span className="google-auth-div">or</span>
-        <a href={`${window.origin}/api/auth/oauth_login`} className="google-auth"><button className="button" type="button">Sign in with Google</button></a>
+        <a href={`${window.origin}/api/auth/oauth_login`} className="google-auth"><button className="google-auth" type="button">Sign in with Google</button></a>
     </div>
   );
 }

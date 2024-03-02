@@ -47,8 +47,10 @@ function EditProfileModal({currUser}) {
       <h1>Edit Profile</h1>
       {errors.server && <p>{errors.server}</p>}
       <form id="edit-profile-form" onSubmit={handleSubmit} encType="multipart/form-data">
+      <div id="signup-input-container">
         <label className="label">
 					Profile Image
+          </label>
 					<input
             className="file-input"
 						type="file"
@@ -56,24 +58,31 @@ function EditProfileModal({currUser}) {
 						onChange={(e) => setProfile_Image(e.target.files[0])}
 
 					/>
-				</label>
+      </div>
+      <div id="signup-input-container"></div>
         <label className="label">
 					About
-					<textarea value={about} onChange={(e) => setAbout(e.target.value)} className="edit-about"/>
+          </label>
+					<textarea
+          value={about}
+          onChange={(e) => setAbout(e.target.value)}
+          id="signup-about-input"
+          className="edit-about"/>
           <div className="errors-div">					{errors.about && (
             <>*{errors.about}</>
           )}</div>
-        </label>
-        <label className="label">
-					Banner Image
-					<input
-            className="file-input"
-						type="file"
-						accept="image/*"
-						onChange={(e) => setBanner_Image(e.target.files[0])}
+          <div id="signup-input-container">
+            <label className="label">
+              Banner Image
+              </label>
+              <input
+                className="file-input"
+                type="file"
+                accept="image/*"
+                onChange={(e) => setBanner_Image(e.target.files[0])}
 
-					/>
-				</label>
+              />
+          </div>
         <button id="sign-up-submit" type="submit">Edit Profile</button>
         <div className="loading">
           {loading && <>Loading...</>}

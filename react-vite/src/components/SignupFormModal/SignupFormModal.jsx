@@ -107,10 +107,11 @@ function SignupFormModal() {
       {errors.server && <p>{errors.server}</p>}
       <form id="sign-up-form" onSubmit={handleSubmit} encType="multipart/form-data">
         <div className="signup-input-container">
-          <label className="signup-label">
+          <label id="signup-email-label" className="signup-label">
             *Email
             </label>
             <input
+            id="signup-email-input"
             className="signup-input"
               type="text"
               value={email}
@@ -122,7 +123,7 @@ function SignupFormModal() {
         </div>
 
         <div className="signup-input-container">
-          <label className="signup-label">
+          <label id="signup-username-label" className="signup-label">
             *Username
             </label>
             <input
@@ -137,10 +138,11 @@ function SignupFormModal() {
         </div>
 
         <div className="signup-input-container">
-          <label className="signup-label">
+          <label id="signup-profile-image-label" className="signup-label">
             Profile Image
             </label>
             <input
+              id="signup-profile-image-input"
               className="file-input"
               type="file"
               accept="image/*"
@@ -148,12 +150,13 @@ function SignupFormModal() {
 
             />
         </div>
-        <div className="errors-div"></div>
+        {/* <div className="errors-div"></div> */}
         <div className="signup-input-container">
-          <label className="signup-label">
+          <label id="signup-about-label" className="signup-label">
             About
             </label>
             <textarea
+            id="signup-about-input"
             value={about}
             onChange={(e) => setAbout(e.target.value)}
             className="signup-input signup-about"/>
@@ -162,10 +165,11 @@ function SignupFormModal() {
             )}</div>
         </div>
         <div className="signup-input-container">
-          <label className="signup-label">
+          <label id="signup-banner-image-label" className="signup-label">
             Banner Image
             </label>
             <input
+              id="signup-banner-image-input"
               className="file-input"
               type="file"
               accept="image/*"
@@ -173,13 +177,14 @@ function SignupFormModal() {
 
             />
         </div>
-        <div className="errors-div"></div>
+        {/* <div className="errors-div"></div> */}
 
         <div className="signup-input-container">
-          <label className="signup-label">
+          <label id="signup-password-label" className="signup-label">
             *Password
           </label>
             <input
+            id="signup-password-input"
             className="signup-input"
               type="password"
               value={password}
@@ -189,10 +194,11 @@ function SignupFormModal() {
           <div className="errors-div">{errors.password && <>{errors.password}</>}</div>
         </div>
         <div className="signup-input-container">
-          <label className="signup-label">
+          <label id="signup-confirm-password-label" className="signup-label">
             *Confirm Password
           </label>
             <input
+            id="signup-confirm-password-input"
             className="signup-input"
               type="password"
               value={confirmPassword}
@@ -205,6 +211,8 @@ function SignupFormModal() {
         </div>
         <button id="sign-up-submit" type="submit">Sign Up</button>
       </form>
+        <span className="google-auth-div">or</span>
+        <a  href={`${window.origin}/api/auth/oauth_login`} className="google-auth"><button className="google-auth" type="button">Sign up with Google</button></a>
     </div>
   );
 }

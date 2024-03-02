@@ -1,15 +1,72 @@
 
 .create-book-container label{
-    /* padding-bottom: 8px;
-    /* display: flex; */
-    /* justify-content: space-between; */
-    /* margin: 5px; */
+      /* padding-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      margin: 5px; */
     display: grid;
     grid-template-columns: 1fr 2fr;
 }
 
+.left-form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  height: 100%;
+}
+
+#overarching-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#cover-image-label {
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+#cover-image-label:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  transition: transform 0.5s;
+}
+
+#title-input:focus, #synopsis-input:focus, #category-input:focus, #private-input:focus {
+  box-shadow:
+  0 0 5px 1px #fff,  /* inner white */
+  0 0 3px 1px #edc7b7, /* middle pink */
+  0 0 5px 1px #AC3B61; /* outer red */
+  transition: all 0.5s ease-in-out;
+}
+
+.file-inputs-container {
+  display: flex;
+  /* position: relative; */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.thumbnails {
+  width: 15vw;
+  height: 20vw;
+}
+
+.thumbnails:hover {
+  cursor: pointer;
+  box-shadow:
+  0 0 5px 1px #fff,  /* inner white */
+  0 0 3px 1px #edc7b7, /* middle pink */
+  0 0 5px 1px #AC3B61; /* outer purple */
+  transition: all 0.5s ease-in-out;
+}
+
 .create-book-container {
-  background-color: #eee2dc;
+  background-color: #FFFDDA;
   position: relative;
   margin: 0px;
   width: 100%;
@@ -39,8 +96,14 @@ html {
   grid-template-columns: 1fr 1fr;
   position: relative;
   height: 520px;
-  width: 60%;
+  width: 50%;
+  background-color: white;
   border: 1px solid #374151;
+}
+
+.book-label {
+  display: flex;
+  flex-direction: column;
 }
 
 .form-title {
@@ -49,8 +112,10 @@ html {
 }
 
 .form-synopsis {
-  width: 80%;
+  width: 70%;
   height: 100px;
+  min-height: 50px;
+  max-height: 200px;
 }
 
 .form-foot {
@@ -117,11 +182,11 @@ html {
   }
 
   input:checked + .slider {
-    background-color: #2196F3;
+    background-color: #edc7b7;
   }
 
   input:focus + .slider {
-    box-shadow: 0 0 1px #2196F3;
+    box-shadow: 0 0 1px #edc7b7;
   }
 
   input:checked + .slider:before {
@@ -188,7 +253,7 @@ html {
   }
 
 #post-image-input {
-  visibility: hidden;
+  display: none;
   /* Here we make the default file input button invisible on the page.
       As the label for this input is connected to it using the htmlFor property, we can style the label as a button instead, and have it behave the same as the <input type="file" />
       This extra step is necessary as the default <input type="file" /> CANNOT be styled with CSS!!
@@ -200,4 +265,70 @@ html {
   font-size: 10px;
   color: red;
   height: 10px;
+}
+
+.thumbnail-container {
+  position: absolute;
+  left: 20%;
+  top: 25%;
+}
+
+/* Create a media query at 820px */
+@media (max-width: 820px) {
+  #book-form-heading {
+    padding-top: 2%;
+  }
+
+  .book-form {
+    width: 80%;
+  }
+  .form-title {
+    width: 70%;
+  }
+  .form-synopsis {
+    width: 70%;
+  }
+  .form-foot {
+    justify-content: center;
+  }
+  #form-submit {
+    right: 0px;
+  }
+  .loading-bars {
+    right: 40%;
+  }
+  .thumbnails {
+    width: 30vw;
+    height: 40vw;
+  }
+  .create-book-container {
+    width: 100%;
+  }
+  .left-form-container {
+    width: 100%;
+  }
+  .right-form-container {
+    width: 100%;
+  }
+  .file-inputs-container {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .book-form {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    align-items: center;
+  }
+
+  .left-form-container {
+    min-height: 70vh;
+    display: flex;
+  }
+
+  .thumbnail-container {
+    left: 30%;
+  }
 }

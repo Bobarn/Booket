@@ -6,7 +6,7 @@
 }
 
 .create-page-container {
-  background-color: #eee2dc;
+  background-color: #FFFDDA;
   position: relative;
   margin: 0px;
   width: 100%;
@@ -27,9 +27,10 @@
   display: grid;
   grid-template-columns: repeat(2, 50%);
   justify-content: space-around;
-  height: 650px;
+  height: 550px;
   width: 60%;
   border: 1px solid #374151;
+  background-color: white;
 }
 
 .form-title {
@@ -106,14 +107,9 @@
 }
 
 .thumbnails-container {
-  border: solid 1px grey;
+  /* border: solid 1px grey; */
   min-height: 100px;
   position: relative;
   max-height: 450px;
   top: 20px;
-}
-
-.thumbnails {
-  max-height: 450px;
-  width: 400px;
 }

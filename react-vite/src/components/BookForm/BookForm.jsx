@@ -126,15 +126,15 @@ function BookForm({formType, book, bookId}) {
         </>}
       <form className="book-form" onSubmit={handleSubmit} encType="multipart/form-data">
         <div className="left-form-container">
-          <label>
+          <label id="overarching-label">
             Cover Image
             <br></br>
             <br></br>
             <div className="file-inputs-container">
               <input type="file" accept="image/png, image/jpeg, image/jpg" id="post-image-input" onChange={fileWrap}></input>
-              <label htmlFor="post-image-input" className="file-input-labels">Choose File</label>
+              <label htmlFor="post-image-input" id="cover-image-label" className="file-input-labels">Choose File</label>
               <div className="file-inputs-filename" style={{ color: filename === "Selected image exceeds the maximum file size of 5Mb" ? "red" : "#374151" }}>{filename}</div>
-              <div style={{ position: "absolute", top: "100px", left: "39px"}}><img style={{width: "300px", height: "300px"}} src={imageURL} className="thumbnails"></img></div>
+              <div className="thumbnail-container"><img src={imageURL} className="thumbnails"></img></div>
             </div>
             <div className="error">
               {errors.coverImage && (
@@ -146,8 +146,11 @@ function BookForm({formType, book, bookId}) {
               {loading && <div className="loading-bars"><div></div><div></div><div></div></div>}
         </div>
         <div className="right-form-container">
-          <label className="category-label">
+          <div className="book-form-input-container">
+
+          <label id="category-label" className="book-label">
             Category
+            </label>
             <select
               id='category-input'
               value={category}
@@ -168,44 +171,53 @@ function BookForm({formType, book, bookId}) {
                   <>*{errors.category}</>
                 )}
               </div>
-          </label>
-          <label className="title-label">
-            Title<br></br>
-            {title.length}/35
-            <input
-              type="text"
-              maxLength={35}
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              className="form-title"
-            />
-            <div className="error">
-              {errors.title && (
-                <>*{errors.title}</>
-              )}
-            </div>
+          </div>
+          <div className="book-form-input-container">
 
-          </label>
-          <label className="synopsis-label">
-            Synopsis <br/>
-            {synopsis.length}/350
-            <textarea
-              value={synopsis}
-              maxLength={350}
-              onChange={(e) => setSynopsis(e.target.value)}
-              className="form-synopsis"
-            />
-            <p></p>
-            <div className="error">
-              {errors.synopsis && (
-                <>*{errors.synopsis}</>
-              )}
-            </div>
-          </label>
+            <label id="title-label" className="book-label">
+              Title<br></br>
+              {title.length}/35
+              </label>
+              <input
+                id="title-input"
+                type="text"
+                maxLength={35}
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                className="form-title"
+              />
+              <div className="error">
+                {errors.title && (
+                  <>*{errors.title}</>
+                )}
+              </div>
+
+          </div>
+          <div className="book-form-input-container">
+            <label id="synopsis-label" className="book-label">
+              Synopsis <br/>
+              {synopsis.length}/350
+              </label>
+              <textarea
+                id="synopsis-input"
+                value={synopsis}
+                maxLength={350}
+                onChange={(e) => setSynopsis(e.target.value)}
+                className="form-synopsis"
+              />
+              <p></p>
+              <div className="error">
+                {errors.synopsis && (
+                  <>*{errors.synopsis}</>
+                )}
+              </div>
+
+          </div>
           <p id="private-label">Private? (Toggle for a private album only you will see)</p>
           <label className="switch">
 
               <input type="checkbox"
+              id="privacy-input"
               checked={privacy}
               onChange={() => setPrivate(!privacy)}
               />

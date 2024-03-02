@@ -11,7 +11,6 @@ export default function CategoryPage() {
     const dispatch = useDispatch();
     const allBooks = useSelector((state) => state.books);
     const currUser = useSelector((state) => state.session.user);
-    // const [isCat, setIsCat] = useState(category)
 
     useEffect(() => {
         dispatch(thunkGetAllBooks())

@@ -88,4 +88,8 @@ button:hover {
         height: 500px;
     }
 
+    #tutorial-book {
+        margin-top: 5%;
+    }
+
 }
