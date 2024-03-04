@@ -26,13 +26,31 @@
 #cover-image-label {
   margin: 5px;
   display: flex;
+  border-radius: 5px;
   flex-direction: column;
+  -webkit-transition: all 0.8s;
+  -moz-transition:    all 0.8s;
+  -ms-transition:     all 0.8s;
+  -o-transition:      all 0.8s;
+  transition:         all 0.8s;
+  box-shadow: none;
 }
 
 #cover-image-label:hover {
   cursor: pointer;
-  transform: scale(1.1);
-  transition: transform 0.5s;
+  transform:
+  scale(1.1);
+  box-shadow: 0 0 5px 1px #fff,  /* inner white */
+  0 0 3px 1px #edc7b7, /* middle pink */
+  0 0 5px 1px #AC3B61; /* outer red */
+  ;
+  /* transition: transform 0.5s; */
+  background-color: #AC3B61;
+  -webkit-transition: all 0.8s;
+  -moz-transition:    all 0.8s;
+  -ms-transition:     all 0.8s;
+  -o-transition:      all 0.8s;
+  transition:         all 0.8s;
 }
 
 #title-input:focus, #synopsis-input:focus, #category-input:focus, #private-input:focus {
@@ -53,7 +71,9 @@
 
 .thumbnails {
   width: 15vw;
+  /* max-width: 400px; */
   height: 20vw;
+  transition: all 0.5s ease-in-out;
 }
 
 .thumbnails:hover {
@@ -130,6 +150,7 @@ html {
   bottom: 10px;
   right: 20px;
   cursor: pointer;
+  border-radius: 5px;
 }
 
 /* The switch - the box around the slider */

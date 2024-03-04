@@ -119,15 +119,15 @@ function PageForm({formType, page, bookId, pageId}) {
         </>}
       <form className="page-form" onSubmit={handleSubmit} encType="multipart/form-data">
         <div className="left-form-container">
-        <label>
+        <label id="overarching-label">
           Page Image
           <br></br>
           <br></br>
-          <div className="page-file-inputs-container">
+          <div className="file-inputs-container">
               <input type="file" accept="image/png, image/jpeg, image/jpg" id="post-image-input" onChange={fileWrap}></input>
-              <label htmlFor="post-image-input" className="file-input-labels">Choose File</label>
+              <label htmlFor="post-image-input" id="cover-image-label" className="file-input-labels">Choose File</label>
               <div className="file-inputs-filename" style={{ color: filename === "Selected image exceeds the maximum file size of 5Mb" ? "red" : "#B7BBBF" }}>{filename}</div>
-              <div className="thumbnails-container"><img style={{width: "400px", max_height: "450px"}} src={imageURL} className="thumbnails"></img></div>
+              <div className="thumbnails-container"><img style={{border: "none"}} src={imageURL} className="thumbnail"></img></div>
           </div>
 
           <div className="error">
@@ -138,11 +138,13 @@ function PageForm({formType, page, bookId, pageId}) {
         </label>
         </div>
         <div className="right-form-container">
-        <label>
+        <label id="title-label" className="book-label">
           Page Title <br></br>
           {page_name?.length}/30
           <input
+            id="title-input"
             className="form-title"
+            maxLength={30}
             type="text"
             value={page_name}
             onChange={(e) => setPage_Name(e.target.value)}
@@ -154,10 +156,12 @@ function PageForm({formType, page, bookId, pageId}) {
             )}
           </div>
         </label>
-        <label>
+        <label id="synopsis-label" className="book-label">
           Caption <br></br>
           {caption.length}/300
           <textarea
+            id="synopsis-input"
+            maxLength={300}
             value={caption}
             onChange={(e) => setCaption(e.target.value)}
             className="form-caption"

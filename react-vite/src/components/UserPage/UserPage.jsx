@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import BookTile from '../BookTile/BookTile';
@@ -12,6 +12,9 @@ export default function UserPage() {
   const dispatch = useDispatch();
   const { userId } = useParams();
   const navigate = useNavigate()
+  const [showBooks, setShowYourBooks] = useState(true);
+  const [showPicks, setShowYourPicks] = useState(false);
+  const [showAbout, setShowAbout] = useState(false);
 
   const user = useSelector((state) => state.users[userId]);
   const currUser = useSelector((state) => state.session.user)
@@ -22,6 +25,57 @@ export default function UserPage() {
     dispatch(thunkGetAllBooks());
     dispatch(thunkGetAllUsers())
   }, [dispatch]);
+
+  function showYourPicks() {
+    setShowYourBooks(false);
+    setShowYourPicks(true);
+    setShowAbout(false)
+    const yourBooksButton = document.getElementById("books-button");
+    const yourPicksButton = document.getElementById("picks-button");
+    const aboutButton = document.getElementById("about-button");
+    yourBooksButton?.classList.remove("using");
+    yourBooks?.classList.remove("showing");
+    aboutButton?.classList.remove("using");
+    about.classList.remove("showing");
+    yourPicksButton?.classList.add("using");
+    yourPicks?.classList.add("showing");
+}
+
+function showYourBooks() {
+  setShowYourPicks(false);
+  setShowYourBooks(true);
+  setShowAbout(false)
+  const yourBooksButton = document.getElementById("books-button");
+  const yourBooks = document.getElementById("user-books");
+  const yourPicksButton = document.getElementById("picks-button");
+  const yourPicks = document.getElementById("user-picks");
+  const aboutButton = document.getElementById("about-button");
+  const about = document.getElementById("user-about");
+  yourBooksButton?.classList.add("using");
+  yourBooks?.classList.add("showing");
+  aboutButton?.classList.remove("using");
+  about.classList.remove("showing");
+  yourPicksButton?.classList.remove("using");
+  yourPicks?.classList.remove("showing");
+}
+
+function showUserAbout() {
+  setShowYourPicks(false);
+  setShowYourBooks(false);
+  setShowAbout(true)
+  const yourBooksButton = document.getElementById("books-button");
+  const yourBooks = document.getElementById("user-books");
+  const yourPicksButton = document.getElementById("picks-button");
+  const yourPicks = document.getElementById("user-picks");
+  const aboutButton = document.getElementById("about-button");
+  const about = document.getElementById("user-about");
+  yourBooksButton?.classList.remove("using");
+  yourBooks?.classList.remove("showing");
+  aboutButton?.classList.add("using");
+  about.classList.add("showing");
+  yourPicksButton?.classList.remove("using");
+  yourPicks?.classList.remove("showing");
+}
 
   if (!allBooks) return null;
 
@@ -66,7 +120,7 @@ export default function UserPage() {
 
       </div>
 
-      <div className="user-books">
+      {showBooks && <div id="user-books" className="user-books">
         <div className="user-page-about">About Me: <p>{user.about}</p></div>
         <div className="books-container">
           {userBooks.map((book) => (
@@ -75,7 +129,24 @@ export default function UserPage() {
               </div>
           ))}
         </div>
-      </div>
+      </div>}
+
+      {currUser && currUser.id == userId &&
+        showPicks && <div id="user-picks" className="user-picks">
+        <div className="user-page-about">About Me: <p>{user.about}</p></div>
+        <div className="books-container">
+          {userBooks.map((book) => (
+              <div key={book.id} className='book-tile-container'>
+                  <BookTile book={book} currUser={currUser} />
+              </div>
+          ))}
+        </div>
+        </div>
+      }
+      {showAbout && <div id="user-about" className="user-about">
+        <div className="user-page-about">About Me: <p>{user.about}</p></div>
+        </div>
+      }
     </div>
     </>
   );
