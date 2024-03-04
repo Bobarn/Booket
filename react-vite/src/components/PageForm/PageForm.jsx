@@ -106,7 +106,7 @@ function PageForm({formType, page, bookId, pageId}) {
   return (
     <>
     <div id="buffer"></div>
-    <div className="create-page-container">
+    <div className="fader create-page-container">
         {formType == "Publish Page" ?
         <>
             <h1 id="page-form-heading">Add A New Page to Your Book!</h1>

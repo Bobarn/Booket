@@ -113,7 +113,7 @@ function BookForm({formType, book, bookId}) {
   return (
     <>
     <div id="buffer"></div>
-    <div className="create-book-container">
+    <div className="fader create-book-container">
         {formType == "Publish Book" ?
         <>
             <h1 id="book-form-heading">Publish Your New Book</h1>

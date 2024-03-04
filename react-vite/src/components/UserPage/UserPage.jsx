@@ -101,7 +101,7 @@ export default function UserPage() {
   return (
     <>
     <div id="buffer"></div>
-    <div className="user-page-container">
+    <div className="fader user-page-container">
       <div className="user-profile-container">
         <div className='banner'>
             <img src={user?.bannerImage} className='user-banner-image' />

@@ -32,8 +32,8 @@ export default function UserPicks() {
     return (
         <>
         <div id="buffer"></div>
-        <div className='main-shelf'>
-            <h1 className='picks-header'>Here are the books you currently have checked out...</h1>
+        <div className='fader main-shelf'>
+            <h1 className='picks-header'>Here are the books you are currently reading...</h1>
             <div className='book-shelf'>
                 <div className='books-container'>
                     {openBooks.map((book) => {
@@ -46,11 +46,11 @@ export default function UserPicks() {
                 </div>
 
             </div>
-            <div className='bookmarks-container'>
+            <div className='fader bookmarks-container'>
                 <h1>Here are your bookmarked pages...</h1>
                 <div className='bookmarks'>
                     <ol className='toc'>
-                        {bookmarked.map((page) => (
+                        {bookmarked.reverse().map((page) => (
                                 <li className='toc-item' key={page.id}>
                                     <Link className='toc-link' to={`/page/${page.id}`}>
                                         {page.page_name} by {page.author}
