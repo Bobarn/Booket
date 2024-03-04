@@ -154,7 +154,7 @@ export default function PageFlip() {
                             </div>
                         </>
                         }
-                        <h2>Caption</h2>
+                        <h2 id='page-caption'>Caption</h2>
                         <p className='page-caption'>{page?.caption}</p>
                         {displayAnnotations()}
 

@@ -93,6 +93,9 @@
     flex-direction: column;
     border-radius: 5px;
     text-align: center;
+    box-shadow: 0 0 5px 1px #fff,  /* inner white */
+    0 0 3px 1px #edc7b7, /* middle pink */
+    0 0 5px 1px #AC3B61; /* outer red */
 }
 
 .user-page-username {
@@ -101,6 +104,7 @@
     font-size: 32px;
     color: black;
     margin: 0px;
+    transition: all 0.5s ease-in-out;
 }
 
 #buffer {
@@ -113,17 +117,67 @@
     min-height: 417px;
 }
 
+
 .user-profile-container > .modal-button {
     background-color: #FFFDDA;
     position: absolute;
     bottom: 0%;
-    left: 30%;
+    left: 35%;
     font-size: medium;
 }
 
+@media (max-width: 1200px) {
+    .user-page-about {
+        width: 100vw;
+        height: fit-content;
+    }
+
+    .user-books {
+        grid-template-columns: 1fr;
+    }
+
+    .user-page-username {
+        bottom: 25%;
+        left: 20%;
+        transition: all 0.5s ease-in-out;
+    }
+}
+
+@media (max-width: 875px) {
+    .user-profile-container > .modal-button {
+        left: 40%;
+    }
+
+}
 
 @media (max-width: 768px) {
+    .user-profile-container > .modal-button {
+        left: 45%;
+    }
+
+    .user-profile-image {
+        left: 44%;
+        bottom: 35%;
+    }
+
+    .user-page-username {
+        bottom: 25%;
+        left: 45%;
+    }
+
     #buffer {
         height: 60px;
+    }
+
+    .user-page-container {
+        min-height: 100vh;
+    }
+}
+
+@media (max-width: 580px) {
+    .user-profile-container > .modal-button {
+        right: 0%;
+        left: auto;
+        bottom: 50%;
     }
 }

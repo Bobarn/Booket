@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import BookTile from '../BookTile/BookTile';
@@ -12,9 +12,9 @@ export default function UserPage() {
   const dispatch = useDispatch();
   const { userId } = useParams();
   const navigate = useNavigate()
-  const [showBooks, setShowYourBooks] = useState(true);
-  const [showPicks, setShowYourPicks] = useState(false);
-  const [showAbout, setShowAbout] = useState(false);
+  // const [showBooks, setShowYourBooks] = useState(true);
+  // const [showPicks, setShowYourPicks] = useState(false);
+  // const [showAbout, setShowAbout] = useState(false);
 
   const user = useSelector((state) => state.users[userId]);
   const currUser = useSelector((state) => state.session.user)
@@ -26,56 +26,61 @@ export default function UserPage() {
     dispatch(thunkGetAllUsers())
   }, [dispatch]);
 
-  function showYourPicks() {
-    setShowYourBooks(false);
-    setShowYourPicks(true);
-    setShowAbout(false)
-    const yourBooksButton = document.getElementById("books-button");
-    const yourPicksButton = document.getElementById("picks-button");
-    const aboutButton = document.getElementById("about-button");
-    yourBooksButton?.classList.remove("using");
-    yourBooks?.classList.remove("showing");
-    aboutButton?.classList.remove("using");
-    about.classList.remove("showing");
-    yourPicksButton?.classList.add("using");
-    yourPicks?.classList.add("showing");
-}
 
-function showYourBooks() {
-  setShowYourPicks(false);
-  setShowYourBooks(true);
-  setShowAbout(false)
-  const yourBooksButton = document.getElementById("books-button");
-  const yourBooks = document.getElementById("user-books");
-  const yourPicksButton = document.getElementById("picks-button");
-  const yourPicks = document.getElementById("user-picks");
-  const aboutButton = document.getElementById("about-button");
-  const about = document.getElementById("user-about");
-  yourBooksButton?.classList.add("using");
-  yourBooks?.classList.add("showing");
-  aboutButton?.classList.remove("using");
-  about.classList.remove("showing");
-  yourPicksButton?.classList.remove("using");
-  yourPicks?.classList.remove("showing");
-}
+  //Functions to show user books, picks, and about in some tabs and then adding and removing classes to show visual effect like fade-in transition
+//   function showYourPicks() {
+//     setShowYourBooks(false);
+//     setShowYourPicks(true);
+//     setShowAbout(false)
+//     const yourBooksButton = document.getElementById("books-button");
+//     const yourBooks = document.getElementById("user-books");
+//     const yourPicksButton = document.getElementById("picks-button");
+//     const yourPicks = document.getElementById("user-picks");
+//     const aboutButton = document.getElementById("about-button");
+//     const about = document.getElementById("user-about");
+//     yourBooksButton?.classList.remove("using");
+//     yourBooks?.classList.remove("showing");
+//     aboutButton?.classList.remove("using");
+//     about.classList.remove("showing");
+//     yourPicksButton?.classList.add("using");
+//     yourPicks?.classList.add("showing");
+// }
 
-function showUserAbout() {
-  setShowYourPicks(false);
-  setShowYourBooks(false);
-  setShowAbout(true)
-  const yourBooksButton = document.getElementById("books-button");
-  const yourBooks = document.getElementById("user-books");
-  const yourPicksButton = document.getElementById("picks-button");
-  const yourPicks = document.getElementById("user-picks");
-  const aboutButton = document.getElementById("about-button");
-  const about = document.getElementById("user-about");
-  yourBooksButton?.classList.remove("using");
-  yourBooks?.classList.remove("showing");
-  aboutButton?.classList.add("using");
-  about.classList.add("showing");
-  yourPicksButton?.classList.remove("using");
-  yourPicks?.classList.remove("showing");
-}
+// function showYourBooks() {
+//   setShowYourPicks(false);
+//   setShowYourBooks(true);
+//   setShowAbout(false)
+//   const yourBooksButton = document.getElementById("books-button");
+//   const yourBooks = document.getElementById("user-books");
+//   const yourPicksButton = document.getElementById("picks-button");
+//   const yourPicks = document.getElementById("user-picks");
+//   const aboutButton = document.getElementById("about-button");
+//   const about = document.getElementById("user-about");
+//   yourBooksButton?.classList.add("using");
+//   yourBooks?.classList.add("showing");
+//   aboutButton?.classList.remove("using");
+//   about.classList.remove("showing");
+//   yourPicksButton?.classList.remove("using");
+//   yourPicks?.classList.remove("showing");
+// }
+
+// function showUserAbout() {
+//   setShowYourPicks(false);
+//   setShowYourBooks(false);
+//   setShowAbout(true)
+//   const yourBooksButton = document.getElementById("books-button");
+//   const yourBooks = document.getElementById("user-books");
+//   const yourPicksButton = document.getElementById("picks-button");
+//   const yourPicks = document.getElementById("user-picks");
+//   const aboutButton = document.getElementById("about-button");
+//   const about = document.getElementById("user-about");
+//   yourBooksButton?.classList.remove("using");
+//   yourBooks?.classList.remove("showing");
+//   aboutButton?.classList.add("using");
+//   about.classList.add("showing");
+//   yourPicksButton?.classList.remove("using");
+//   yourPicks?.classList.remove("showing");
+// }
 
   if (!allBooks) return null;
 
@@ -99,28 +104,40 @@ function showUserAbout() {
     <div className="user-page-container">
       <div className="user-profile-container">
         <div className='banner'>
-            <img src={user.bannerImage} className='user-banner-image' />
+            <img src={user?.bannerImage} className='user-banner-image' />
         </div>
-        <img src={user.profileImage} className="user-profile-image" />
-        <h2 className="user-page-username">{user.username}</h2>
+        <img src={user?.profileImage} className="user-profile-image" />
+        <h2 className="user-page-username">{user?.username}</h2>
 
         <div className="users-stats">
-          <h3>{user.books} Book(s)      {user.pages} Page(s)</h3>
+          <h3>{user?.books} Book(s)      {user?.pages} Page(s)</h3>
         </div>
-        {userId == currUser.id &&
-          <OpenModalMenuItem
-          itemText={"Edit Profile"}
-          modalComponent={<EditProfileModal currUser={currUser} />}
-          />
-        }
+        {/* <div> */}
+          {userId == currUser.id &&
+            <OpenModalMenuItem
+            itemText={"Edit Profile"}
+            modalComponent={<EditProfileModal currUser={currUser} />}
+            />
+          }
+        {/* </div> */}
 
         <div className="user-joined">
-          {`Joined ${new Date(user.joined).getFullYear()}`}
+          {`Joined ${new Date(user?.joined).getFullYear()}`}
         </div>
 
       </div>
+      <div id="user-books" className="user-books">
+        <div className="user-page-about">About Me: <p>{user?.about}</p></div>
+        <div className="books-container">
+          {userBooks.map((book) => (
+              <div key={book.id} className='book-tile-container'>
+                  <BookTile book={book} currUser={currUser} />
+              </div>
+          ))}
+        </div>
+      </div>
 
-      {showBooks && <div id="user-books" className="user-books">
+      {/* {showBooks && <div id="user-books" className="user-books">
         <div className="user-page-about">About Me: <p>{user.about}</p></div>
         <div className="books-container">
           {userBooks.map((book) => (
@@ -129,9 +146,9 @@ function showUserAbout() {
               </div>
           ))}
         </div>
-      </div>}
+      </div>} */}
 
-      {currUser && currUser.id == userId &&
+      {/* {currUser && currUser.id == userId &&
         showPicks && <div id="user-picks" className="user-picks">
         <div className="user-page-about">About Me: <p>{user.about}</p></div>
         <div className="books-container">
@@ -141,12 +158,11 @@ function showUserAbout() {
               </div>
           ))}
         </div>
-        </div>
-      }
-      {showAbout && <div id="user-about" className="user-about">
+        </div>} */}
+      {/* {showAbout && <div id="user-about" className="user-about">
         <div className="user-page-about">About Me: <p>{user.about}</p></div>
         </div>
-      }
+      } */}
     </div>
     </>
   );

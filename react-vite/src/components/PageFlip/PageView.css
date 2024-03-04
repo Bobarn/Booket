@@ -229,3 +229,45 @@
 	transform: scale(1.1) ;
 	transition: transform 0.3s ease-in-out;
 }
+
+#page-caption {
+	position: relative;
+	top: -5%;
+}
+
+@media screen and (max-width: 1000px) {
+
+	.annotation-container {
+		height: 200px;
+	}
+	#page-image {
+		width: 95%;
+		height: auto;
+		max-height: 40vw;
+	}
+
+	.page-caption {
+		position: relative;
+		top: -5%;
+	}
+}
+
+@media screen and (max-width: 920px) {
+
+	.turn-page-next {
+		top: 60%;
+	}
+
+	#annotation-form {
+		width: 80%;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.annotation-container {
+		height: 150px;
+		width: 90%;
+		/* top: 52%; */
+		align-self: center;
+	}
+}
