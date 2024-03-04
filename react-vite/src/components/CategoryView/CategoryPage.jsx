@@ -11,7 +11,6 @@ export default function CategoryPage() {
     const dispatch = useDispatch();
     const allBooks = useSelector((state) => state.books);
     const currUser = useSelector((state) => state.session.user);
-    // const [isCat, setIsCat] = useState(category)
 
     useEffect(() => {
         dispatch(thunkGetAllBooks())
@@ -33,7 +32,7 @@ export default function CategoryPage() {
                     <Link style={{color: category == 'Tech' ? "rgb(172, 59, 97)" : '' }} className='cat-link' to={'/category/Tech'}><i style={{color: category == 'Tech' ? "rgb(172, 59, 97)" : '' }} className="cat-logo-specific fa-xs fa-brands fa-space-awesome"></i><img className='cat-logo' src='https://photobooket.s3.amazonaws.com/a03e8cefc38f4a9bb210ba8085e01f36.png'/>Tech</Link>
                     <Link style={{color: category == 'Other' ? "rgb(172, 59, 97)" : '' }} className='cat-link' to={'/category/Other'}><i style={{color: category == 'Other' ? "rgb(172, 59, 97)" : '' }} className="cat-logo-specific fa-xs fa-solid fa-otter"></i><img className='cat-logo' src='https://photobooket.s3.amazonaws.com/a03e8cefc38f4a9bb210ba8085e01f36.png'/>Other</Link>
                 </div>
-                <div className='book-shelf'>
+                <div className='fader book-shelf'>
                     <div className='books-container'>
                         {booksArray.map((book) => {
                             return (

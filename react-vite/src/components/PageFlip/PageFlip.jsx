@@ -100,7 +100,7 @@ export default function PageFlip() {
     return (
     <>
         <div id="buffer"></div>
-        <div id='book-container'>
+        <div className='fader' id='book-container'>
             {/* Add in on changes so that we avoid the warning for uncontrolled/controlled inputs. Also add checked so we can force it closed again after navigation */}
                 <input type="checkbox" className='checkbox' defaultChecked={true} id="checkbox-cover"/>
                 <input type="checkbox" className='checkbox' onChange={() => null} checked={checked} id="checkbox-page1"/>
@@ -154,7 +154,7 @@ export default function PageFlip() {
                             </div>
                         </>
                         }
-                        <h2>Caption</h2>
+                        <h2 id='page-caption'>Caption</h2>
                         <p className='page-caption'>{page?.caption}</p>
                         {displayAnnotations()}
 

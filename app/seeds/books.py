@@ -95,11 +95,99 @@ def seed_books():
         private = True,
         createdAt = fake.date_between(start_date='-1y', end_date="today")
         )
+    # Fill the next series of books with information pertaining to the user's interests and hobbies with a private status of False and a user_id between 1 and 6
+    book9 = Book(
+        user_id = 6,
+        title = "The Art of the Deal",
+        category = "Other",
+        coverImage = "https://yt3.googleusercontent.com/ytc/AIf8zZSi7oUZfmShaPxRy6j1WUh3Q6-M_O8tQzIwMfQl=s900-c-k-c0x00ffffff-no-rj",
+        coverImageName = "Business_Book.jpg",
+        synopsis = "I've been in the business world for a while now and I've learned a lot. I want to share my experiences and the lessons I've learned with you all.",
+        private = False,
+        createdAt = fake.date_between(start_date='-1y', end_date="today")
+    )
+
+    book10 = Book(
+        user_id = 3,
+        title = "The Great Outdoors",
+        category = "Outdoors",
+        coverImage = "https://ctparks.com/sites/default/files/styles/social_media_1200x630/public/images/2023-05/Camping-Hero-SStock-BlackRockBackdrop.jpg?h=e8a8b91c&itok=uboRdiqk",
+        coverImageName = "Camping_Guide.jpg",
+        synopsis = "Camping is one of my favorite things to do. I've been to so many places and I want to share my experiences with you all. I hope you enjoy it as much as I do.",
+        private = False,
+        createdAt = fake.date_between(start_date='-1y', end_date="today")
+    )
+
+    book11 = Book(
+        user_id = 2,
+        title = "The World of Fitness",
+        category = "Fitness",
+        coverImage = "https://d2rhgntcjgwkhf.cloudfront.net/organizations/66877/original_logo.gif?1680864735",
+        coverImageName = "Fitness_Book.jpg",
+        synopsis = "I've been a personal trainer for a while now and I've learned a lot. I want to share my experiences and the lessons I've learned with you all.",
+        private = False,
+        createdAt = fake.date_between(start_date='-1y', end_date="today")
+    )
+
+    book12 = Book(
+        user_id = 4,
+        title = "The Art of Self Help",
+        coverImage = "https://www.heart.org/-/media/Images/News/2022/September-2022/0912MHSelfCareChecklist_SC.jpg",
+        coverImageName = "Self_Help.jpg",
+        category = "Self-Improvement",
+        synopsis = "Every day I try to make myself a better person. I've learned a lot and I want to share my experiences and the lessons I've learned with you all.",
+        private = False,
+        createdAt = fake.date_between(start_date='-1y', end_date="today")
+    )
+
+    book13 = Book(
+        user_id = 5,
+        title = "The World of Tech",
+        coverImage = "https://www.consultantsreview.com/newstransfer/upload/289jpXiaomi-VR.jpg",
+        coverImageName = "VR_Cover.jpg",
+        category = "Tech",
+        synopsis = "Lately I have been engrossed in the world of VR. I have been having so much playing around and learning about it.",
+        private = False,
+        createdAt = fake.date_between(start_date='-1y', end_date="today")
+    )
+
+    book14 = Book(
+        user_id = 1,
+        title = "Sobriety",
+        coverImage = "https://domf5oio6qrcr.cloudfront.net/medialibrary/9780/GettyImages-1125383709.jpg",
+        coverImageName = "Sobriety.jpg",
+        category = "Self-Improvement",
+        synopsis = "I have been sober for a year now after struggling with abuse problems of several different substances and I want to share my experiences and the lessons I've learned with you all.",
+        private = False,
+        createdAt = fake.date_between(start_date='-1y', end_date="today")
+    )
+
+    book15 = Book(
+        user_id = 3,
+        title = "Keeping Myself Company",
+        coverImage = "https://www.minimalismmadesimple.com/wp-content/uploads/2022/10/clean-out-your-house.png",
+        coverImageName = "Minimalism.jpg",
+        category = "Home",
+        synopsis = "I have been trying to live a more minimalistic lifestyle and clean out all the things I don't need or use anymore.",
+        private = False,
+        createdAt = fake.date_between(start_date='-1y', end_date="today")
+    )
+
+    book16 = Book(
+        user_id = 4,
+        title = "Fighting It Out",
+        coverImage = "https://gray-wifr-prod.cdn.arcpublishing.com/resizer/v2/375T7VWUHBOV5P2YB7WDHSKVNU.jpg?auth=b842bb20f3ed3a80058569ef47e3d38a7048c8601e09ab681c4605627e8c5bb4&width=800&height=450&smart=true",
+        coverImageName = "Boxing.jpg",
+        category = "Fitness",
+        synopsis = "I have been trying to get into boxing lately and I have been having so much fun learning and practicing. Come see how I have been doing!",
+        private = False,
+        createdAt = fake.date_between(start_date='-1y', end_date="today")
+    )
 
 
     users = User.query.all()
 
-    all_books = [book1, book2, book3, book4, book5, book6]
+    all_books = [book1, book2, book3, book4, book5, book6, book9, book10, book11, book12, book13, book14, book15, book16]
 
     for book in all_books:
         usersToAdd = list(set(choices(users, k=randint(1,5))))
