@@ -2,6 +2,9 @@ from app.models import db, User, environment, SCHEMA
 from sqlalchemy.sql import text
 from faker import Faker
 
+usernames = ['AdventureSeeker', 'NatureLover23', 'BookwormDreamer', 'SunflowerSmiles']
+
+
 about = [
     'Adventure enthusiast exploring the world one destination at a time. From scaling mountain peaks to diving into deep blue seas, I thrive on adrenaline and capturing moments that take your breath away. Life is an adventure, and I am here for the thrill!',
     'Tech guru by day, gaming legend by night. Whether I am coding the next big thing or defeating virtual foes, I am always in pursuit of innovation and fun. Join me on a journey through the digital realm, where every line of code tells a story.',
@@ -25,7 +28,7 @@ def seed_users():
 
     for i in range(4):
         newUser = User(
-            username=f.user_name(),
+            username=usernames[i],
             email=f.email(),
             password='password',
             about=about[i]
