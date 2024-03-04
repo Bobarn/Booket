@@ -58,8 +58,12 @@ Welcome to Booket, a social media platform with a book theme that allows users t
 
 **Messaging**
   - A more interactive user experience by incorporating websockets to have a real time messaging feature between two users
+    
 **Friends List**
   - Keep track of those you've really connected with in this community!
+
+**User Tabs and Full Mobile Responsiveness**
+  - Currently the mobile view of the pages is small, I hope to find some way to supplement this by changing the layout but I may have to sacrifice the page flip animation.
 
 ## Contact
 
