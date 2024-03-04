@@ -206,13 +206,13 @@ def seed_pages():
 
     page24 = Page(user_id=2, book_id=11, page_name="Empowering Others", page_number=2, caption="In the world of personal training, motivation is the currency, and helping clients reach their fitness goals is the ultimate reward.", image="https://media.istockphoto.com/id/953476148/vector/finish-strong-inspiring-workout-and-fitness-gym-motivation-quote-illustration-sign-creative.jpg?s=612x612&w=0&k=20&c=84sRmqmJhgmR_hKA5kDhIax5kvO15CCyUgXe2hl-R6U=", imageName="Trainer Image 2")
 
-    page25 = Page(user_id=4, book_id=12, page_name="The Path to Personal Growth", page_number=1, caption="Embarking on a journey of self-discovery: Unraveling the layers to reveal the empowered, authentic you.", image="https://www.rappler.com/tachyon/2021/10/rappler-blogs-shutterstock-self-help-books-sq.jpg", imageName="Self-Help Image 1")
+    page25 = Page(user_id=4, book_id=12, page_name="Growing Alone", page_number=1, caption="Embarking on a journey of self-discovery: Unraveling the layers to reveal the empowered, authentic you.", image="https://www.rappler.com/tachyon/2021/10/rappler-blogs-shutterstock-self-help-books-sq.jpg", imageName="Self-Help Image 1")
 
     page26 = Page(user_id=4, book_id=12, page_name="Empower Your Mind", page_number=2, caption="In the realm of self-help, every challenge is an opportunity, and every setback is a stepping stone to a stronger, more resilient you.", image="https://www.insperity.com/wp-content/uploads/Selfcare_Leadership1200x630.png", imageName="Self-Help Image 2")
 
-    page27 = Page(user_id=5, book_id=13, page_name="Virtual Adventures Await", page_number=1, caption="Step into the extraordinary world of virtual reality: Where reality blurs with imagination, and every adventure feels larger than life.", image="https://static0.gamerantimages.com/wordpress/wp-content/uploads/2022/09/dragon-in-The-Elder-Scrolls-V-Skyrim-VR-girl-in-RUINSMAGUS-skeleton-monster-in-Legendary-Tales.jpg", imageName="VR Image 1")
+    page27 = Page(user_id=5, book_id=13, page_name="Virtually Adventurous", page_number=1, caption="Step into the extraordinary world of virtual reality: Where reality blurs with imagination, and every adventure feels larger than life.", image="https://static0.gamerantimages.com/wordpress/wp-content/uploads/2022/09/dragon-in-The-Elder-Scrolls-V-Skyrim-VR-girl-in-RUINSMAGUS-skeleton-monster-in-Legendary-Tales.jpg", imageName="VR Image 1")
 
-    page28 = Page(user_id=5, book_id=13, page_name="Gaming in a New Dimension", page_number=2, caption="In the realm of virtual reality gaming, the only limit is your creativity. Immerse yourself in a world where pixels come to life.", image="https://zybervr.com/cdn/shop/articles/beat-saber-scoring-system.jpg?v=1692331211", imageName="VR Image 2")
+    page28 = Page(user_id=5, book_id=13, page_name="A New World", page_number=2, caption="In the realm of virtual reality gaming, the only limit is your creativity. Immerse yourself in a world where pixels come to life.", image="https://zybervr.com/cdn/shop/articles/beat-saber-scoring-system.jpg?v=1692331211", imageName="VR Image 2")
 
     page29 = Page(user_id=1, book_id=14, page_name="A Sober Beginning", page_number=1, caption="Embarking on a journey of sobriety: It's not easy. I reward myself though with mocktails like these!", image="https://cleanfoodiecravings.com/wp-content/uploads/2022/07/Pomegranate-mocktails-11-scaled-1-768x1024.jpg", imageName="Sobriety Image 1")
 
@@ -220,7 +220,7 @@ def seed_pages():
 
     page31 = Page(user_id=3, book_id=15, page_name="The Great Clutter Caper", page_number=1, caption="Embarking on a decluttering adventure: Where misplaced items play hide and seek, and winning means finding your favorite sock.", image="https://goodtobehomemag.com/wp-content/uploads/sites/5/2018/01/cleaning-tips-for-working-moms-intext1-910x683-1.jpeg", imageName="Cleaning Image 1")
 
-    page32 = Page(user_id=3, book_id=15, page_name="Journey to the Land of Lost Keys", page_number=2, caption="In the world of house cleaning, every lost item has a secret society. Uncover the mysteries of the missing with laughter and a dustpan.", image="https://media-cldnry.s-nbcnews.com/image/upload/t_nbcnews-fp-1200-630,f_auto,q_auto:best/newscms/2018_04/2305306/180125-better-cleaning-115a-rs.jpg", imageName="Cleaning Image 2")
+    page32 = Page(user_id=3, book_id=15, page_name="Land of the Lost", page_number=2, caption="In the world of house cleaning, every lost item has a secret society. Uncover the mysteries of the missing with laughter and a dustpan.", image="https://media-cldnry.s-nbcnews.com/image/upload/t_nbcnews-fp-1200-630,f_auto,q_auto:best/newscms/2018_04/2305306/180125-better-cleaning-115a-rs.jpg", imageName="Cleaning Image 2")
 
     page33 = Page(user_id=4, book_id=16, page_name="Gloves and Glory", page_number=1, caption="Stepping into the ring: Where the heartbeat is the rhythm of the fight, and victory is the sweetest melody.", image="https://european-games.org/wp-content/uploads/2022/10/30657454202_f715da9e46_k.jpg", imageName="Boxing Image 1")
 
