@@ -70,6 +70,16 @@ body {
     justify-content: center;
 }
 
+button {
+    transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+    box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+    transform: scale(1.1);
+    transition: all 0.3s ease-in-out;
+}
+
 @media screen and (max-width: 768px) {
     .welcome-book-containers {
         display: flex;
@@ -80,6 +90,10 @@ body {
 
     .welcome-background {
         height: 500px;
+    }
+
+    #tutorial-book {
+        margin-top: 5%;
     }
 
 }

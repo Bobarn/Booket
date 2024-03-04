@@ -12,7 +12,7 @@
     font-family: 'Raleway', sans-serif;
     font-weight: 600;
     font-style: italic;
-    color: #AC3B61;
+    color: #ac3b61;
     word-wrap: break-word;
 }
 
@@ -56,7 +56,7 @@
     opacity: 1;
     height: 90%;
     border: 1px #183a1d solid;
-    background-color: #f6eee3;
+    background-color: white;
 }
 
 .tile-author-area {
@@ -146,11 +146,17 @@
     text-align: center;
     border: #183a1d solid 2px;
     text-decoration: none;
-    border-radius: 0 5px 5px 0;
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: 0px 0px 3px 3px rgba(172, 59, 97, 0.5);
 }
 
 .index-link, .tile-index > p {
     display: none;
+}
+
+.tile-index-item:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s ease-in-out;
 }
 
 .book-tile:hover .index-link,
@@ -161,13 +167,19 @@
 .burn-button, .new-page-button, .revise-button {
     display:none;
     position: absolute;
-    background-color: #f6eee3;
+    background-color: white;
     border: none;
     border-radius: 100%;
 }
 
+
+.burn-button > .open-modal-button:hover, .new-page-button:hover, .revise-button:hover {
+    box-shadow: none;
+    transform: none;
+}
+
 .burn-button > .open-modal-button {
-    background-color: #f6eee3;
+    background-color: white;
     border: none;
     cursor: pointer;
 }
@@ -228,6 +240,10 @@
     opacity: 1;
 }
 
+.book-tile:hover .tile-front-cover, .book-tile:hover .tile-back-cover {
+    box-shadow: 2px 3px 3px 3px rgba(172, 59, 97, 0.3);
+}
+
 @media screen and (max-width: 768px) {
     .book-tile {
         margin: 5%;
@@ -244,7 +260,7 @@
 
     .tile-synopsis {
         font-size: 12px;
-        width: 90%;
+        width: 95%;
     }
 
     .tile-index {
@@ -253,3 +269,25 @@
     }
 
 }
+
+
+
+/* @media (prefers-reduced-motion: no-preference) {
+    .
+} */
+/*
+.book-tile {
+    scale: 0.8;
+    opacity: 0;
+    animation: fade-in linear forwards;
+    animation-timeline: view(200px, 500px);
+    animation-range: contain 100px;
+}
+
+
+@keyframes fade-in {
+    to {
+        scale: 1;
+        opacity: 1;
+    }
+} */

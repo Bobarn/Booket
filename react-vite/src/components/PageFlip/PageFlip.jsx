@@ -34,9 +34,9 @@ export default function PageFlip() {
         navigate('/home')
     }
 
-    if(!page?.book_id) {
-        navigate('/home')
-    }
+    // if(!page?.book_id) {
+    //     navigate('/home')
+    // }
 
     const allPages = Object.values(pages)
 
@@ -100,7 +100,7 @@ export default function PageFlip() {
     return (
     <>
         <div id="buffer"></div>
-        <div id='book-container'>
+        <div className='fader' id='book-container'>
             {/* Add in on changes so that we avoid the warning for uncontrolled/controlled inputs. Also add checked so we can force it closed again after navigation */}
                 <input type="checkbox" className='checkbox' defaultChecked={true} id="checkbox-cover"/>
                 <input type="checkbox" className='checkbox' onChange={() => null} checked={checked} id="checkbox-page1"/>
@@ -122,10 +122,10 @@ export default function PageFlip() {
                         </div>
                         <div className="back-page">
                             {user && !bookmarks[page?.id] &&
-                            <button className='bookmark-button' onClick={() => addBookmark(page.id)}><i className="fa-xl fa-regular fa-bookmark"></i></button>
+                            <button className='bookmark-button' onClick={() => addBookmark(page.id)}><i className="bookmark fa-xl fa-regular fa-bookmark"></i></button>
                             }
                             {user && bookmarks[page?.id] &&
-                            <button className='bookmark-button' onClick={() => removeBookmark(page.id)} ><i className="fa-xl fa-solid fa-bookmark"></i></button>
+                            <button className='bookmark-button' onClick={() => removeBookmark(page.id)} ><i className="bookmark fa-xl fa-solid fa-bookmark"></i></button>
                             }
 
                         <h4>{page?.page_name}</h4>
@@ -154,7 +154,7 @@ export default function PageFlip() {
                             </div>
                         </>
                         }
-                        <h2>Caption</h2>
+                        <h2 id='page-caption'>Caption</h2>
                         <p className='page-caption'>{page?.caption}</p>
                         {displayAnnotations()}
 

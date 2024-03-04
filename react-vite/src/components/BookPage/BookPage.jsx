@@ -20,7 +20,7 @@ export default function BookPage() {
     const book = useSelector((state) => state.books[bookId]);
     const checkouts = useSelector((state) => state.checkouts)
 
-    if(!user || (book?.private && book.author.id != user.id) || !book) {
+    if(!user || (book?.private && book.author.id != user.id)) {
         navigate('/home')
     }
 
@@ -41,7 +41,7 @@ export default function BookPage() {
     return (
     <>
         <div id="buffer"></div>
-        <div id='book-container'>
+        <div className='fader' id='book-container'>
             {/* Add in on changes so that we avoid the warning for uncontrolled/controlled inputs. Also add checked so we can force it closed again after navigation */}
                 <input type="checkbox" className='checkbox' defaultChecked={true} id="checkbox-cover"/>
                 <input type="checkbox" className='checkbox' onChange={() => null} checked={true} id="checkbox-page1"/>
@@ -51,24 +51,24 @@ export default function BookPage() {
                     <div className="cover">
                     </div>
                     <div className="page" id="page1">
-                        <div className="front-page">
+                        {/* <div className="front-page">
                             Flipping...
-                        </div>
+                        </div> */}
                         <div className="back-page">
-                            {user && user.id !== book.user_id && !checkouts[book.id] &&
+                            {user && user.id !== book?.user_id && !checkouts[book?.id] &&
                             <button className='checkouts-button' onClick={() => addCheckout(book.id)}><i className="fa-solid fa-square-plus"></i></button>
                             }
-                            {user && user.id !== book.user_id && checkouts[book.id] &&
+                            {user && user.id !== book?.user_id && checkouts[book?.id] &&
                             <button className='checkouts-button' onClick={() => removeCheckout(book.id)}><i className="fa-solid fa-book-open-reader"></i></button>
                             }
-                        <h4>{book.title}</h4>
-                            <img id='book-image' src={book.cover}/>
+                        <h4>{book?.title}</h4>
+                            <img id='book-image' src={book?.cover}/>
                         </div>
                     </div>
                     <div className="page" id="page2">
                         <div className="front-page">
                         <h2>Synopsis</h2>
-                        <p className='page-caption'>{book.synopsis}</p>
+                        <p className='page-caption'>{book?.synopsis}</p>
                         </div>
                         <h4 id='book-toc'>Table of Contents</h4>
                         <div className='table-of-contents'>
@@ -82,9 +82,9 @@ export default function BookPage() {
                                 ))}
                         </ol>
                         </div>
-                        <div className="back-page">
+                        {/* <div className="back-page">
                             Flipping...
-                        </div>
+                        </div> */}
                     </div>
                     <div className="back-cover"></div>
                 </div>

@@ -70,6 +70,10 @@ export const router = createBrowserRouter([
       {
         path: '/user/picks',
         element: <UserPicks />
+      },
+      {
+        path: '*',
+        element: <><div id='buffer'></div><h1>Page Not Found</h1></>
       }
     ],
   },

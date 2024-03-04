@@ -1,3 +1,6 @@
+from gevent import monkey
+monkey.patch_all()
+
 import os
 from flask import Flask, render_template, request, session, redirect
 from flask_cors import CORS
@@ -17,7 +20,6 @@ from .config import Config
 from .socket import socketio
 
 app = Flask(__name__, static_folder='../react-vite/dist', static_url_path='/')
-socketio.init_app(app)
 
 # Setup login manager
 login = LoginManager(app)
@@ -43,9 +45,9 @@ app.register_blueprint(message_routes, url_prefix='/api/messages')
 
 db.init_app(app)
 Migrate(app, db)
+socketio.init_app(app, async_mode='gevent')
 
-if __name__ == '__main__':
-    socketio.run(app)
+
 
 # Application Security
 CORS(app)
@@ -105,3 +107,6 @@ def react_root(path):
 @app.errorhandler(404)
 def not_found(e):
     return app.send_static_file('index.html')
+
+if __name__ == '__main__':
+    socketio.run(app)

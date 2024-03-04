@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { thunkGetAllBooks } from '../../redux/books';
+import { thunkGetBookmarks } from '../../redux/bookmarks';
 import { Link, useNavigate } from 'react-router-dom';
 import BookTile from '../BookTile/BookTile';
 import './HomeFeed.css'
@@ -14,6 +15,7 @@ export default function HomeFeed() {
 
     useEffect(() => {
         dispatch(thunkGetAllBooks())
+        dispatch(thunkGetBookmarks())
     }, [dispatch])
 
     if(!allBooks) return null
@@ -23,7 +25,7 @@ export default function HomeFeed() {
     return (
         <>
         <div id="buffer"></div>
-        <div className='main-shelf'>
+        <div className='fader main-shelf'>
             <div className='category-main-cont'>
                 <Link className='cat-link' to={'/category/Home'}><i className="cat-logo-specific fa-xs fa-solid fa-house-chimney"></i> <img className='cat-logo' src='https://photobooket.s3.amazonaws.com/a03e8cefc38f4a9bb210ba8085e01f36.png'/>Home</Link>
                 <Link className='cat-link' to={'/category/Fitness'}> <i className="cat-logo-specific fa-xs fa-solid fa-dumbbell"></i> <img className='cat-logo' src='https://photobooket.s3.amazonaws.com/a03e8cefc38f4a9bb210ba8085e01f36.png'/>Fitness</Link>
