@@ -187,7 +187,7 @@ def seed_books():
 
     users = User.query.all()
 
-    all_books = [book1, book2, book3, book4, book5, book6, book9, book10, book11, book12, book13, book14, book15, book16]
+    all_books = [book1, book2, book3, book4, book5, book6]
 
     for book in all_books:
         usersToAdd = list(set(choices(users, k=randint(1,5))))
@@ -197,6 +197,14 @@ def seed_books():
     db.session.add_all(all_books)
     db.session.add(book7)
     db.session.add(book8)
+
+    other_books = [book9, book10, book11, book12, book13, book14, book15, book16]
+    for book in other_books:
+        usersToAdd = list(set(choices(users, k=randint(1,5))))
+        for user in usersToAdd:
+            book.borrowing.append(user)
+
+    db.session.add_all(other_books)
     db.session.commit()
 
 

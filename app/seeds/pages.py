@@ -130,7 +130,7 @@ def seed_pages():
         page_name = "Looking for a Book",
         page_number = 2,
         caption = "Upon signing up you'll be brought to the home feed where you can find all books or browse by category. There are six categories 'Home', 'Fitness, 'Outdoors', 'Self-Improvement', 'Tech', and 'Other'. Additionally, hovering over books reveals additional information.",
-        image= "https://cdn.discordapp.com/attachments/1187515837817557065/1204319755477975070/Screenshot_2024-02-05_225517.png?ex=65effcac&is=65dd87ac&hm=e4b8a0b3a40b1a4fc34a698a7bddb8f730e5cb6d405d9caae4b48da20b9f503c&",
+        image= "https://photobooket.s3.amazonaws.com/da4b115f32e647bc809de8373528137c.png",
         imageName="Landing_page.jpg",
         createdAt = datetime.now()
     )
@@ -141,7 +141,7 @@ def seed_pages():
         page_name = "Reading a book/Viewing a Page",
         page_number = 3,
         caption = "Once you have found a book you like, you can hover over it to reveal additional details. If you click the (1)synopsis, you get taken to the book's page, clicking the (2)author takes you to their page, and clicking the links in the (3)Table of Contents brings you to that page!",
-        image = "https://cdn.discordapp.com/attachments/1187515837817557065/1204685625522126889/Navigating_Book.png?ex=65f1516b&is=65dedc6b&hm=a4e0f4694752368bad6720059a42a288f2e9f7d491016e12c4d81a884801568b&",
+        image = "https://photobooket.s3.amazonaws.com/bf9163aaf99f431a84d7a3a2637e6fd1.png",
         imageName = "Book_View.jpg",
         createdAt = datetime.now()
     )
@@ -152,7 +152,7 @@ def seed_pages():
         page_name = "Managing Your Book",
         page_number = 4,
         caption = "While we're here let us also go over the options for your book. You can (1) edit your book by clicking on the blue pencil and paper icon on the book's tile, (2)burn your book and delete it by clicking the red fire icon, or (3)add a page to your book by clicking the green plus page icon.",
-        image = "https://cdn.discordapp.com/attachments/1187515837817557065/1204685625287122974/Book_Options.png?ex=65f1516b&is=65dedc6b&hm=0a72430a6fba91957c71206adda2ed4b59ab2dda4ce32156bdcc22483c6d9e4a&",
+        image = "https://photobooket.s3.amazonaws.com/6a363dc1d9b94cb7ad67129bf95b235b.png",
         imageName = "Book_Options.jpg",
         createdAt = datetime.now()
     )
@@ -163,7 +163,7 @@ def seed_pages():
         page_name = "Viewing a Page",
         page_number = 1,
         caption = "When viewing a page, you can see the page's name and photo (left side) as well as the caption, and associated comments from yourself and other users(right side). You can navigate between pages in books by clicking the arrows pointing left and right on the pages",
-        image = "https://cdn.discordapp.com/attachments/1187515837817557065/1204687488766058586/Screenshot_2024-02-06_231745.png?ex=65f15327&is=65dede27&hm=d750a4d13eb3b5cc23ecd2af470825da2535d18f54f788238f7822e5e32b5e88&",
+        image = "https://photobooket.s3.amazonaws.com/d3372b435a7c498aaea7ddd6559af2eb.png",
         imageName = "Page_View.jpg",
         createdAt = datetime.now()
     )
@@ -174,7 +174,7 @@ def seed_pages():
         page_name = "Options on a Page",
         page_number = 5,
         caption = "You will also notice the option to (1)bookmark the viewed page. Bookmarking the page will save it on the 'Your Picks' page to view later. Additionally, if the page is yours, you can (2)tear out(delete) the page by clicking the scissors icon or (3)edit the page with the blue paper and pencil icon.",
-        image = "https://cdn.discordapp.com/attachments/1187515837817557065/1204688700638760991/Page_View_Actions.png?ex=65f15448&is=65dedf48&hm=87ed2666abcbc8804c41150dc7d034277bc59c24a8bb58d198356da0791cbd7d&",
+        image = "https://photobooket.s3.amazonaws.com/bb4c6f20cd8a407c90c5d37668be44db.png",
         imageName = "Page_Action.jpg",
         createdAt = datetime.now()
     )
@@ -185,7 +185,7 @@ def seed_pages():
         page_name = "The Nav Bar",
         page_number = 6,
         caption = "Looking to the top of the screen you'll see a few options, (1)a button to visit your own page to view your books/pages and edit your profile, (2)a button to navigate to the form to make a new book, and (3)a user button to view a drop down to logout or view your saved books/pages.",
-        image = "https://cdn.discordapp.com/attachments/1187515837817557065/1204690180905107497/Screenshot_2024-02-06_232728.png?ex=65f155a9&is=65dee0a9&hm=82393bd6bd844f2a476c113fb09e8c3271a1f6ac1dfa9e325c8b870907643bd1&",
+        image = "https://photobooket.s3.amazonaws.com/b2d6ddad7cd4409cbc5c7b8529353937.png",
         imageName = "Page_Action.jpg",
         createdAt = datetime.now()
     )
