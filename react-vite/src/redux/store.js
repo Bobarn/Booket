@@ -13,6 +13,8 @@ import annotationsReducer from "./annotations";
 import bookmarksReducer from "./bookmarks";
 import checkoutsReducer from "./checkouts";
 import messagesReducer from "./messages";
+import chatReducer from "./chat";
+import chatsReducer from "./chats";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
@@ -23,6 +25,7 @@ const rootReducer = combineReducers({
   bookmarks: bookmarksReducer,
   checkouts: checkoutsReducer,
   messages: messagesReducer,
+  chats: chatsReducer
 });
 
 let enhancer;

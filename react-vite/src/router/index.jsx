@@ -13,6 +13,7 @@ import CreatePage from '../components/PageForm/CreatePage/CreatePage';
 import EditPage from '../components/PageForm/EditPage/EditPage';
 import Welcome from '../components/WelcomePage/Welcome';
 import BookPage from '../components/BookPage/BookPage';
+import Chat from '../components/ChatRoom/ChatRoom';
 
 
 export const router = createBrowserRouter([
@@ -70,6 +71,14 @@ export const router = createBrowserRouter([
       {
         path: '/user/picks',
         element: <UserPicks />
+      },
+      {
+        path: '/user/messages',
+        element: <h1>Here we will store all our DM threads</h1>
+      },
+      {
+        path: '/chat/:chatId',
+        element: <Chat />
       },
       {
         path: '*',
