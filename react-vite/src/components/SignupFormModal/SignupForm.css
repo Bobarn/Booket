@@ -2,19 +2,69 @@
     display: flex;
     flex-direction: column;
     width: 400px;
-    height: 550px;
+    height: 650px;
     justify-content: flex-start;
     align-items: center;
+}
+
+#modal-content {
+    border-radius: 10px;
+    z-index: 10;
+    position: relative;
+    top: 5%;
+}
+
+#modal-background {
+    z-index: 5;
+}
+
+.signup-input-container {
+    width: 100%;
 }
 
 #sign-up-form {
     display: flex;
     flex-direction: column;
-    width: 80%;
+    width: 70%;
+}
+
+#sign-up-title {
+    margin: 5px;
+}
+
+.signup-input {
+    width: 100%;
+}
+
+#signup-email-input:focus, #signup-password-input:focus, #signup-username-input:focus, #signup-about-input:focus, #signup-profile-image-input:focus, #signup-banner-image-input:focus, #signup-confirm-password-input:focus, #sign-up-submit:focus {
+    box-shadow:
+    0 0 5px 1px #fff,  /* inner white */
+    0 0 3px 1px #edc7b7, /* middle pink */
+    0 0 5px 1px #AC3B61; /* outer purple */
+    transition: all 0.5s ease-in-out;
+}
+
+.google-auth-div {
+    margin: 10px;
+}
+
+.google-auth {
+    line-height: 2rem;
+    border-radius: 5px;
+    border: none;
+    margin: 0px;
+    cursor: pointer;
+}
+
+.signup-label {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
 }
 
 #sign-up-form > * {
-    margin: 5px 0px;
+    margin: 0px 0px;
     width: 100%;
 }
 
@@ -27,33 +77,79 @@
     border-radius: 5px;
     border: none;
     margin: 0px;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .file-input {
     position: relative;
-    right: -7%;
+    right: 0%;
     line-height: 1.5rem;
     font-family: 'Raleway', sans-serif;
     width: 180px;
     background-color: white;
 }
 
-.label {
-    display: flex;
-    justify-content: space-between;
-    position: relative;
-}
 
 .errors-div {
-    height: 14px;
-    font-size: 14px;
+    height: 20px;
+    font-size: 12px;
     color: red;
 }
 
 .signup-about {
     position: relative;
-    right: -18%;
-    height: 100px;
-    width: 60%;
+    right: 0%;
+    min-height: 50px;
+    height: 50px;
+    max-height: 100px;
+    width: 100%;
+}
+
+/* Media query for 768px and below where the sign up modal shrinks */
+/* And changes the size of the about section and line height of things to fit everything */
+@media (max-width: 768px) {
+    #sign-up-modal {
+        width: 300px;
+        height: 600px;
+    }
+    #sign-up-form {
+        width: 80%;
+    }
+    .signup-about {
+        height: 80px;
+    }
+}
+
+
+/* Media query for change in height below 710px  to shorten the signup modal and reduce size of fonts and line height of the inputs and reduce space between and the font sizes of all areas and reduce the size of the errors-div*/
+@media (max-height: 710px) {
+    #sign-up-modal {
+        height: 590px;
+    }
+    #sign-up-form {
+        width: 80%;
+    }
+    .signup-about {
+        height: 60px;
+    }
+    .signup-input {
+        font-size: 12px;
+        line-height: 1.5rem;
+    }
+    .errors-div {
+        font-size: 10px;
+    }
+
+    #sign-up-submit {
+        line-height: 1.5rem;
+        margin-top: 0px;
+    }
+
+    .google-auth {
+        line-height: 1.5rem;
+    }
+
+    .google-auth-div {
+        margin: 0px;
+    }
 }

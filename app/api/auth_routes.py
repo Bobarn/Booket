@@ -37,6 +37,7 @@ client_secrets = {
     "client_secret": CLIENT_SECRET,
     "redirect_uris": [
       "http://localhost:8000/api/auth/callback",
+      "https://photobook-xu65.onrender.com/api/auth/callback"
     ]
   }
 }

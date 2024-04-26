@@ -130,7 +130,7 @@ def seed_pages():
         page_name = "Looking for a Book",
         page_number = 2,
         caption = "Upon signing up you'll be brought to the home feed where you can find all books or browse by category. There are six categories 'Home', 'Fitness, 'Outdoors', 'Self-Improvement', 'Tech', and 'Other'. Additionally, hovering over books reveals additional information.",
-        image= "https://cdn.discordapp.com/attachments/1187515837817557065/1204319755477975070/Screenshot_2024-02-05_225517.png?ex=65d44d2c&is=65c1d82c&hm=f41328b8d21771485dbe6d06ac1ed8674f60b3cf6b67157990252bbc30b3880e&",
+        image= "https://photobooket.s3.amazonaws.com/da4b115f32e647bc809de8373528137c.png",
         imageName="Landing_page.jpg",
         createdAt = datetime.now()
     )
@@ -141,7 +141,7 @@ def seed_pages():
         page_name = "Reading a book/Viewing a Page",
         page_number = 3,
         caption = "Once you have found a book you like, you can hover over it to reveal additional details. If you click the (1)synopsis, you get taken to the book's page, clicking the (2)author takes you to their page, and clicking the links in the (3)Table of Contents brings you to that page!",
-        image = "https://cdn.discordapp.com/attachments/1187515837817557065/1204685625522126889/Navigating_Book.png?ex=65d5a1eb&is=65c32ceb&hm=68bff50df8ed4264fb96b2842ad93ae1fcdccfd4b1e502298733c0d9f7159862&",
+        image = "https://photobooket.s3.amazonaws.com/bf9163aaf99f431a84d7a3a2637e6fd1.png",
         imageName = "Book_View.jpg",
         createdAt = datetime.now()
     )
@@ -152,7 +152,7 @@ def seed_pages():
         page_name = "Managing Your Book",
         page_number = 4,
         caption = "While we're here let us also go over the options for your book. You can (1) edit your book by clicking on the blue pencil and paper icon on the book's tile, (2)burn your book and delete it by clicking the red fire icon, or (3)add a page to your book by clicking the green plus page icon.",
-        image = "https://cdn.discordapp.com/attachments/1187515837817557065/1204685625287122974/Book_Options.png?ex=65d5a1eb&is=65c32ceb&hm=63694be58c1f437bc3f705a4b7490d41ae19acfc7f51b06d6cde2a908c5dc07b&",
+        image = "https://photobooket.s3.amazonaws.com/6a363dc1d9b94cb7ad67129bf95b235b.png",
         imageName = "Book_Options.jpg",
         createdAt = datetime.now()
     )
@@ -163,7 +163,7 @@ def seed_pages():
         page_name = "Viewing a Page",
         page_number = 1,
         caption = "When viewing a page, you can see the page's name and photo (left side) as well as the caption, and associated comments from yourself and other users(right side). You can navigate between pages in books by clicking the arrows pointing left and right on the pages",
-        image = "https://cdn.discordapp.com/attachments/1187515837817557065/1204687488766058586/Screenshot_2024-02-06_231745.png?ex=65d5a3a7&is=65c32ea7&hm=205a9faef83a04cb53545dec2f41546adabbc2a5d65fa28650c636266a9d5d3f&",
+        image = "https://photobooket.s3.amazonaws.com/d3372b435a7c498aaea7ddd6559af2eb.png",
         imageName = "Page_View.jpg",
         createdAt = datetime.now()
     )
@@ -174,7 +174,7 @@ def seed_pages():
         page_name = "Options on a Page",
         page_number = 5,
         caption = "You will also notice the option to (1)bookmark the viewed page. Bookmarking the page will save it on the 'Your Picks' page to view later. Additionally, if the page is yours, you can (2)tear out(delete) the page by clicking the scissors icon or (3)edit the page with the blue paper and pencil icon.",
-        image = "https://cdn.discordapp.com/attachments/1187515837817557065/1204688700638760991/Page_View_Actions.png?ex=65d5a4c8&is=65c32fc8&hm=91febd68efbfa01a2ed24fe0b63437a3265f0ea9c957f0d3fd9cb53285ee7d54&",
+        image = "https://photobooket.s3.amazonaws.com/bb4c6f20cd8a407c90c5d37668be44db.png",
         imageName = "Page_Action.jpg",
         createdAt = datetime.now()
     )
@@ -185,16 +185,56 @@ def seed_pages():
         page_name = "The Nav Bar",
         page_number = 6,
         caption = "Looking to the top of the screen you'll see a few options, (1)a button to visit your own page to view your books/pages and edit your profile, (2)a button to navigate to the form to make a new book, and (3)a user button to view a drop down to logout or view your saved books/pages.",
-        image = "https://cdn.discordapp.com/attachments/1187515837817557065/1204690180905107497/Screenshot_2024-02-06_232728.png?ex=65d5a629&is=65c33129&hm=ea3ea0a5d28bb67d8433f4d5d99e2a611b8768583d175aaa9e60d1427774cbf3&",
+        image = "https://photobooket.s3.amazonaws.com/b2d6ddad7cd4409cbc5c7b8529353937.png",
         imageName = "Page_Action.jpg",
         createdAt = datetime.now()
     )
+
+    page17 = Page(user_id=1, book_id=1, page_name="Gourmet Adventure", page_number=3, caption="Attempting to cook a gourmet meal: So far, my smoke alarm is an excellent cheerleader!", image="https://beeflovingtexans.com/wp-content/uploads/2022/04/burnt_ends_hero-thumb.jpg", imageName="Burnt_Recipe.jpg")
+
+    page18 = Page(user_id=1, book_id=1, page_name="Cooking Experiment", page_number=4, caption="Tried a new recipe today. My kitchen looks like a crime scene, but at least the food is edible!", image="https://images.squarespace-cdn.com/content/v1/6014c67f05ed324961a0efd0/1632506259406-TKTSGKR0MB8VNFCC38LN/IMG_3536_jpg.jpeg", imageName="Messy_Recipe.jpeg")
+
+    page19 = Page(user_id=6, book_id=9, page_name="Deal-Making Mastery", page_number=1, caption="Unlocking the secrets of successful business deals: Where negotiations feel more like a win-win dance.", image="https://foundersguide.com/wp-content/uploads/2018/05/pexels-photo-886465.jpeg", imageName="Deal Image 1")
+
+    page20 = Page(user_id=6, book_id=9 , page_name="Strategies for Success", page_number=2, caption="In the world of business, a good deal is like a masterpiece - crafted with strategy, negotiation, and a touch of finesse.", image="https://www.aranca.com/assets/uploads/blogs/valution_banner.jpg", imageName="Deal Image 2")
+
+    page21 = Page(user_id=3, book_id=10, page_name="Nature Retreat", page_number=1, caption="Embracing the great outdoors: Camping is not just a getaway; it's a reconnection with nature's wonders.", image="https://media.cntraveler.com/photos/5ef635b25a986932f31237d9/16:9/w_2560%2Cc_limit/CampingGear-2020-GettyImages-sb10070057l-001.jpg", imageName="Camping Image 1")
+
+    page22 = Page(user_id=3, book_id=10, page_name="Under the Stars", page_number=2, caption="Camping nights - where the sky becomes a canvas and every campfire story feels like an epic adventure.", image="https://www.onetravel.com/going-places/wp-content/uploads/2020/10/camping-outdoors.jpg", imageName="Camping Image 2")
+
+    page23 = Page(user_id=2, book_id=11, page_name="Fitness Foundations", page_number=1, caption="Becoming a personal trainer is more than lifting weights. It's about sculpting lives, one workout at a time.", image="https://dfstore.ie/wp-content/uploads/2019/08/inspirational-gym-quotes.jpg", imageName="Trainer Image 1")
+
+    page24 = Page(user_id=2, book_id=11, page_name="Empowering Others", page_number=2, caption="In the world of personal training, motivation is the currency, and helping clients reach their fitness goals is the ultimate reward.", image="https://media.istockphoto.com/id/953476148/vector/finish-strong-inspiring-workout-and-fitness-gym-motivation-quote-illustration-sign-creative.jpg?s=612x612&w=0&k=20&c=84sRmqmJhgmR_hKA5kDhIax5kvO15CCyUgXe2hl-R6U=", imageName="Trainer Image 2")
+
+    page25 = Page(user_id=4, book_id=12, page_name="Growing Alone", page_number=1, caption="Embarking on a journey of self-discovery: Unraveling the layers to reveal the empowered, authentic you.", image="https://www.rappler.com/tachyon/2021/10/rappler-blogs-shutterstock-self-help-books-sq.jpg", imageName="Self-Help Image 1")
+
+    page26 = Page(user_id=4, book_id=12, page_name="Empower Your Mind", page_number=2, caption="In the realm of self-help, every challenge is an opportunity, and every setback is a stepping stone to a stronger, more resilient you.", image="https://www.insperity.com/wp-content/uploads/Selfcare_Leadership1200x630.png", imageName="Self-Help Image 2")
+
+    page27 = Page(user_id=5, book_id=13, page_name="Virtually Adventurous", page_number=1, caption="Step into the extraordinary world of virtual reality: Where reality blurs with imagination, and every adventure feels larger than life.", image="https://static0.gamerantimages.com/wordpress/wp-content/uploads/2022/09/dragon-in-The-Elder-Scrolls-V-Skyrim-VR-girl-in-RUINSMAGUS-skeleton-monster-in-Legendary-Tales.jpg", imageName="VR Image 1")
+
+    page28 = Page(user_id=5, book_id=13, page_name="A New World", page_number=2, caption="In the realm of virtual reality gaming, the only limit is your creativity. Immerse yourself in a world where pixels come to life.", image="https://zybervr.com/cdn/shop/articles/beat-saber-scoring-system.jpg?v=1692331211", imageName="VR Image 2")
+
+    page29 = Page(user_id=1, book_id=14, page_name="A Sober Beginning", page_number=1, caption="Embarking on a journey of sobriety: It's not easy. I reward myself though with mocktails like these!", image="https://cleanfoodiecravings.com/wp-content/uploads/2022/07/Pomegranate-mocktails-11-scaled-1-768x1024.jpg", imageName="Sobriety Image 1")
+
+    page30 = Page(user_id=1, book_id=14, page_name="Reclaiming Happiness", page_number=2, caption="In the world of sobriety, every day is a triumph. And that's a good thing for me since I did NOT triumph in basketball today.", image="https://images.pexels.com/photos/358042/pexels-photo-358042.jpeg", imageName="Sobriety Image 2")
+
+    page31 = Page(user_id=3, book_id=15, page_name="The Great Clutter Caper", page_number=1, caption="Embarking on a decluttering adventure: Where misplaced items play hide and seek, and winning means finding your favorite sock.", image="https://goodtobehomemag.com/wp-content/uploads/sites/5/2018/01/cleaning-tips-for-working-moms-intext1-910x683-1.jpeg", imageName="Cleaning Image 1")
+
+    page32 = Page(user_id=3, book_id=15, page_name="Land of the Lost", page_number=2, caption="In the world of house cleaning, every lost item has a secret society. Uncover the mysteries of the missing with laughter and a dustpan.", image="https://media-cldnry.s-nbcnews.com/image/upload/t_nbcnews-fp-1200-630,f_auto,q_auto:best/newscms/2018_04/2305306/180125-better-cleaning-115a-rs.jpg", imageName="Cleaning Image 2")
+
+    page33 = Page(user_id=4, book_id=16, page_name="Gloves and Glory", page_number=1, caption="Stepping into the ring: Where the heartbeat is the rhythm of the fight, and victory is the sweetest melody.", image="https://european-games.org/wp-content/uploads/2022/10/30657454202_f715da9e46_k.jpg", imageName="Boxing Image 1")
+
+    page34 = Page(user_id=4, book_id=16, page_name="The Art of the Jab", page_number=2, caption="In the world of boxing, every jab is a brushstroke, and the canvas is the opponent. Paint your masterpiece with determination and skill.", image="https://www.aljazeera.com/wp-content/uploads/2023/12/2023-12-24T003620Z_2048767767_UP1EJCO01OIUH_RTRMADP_3_BOXING-HEAVYWEIGHT-JOSHUA-WALLIN-1703391885.jpg?resize=1800%2C1800", imageName="Boxing Image 2")
+
+    page35 = Page(user_id=2, book_id=2, page_name="The Wacky Wanderer", page_number=3, caption="When the trail is as twisted as my sense of direction, and the compass is just a fancy paperweight.", image="https://img.redbull.com/images/q_auto,f_auto/redbullcom/2019/02/14/065a097d-c3b9-4784-86fc-e619315d4b19/ryan-sandes-scramble", imageName="Hiking Image 1")
+
+    page36 = Page(user_id=2, book_id=2, page_name="Dance of the Lost Socks", page_number=4, caption="In the world of scramble-style hiking, every sock lost to the wilderness becomes a sacrifice to the sock gods. Cue the dramatic music and the search party!", image="https://images.squarespace-cdn.com/content/v1/531722ebe4b01396b755c991/1616060588818-Y1DBZSPJPSC1FGHSXCCN/John+Fleetwood+scrambling+02+1500px.jpg", imageName="Hiking Image 2")
 
 
     users = User.query.all()
 
 
-    all_pages = [page1, page2, page3, page4, page5, page6, page7, page8, page9]
+    all_pages = [page1, page2, page3, page4, page5, page6, page7, page8, page9, page17, page18, page19, page20, page21, page22, page23, page24, page25, page26, page27, page28, page29, page30, page31, page32, page33, page34, page35, page36]
     tutorial_pages = [page10, page14, page11, page12, page13, page15, page16]
 
     for page in all_pages:

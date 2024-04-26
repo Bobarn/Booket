@@ -79,6 +79,10 @@ export const router = createBrowserRouter([
       {
         path: '/chat/:chatId',
         element: <Chat />
+      },
+      {
+        path: '*',
+        element: <><div id='buffer'></div><h1>Page Not Found</h1></>
       }
     ],
   },

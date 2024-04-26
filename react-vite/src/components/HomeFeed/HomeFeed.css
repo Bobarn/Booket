@@ -23,6 +23,11 @@
     align-items: center;
     position: relative;
     color: #374151;
+    transition: all 0.3s ease-in-out;
+}
+
+.cat-link > * {
+    transition: all 0.3s ease-in-out;
 }
 
 .cat-link:hover, .cat-link:hover > * {
@@ -72,4 +77,17 @@ body {
     }
 
 
+}
+
+.fader {
+    animation: fadeInAnimation ease 0.5s;
+  }
+
+@keyframes fadeInAnimation {
+0% {
+    opacity: 0;
+}
+100% {
+    opacity: 1;
+}
 }

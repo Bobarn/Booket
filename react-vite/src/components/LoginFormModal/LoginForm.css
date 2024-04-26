@@ -2,9 +2,14 @@
     display: flex;
     flex-direction: column;
     width: 300px;
-    height: 350px;
+    height: 450px;
     justify-content: space-around;
     align-items: center;
+}
+
+.login-input-container {
+    display: flex;
+    flex-direction: column;
 }
 
 #log-in-form {
@@ -41,6 +46,7 @@
 
 #demo {
     align-self: center;
+    margin: 0px;
 }
 
 #demo:hover {
