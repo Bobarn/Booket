@@ -4,6 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import BookTile from '../BookTile/BookTile';
 import { thunkGetAllBooks} from '../../redux/books';
 import { thunkGetAllUsers } from '../../redux/users';
+import { thunkCreateChat } from "../../redux/chats";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
 import "./UserPage.css";
@@ -39,6 +40,15 @@ export default function UserPage() {
       return book;
   }})
 
+  const openChat = (id) => {
+    const chat = {
+      user1Id: currUser.id,
+      user2Id: id
+    }
+    let response = dispatch(thunkCreateChat(chat))
+    .then(() => navigate(`/chat/${response.id}`))
+  }
+
   return (
     <>
     <div id="buffer"></div>
@@ -49,6 +59,7 @@ export default function UserPage() {
         </div>
         <img src={user.profileImage} className="user-profile-image" />
         <h2 className="user-page-username">{user.username}</h2>
+        <button onClick={openChat(userId)} className="open-chat">Message</button>
 
         <div className="users-stats">
           <h3>{user.books} Book(s)      {user.pages} Page(s)</h3>
