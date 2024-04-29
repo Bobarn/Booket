@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
 import { thunkSendMsg, thunkGetMsgsByChat, editMsg, receiveMsg, removeMsg } from '../../redux/messages';
+import { thunkGetChats } from '../../redux/chats';
 import { useSelector, useDispatch } from 'react-redux';
 import { useModal } from '../../context/Modal';
 import { useParams } from 'react-router-dom';
 import { io } from 'socket.io-client';
 import './ChatRoom.css';
 let typeTimeout;
-let textArea;
-let defaultHeight;
+// let textArea;
+// let defaultHeight;
 
 const Chat = () => {
     const dispatch = useDispatch();
@@ -16,18 +17,19 @@ const Chat = () => {
     const user = useSelector(state => state.session.user)
     const { chatId } = useParams();
     const { setModalContent, closeModal} = useModal();
-    const chat = useSelector(state => state.chat[chatId])
-    const msgs = useSelector(state => state.messages)
+    const chat = useSelector(state => state.chats[chatId])
     const [messageInput, setMessageInput] = useState('');
     const [typing, setTyping] = useState(false);
     const [active, setActive] = useState(new Set());
     const chatBar = document.getElementById('chatBarContent');
     const [shifting, setShifting] = useState(false);
+    // console.log(chat, "WE ARE HERE")
+    // console.log(messages.length, "WE ARE HERE")
 
     useEffect(() => {
         window.addEventListener('keydown', ({key}) => { if (key === 'Shift') setShifting(true) })
         window.addEventListener('keyup', ({key}) => { if (key === 'Shift') setShifting(false) })
-        window.addEventListener('resize', resizeTextArea)
+        // window.addEventListener('resize', resizeTextArea)
       }, [])
 
 
@@ -38,21 +40,21 @@ const Chat = () => {
             chat_id: chatId,
             is_typing: typing
         })
-    }
+      }
 
 
-  const resizeTextArea = () => setTimeout(()=>{
-    if(!textArea) textArea = document.getElementById('chatBarFooterTxt')
-    textArea.rows = 1
-    if(!defaultHeight) defaultHeight = textArea.scrollHeight
-    textArea.rows = textArea.scrollHeight==defaultHeight? 1 : ~~(Math.min(textArea.scrollHeight, window.innerHeight*.5)*.05-1)
-  },0)
+      // const resizeTextArea = () => setTimeout(()=>{
+        //   if(!textArea) textArea = document.getElementById('chatBarFooterTxt')
+        //   textArea.rows = 1
+        //   if(!defaultHeight) defaultHeight = textArea.scrollHeight
+        //   textArea.rows = textArea.scrollHeight==defaultHeight? 1 : ~~(Math.min(textArea.scrollHeight, window.innerHeight*.5)*.05-1)
+        // },0)
 
 
-  const submitMsg = () => {
-    if(!messageInput.trim()) return
-    if(messageInput.trim().length > 1000) return setModalContent(
-      <div id="modalMessageTooLong">
+        const submitMsg = () => {
+          if(!messageInput.trim()) return
+          if(messageInput.trim().length > 1000) return setModalContent(
+            <div id="modalMessageTooLong">
         <div id="modalTitle">Your message is too long...</div>
         <div className='hCaption'>Please edit your message to be within the 1,000 character limit.</div><br/>
         <div id="modalFooter">
@@ -64,7 +66,7 @@ const Chat = () => {
     )
     dispatch(thunkSendMsg(chatId, { content: messageInput.trim() }))
     setMessageInput('')
-    resizeTextArea()
+    // resizeTextArea()
   }
 
     useEffect(() => {
@@ -73,17 +75,17 @@ const Chat = () => {
         window.socket = io();
 
         window.socket.on('sendMessage', msg => {
-            if(msg.chat_id == chatId) dispatch(receiveMsg(msg))
-          })
-        window.socket.on('editMsg', msg => {
-           if(msg.chat_id == chatId) dispatch(editMsg(msg))
+          if(msg.chat_id == chatId) dispatch(receiveMsg(msg))
         })
+      window.socket.on('editMsg', msg => {
+           if(msg.chat_id == chatId) dispatch(editMsg(msg))
+          })
         window.socket.on('deleteMsg', msgId => {
           dispatch(removeMsg(msgId))
         })
         window.socket.on('typing', data => {
-            if(data.is_typing && data.chat_id==chatId) setActive(set => new Set([...set, data.username]))
-            else setActive(set => new Set([...set].filter(n => n!=data.username)))
+          if(data.is_typing && data.chat_id==chatId) setActive(set => new Set([...set, data.username]))
+          else setActive(set => new Set([...set].filter(n => n!=data.username)))
         })
         // when component unmounts, disconnect
         return (() => {
@@ -101,7 +103,7 @@ const Chat = () => {
       useEffect(()=>{
         setActive(new Set())
         setMessageInput('')
-        resizeTextArea()
+        // resizeTextArea()
       }, [chatId])
 
       useEffect(()=>{
@@ -113,29 +115,33 @@ const Chat = () => {
       },[messageInput])
 
       useEffect(()=>{
+        dispatch(thunkGetChats())
         dispatch(thunkGetMsgsByChat(chatId))
       },[chatId, dispatch])
 
+      let messages = chat.messages;
+
+
       useEffect(()=>{
         if(chatBar) chatBar.scrollTop = chatBar.scrollHeight
-      },[msgs,chatBar])
+      },[messages,chatBar])
 
-    // const updateChatInput = (e) => {
-    //     setChatInput(e.target.value)
-    // };
+      // const updateChatInput = (e) => {
+        //     setChatInput(e.target.value)
+        // };
 
-    // const sendChat = (e) => {
-    //     e.preventDefault()
-    //     socket.emit("sendMessage", { user: user.username, msg: messageInput });
-    //     setMessageInput("")
-    // }
+        // const sendChat = (e) => {
+          //     e.preventDefault()
+          //     socket.emit("sendMessage", { user: user.username, msg: messageInput });
+          //     setMessageInput("")
+          // }
 
-    // return (user && (
+          // return (user && (
     //     <div>
     //         <div>
     //             {messages.map((message, ind) => (
-    //                 <div key={ind}>{`${message.user}: ${message.msg}`}</div>
-    //             ))}
+      //                 <div key={ind}>{`${message.user}: ${message.msg}`}</div>
+      //             ))}
     //         </div>
     //         <form onSubmit={sendChat}>
     //             <input
@@ -147,6 +153,7 @@ const Chat = () => {
     //     </div>
     // )
     // )
+    if(!chat) return null
     return (
         <div id='chatBar'>
             {chat ? <>
@@ -156,7 +163,7 @@ const Chat = () => {
                 <div id='chatBarContent'>
                     <div id='chatBarSpace'></div>
                     {
-                    msgs && Object.values(msgs)
+                    messages && Object.values(messages)
                         .filter(m => m.chat_id == chatId)
                         .sort((a, b) => new Date(a.created_at) - new Date(b.created_at))
                         // .map((m, i, a) =>
@@ -178,7 +185,7 @@ const Chat = () => {
                         value={messageInput}
                         onChange={e => {
                             setMessageInput(e.target.value)
-                            resizeTextArea()
+                            // resizeTextArea()
                         }}
                         onKeyDown={e => {
                             if(e.shiftKey || e.key !== 'Enter' || shifting) return
@@ -190,7 +197,6 @@ const Chat = () => {
                         <div id='chatBarFooterSend'
                             onClick={submitMsg}
                         >
-                            <img className={messageInput.trim().length ? '' : 'buttonDisabled'} src='/icons/send.svg'/>
                         </div>
                         <div id='chatBarFooterTyping'> {
                             active.size ? [...active].join(', ') + ' is typing...' : ''

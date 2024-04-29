@@ -37,26 +37,28 @@ export const thunkRemoveChat = chatId => async dispatch => {
 }
 
 export const thunkCreateChat = (chat) => async dispatch => {
-	let response;
-	csrfFetch(`/api/chats`, {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify(chat)
-	})
-	.then(r => r.json())
-	.then(d => {
-		dispatch(createChat(d));
-		response = d;
-	})
-	.catch(console.error)
+	try {
+		// console.log("WE ARE INSIDE")
+		const data = await csrfFetch(`/api/chats/new`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(chat)
+		})
+		let response = await data.json()
+		// console.log(response, "HERE, I AM INSIDE");
+		await dispatch(createChat(response));
+		return response;
 
-	return d;
+	}
+	catch(err) {
+		console.error(err);
+	}
 }
 
 
-const chatsReducer = (state = { chat: {} }, action) => {
+const chatsReducer = (state = { }, action) => {
 	switch (action.type) {
 		case LOAD_CHATS: {
 			const newState = {};

@@ -22,7 +22,10 @@ export const editMsg = msg => ({
 export const thunkGetMsgsByChat = chatId => dispatch => {
 	csrfFetch(`/api/chats/${chatId}/messages`)
 	.then(r=>r.json())
-	.then(d => dispatch(loadMsgs(d)))
+	.then(d => {
+		// console.log(d.messages);
+		dispatch(loadMsgs(d.messages))
+	})
 	.catch(e => {
 		console.error(e)
 		dispatch(loadMsgs([]))
@@ -71,7 +74,7 @@ export const thunkEditMsg = (msgId, content) => dispatch => {
 }
 
 
-const messagesReducer = (state = { msg: {} }, action) => {
+const messagesReducer = (state = { }, action) => {
 	switch (action.type) {
 		case LOAD_MSGS: {
 			const msgsState = {};
