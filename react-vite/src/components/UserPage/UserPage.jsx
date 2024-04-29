@@ -104,8 +104,11 @@ export default function UserPage() {
       user1Id: currUser.id,
       user2Id: id
     }
-    let response = dispatch(thunkCreateChat(chat))
-    .then(() => navigate(`/chat/${response.id}`))
+    dispatch(thunkCreateChat(chat))
+    .then((response) => {
+      console.log(response)
+      navigate(`/chat/${response.id}`)
+    })
   }
 
   return (
@@ -118,7 +121,7 @@ export default function UserPage() {
         </div>
         <img src={user.profileImage} className="user-profile-image" />
         <h2 className="user-page-username">{user.username}</h2>
-        <button onClick={openChat(userId)} className="open-chat">Message</button>
+        <button onClick={() => openChat(userId)} className="open-chat">Message</button>
 
         <div className="users-stats">
           <h3>{user?.books} Book(s)      {user?.pages} Page(s)</h3>
