@@ -8,7 +8,7 @@ const getUsers = (users) => ({
 })
 
 export const thunkGetAllUsers = () => async(dispatch) => {
-	const response = await fetch ('/api/users',{
+	const response = await fetch ('https://photobook-xu65.onrender.com/api/users/',{
 		headers: {
 			'Content-Type': 'application/json',
 			'Access-Control-Allow-Origin': origins,
