@@ -106,7 +106,7 @@ export default function UserPage() {
     }
     dispatch(thunkCreateChat(chat))
     .then((response) => {
-      console.log(response)
+      alert("Feature still being worked on!")
       navigate(`/chat/${response.id}`)
     })
   }
@@ -121,7 +121,7 @@ export default function UserPage() {
         </div>
         <img src={user.profileImage} className="user-profile-image" />
         <h2 className="user-page-username">{user.username}</h2>
-        <button onClick={() => openChat(userId)} className="open-chat">Message</button>
+        {userId != currUser?.id && <button onClick={() => openChat(userId)} className="open-chat">Message</button>}
 
         <div className="users-stats">
           <h3>{user?.books} Book(s)      {user?.pages} Page(s)</h3>

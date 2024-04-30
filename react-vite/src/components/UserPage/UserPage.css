@@ -125,6 +125,20 @@
     left: 35%;
     font-size: medium;
 }
+/* Write css for the message button */
+.open-chat {
+    background-color: #FFFDDA;
+    position: absolute;
+    bottom: 0%;
+    left: 45%;
+    font-size: medium;
+}
+
+.open-chat:hover {
+    background-color: #FFFDDA;
+    color: #AC3B61;
+    cursor: pointer;
+}
 
 @media (max-width: 1200px) {
     .user-page-about {
