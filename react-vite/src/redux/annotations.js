@@ -29,7 +29,7 @@ const deleteAnnotation = (annotationId) => ({
 
 //GET ALL ANNOTATIONS
 export const thunkGetAllAnnotations = () => async (dispatch) => {
-    const response = await fetch('/api/annotations')
+    const response = await fetch('/api/annotations/')
     if (response.ok) {
         const {annotations} = await response.json();
         dispatch(getAllAnnotations(annotations))
